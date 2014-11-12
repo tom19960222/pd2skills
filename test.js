@@ -3,15 +3,15 @@ var app = angular.module('myApp', []);
 
 app.controller('MainCtrl', function($scope, $http) {
 	$scope.totalPoint = 4;
-	$scope.used = 0;
+	$scope.point = 0;
 	
 	$scope.tree = [];
 	$http.get('tree.json').success(function(data) {
 		data = data.map(function(v, k) {
 			return {
-				"name" : v.name || "",
-				"note" : v.note || "",
-				"basic" : false
+				"name" : v.name || "未定義名稱",
+				"note" : v.note || "未定義內容",
+				"basic" : false,
 				"ace" : false
 			};
 		});
@@ -32,25 +32,27 @@ app.controller('MainCtrl', function($scope, $http) {
 	};
 	
 	$scope.click = function(e) {
-		if (e.basic !== true) {
-			
-			var leftPoint = $scope.getUsed();
-			if ($scope.used <= 0) return;
+		if (e.basic != true) {
+			if ($scope.point > 0) return e.basic = true;
+		} else if (e.ace != true) {
+			if ($scope.point > 1) return e.ace = true;
 		}
-		
-		e.used = !e.used;
+	}
+	
+	$scope.click2 = function(e) {
+		e.basic = false;
+		e.ace = false;
 	}
 	
 	$scope.getUsed = function() {
-		var used = 0;
+		var point = 0;
 		
 		angular.forEach($scope.tree, function(e) {
-			if (e.used) {
-				used += 1;
-			}
+			if (e.basic === true) point += 1;
+			if (e.ace === true) point += 2;
 		});
 		
-		return $scope.used = $scope.totalPoint - used;
+		return $scope.point = $scope.totalPoint - point;
 	}
 	
 });

@@ -16,12 +16,17 @@
 		<div class="main" >
 			<div class="left">
 				<ul>
-					<li ng-repeat="element in tree"
+					<li	
+						ng-repeat="element in tree track by element.name"
 						ng-mouseover="hover(element)"
 						ng-click="click(element)"
-						ng-class="{basic:element.used}"
+						ng-class="{basic:element.basic, ace:element.ace}"
 					>
 						{{ element.name }}
+						<span
+							ng-show="element.basic || element.ace"
+							ng-click="click2(element); $event.stopPropagation()"
+						>x</span>
 					</li>
 				</ul>
 			</div>
