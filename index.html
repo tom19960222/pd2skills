@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<title> Angular Test </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=0">
+		
+		<link rel="stylesheet" href="style.css">
+		
+		<script src="angular.min.js"></script>
+		
+	</head>
+	
+	<body ng-app="myApp" ng-controller="MainCtrl">
+		
+		<div class="main" >
+			<div class="left">
+				<ul>
+					<li ng-repeat="element in tree"
+						ng-mouseover="hover(element)"
+						ng-click="click(element)"
+						ng-class="{basic:element.used}"
+					>
+						{{ element.name }}
+					</li>
+				</ul>
+			</div>
+			
+			<div class="right">
+			
+				<h3>{{ display.name }}</h3>
+				<p>{{ display.note }}</p>
+			
+			</div>
+			
+		</div>
+		<p> 剩餘點數: {{ getUsed(); }} </p>
+		
+		<script src="test.js"></script>
+	</body>
+</html>
