@@ -1,0 +1,116 @@
+{
+	"normal" : [
+		{
+			"tier" : 0,
+			"tierUnlockPoint" : 0,
+			"unlockPoint" : {
+				"basic" : 1
+			},
+			"unlockCost" : {
+				"basic" : 500
+			}
+		},
+		{
+			"tier" : 1,
+			"tierUnlockPoint" : 1,
+			"unlockPoint" : {
+				"basic" : 1,
+				"ace"   : 3
+			},
+			"unlockCost" : {
+				"basic" : 4500,
+				"ace"   : 12500
+			}
+		},
+		{
+			"tier" : 2,
+			"tierUnlockPoint" : 5,
+			"unlockPoint" : {
+				"basic" : 1,
+				"ace"   : 3
+			},
+			"unlockCost" : {
+				"basic" : 100,
+				"ace"   : 500
+			}
+		},
+		{
+			"tier" : 3,
+			"tierUnlockPoint" : 10,
+			"unlockPoint" : {
+				"basic" : 1,
+				"ace"   : 3
+			},
+			"unlockCost" : {
+				"basic" : 100,
+				"ace"   : 500
+			}
+		},
+		{
+			"tier" : 4,
+			"tierUnlockPoint" : 20,
+			"unlockPoint" : {
+				"basic" : 4,
+				"ace"   : 8
+			},
+			"unlockCost" : {
+				"basic" : 100,
+				"ace"   : 500
+			}
+		},
+		{
+			"tier" : 5,
+			"tierUnlockPoint" : 30,
+			"unlockPoint" : {
+				"basic" : 4,
+				"ace"   : 8
+			},
+			"unlockCost" : {
+				"basic" : 100,
+				"ace"   : 500
+			}
+		},
+		{
+			"tier" : 6,
+			"tierUnlockPoint" : 40,
+			"unlockPoint" : {
+				"basic" : 4,
+				"ace"   : 8
+			},
+			"unlockCost" : {
+				"basic" : 100,
+				"ace"   : 500
+			}
+		}
+	],
+	"infamy" : [
+		{
+			"tier" : 0,
+			"tierUnlockPoint" : 0
+		},
+		{
+			"tier" : 1,
+			"tierUnlockPoint" : 1
+		},
+		{
+			"tier" : 2,
+			"tierUnlockPoint" : 5
+		},
+		{
+			"tier" : 3,
+			"tierUnlockPoint" : 9
+		},
+		{
+			"tier" : 4,
+			"tierUnlockPoint" : 18
+		},
+		{
+			"tier" : 5,
+			"tierUnlockPoint" : 27
+		},
+		{
+			"tier" : 6,
+			"tierUnlockPoint" : 36
+		}
+	]
+}

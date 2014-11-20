@@ -1,0 +1,179 @@
+{
+	"editor" : "Shisha",
+	"game-version" : "44.1",
+	"trees" : [
+		{
+			"name" : "Mastermind",
+			"title" : "黑手",
+			"text" : "就是那些自以為老子最大，常常對人指手劃腳的傢伙。",
+			"tiers" : [
+				{
+					"tier" : 0,
+					"skills" : [
+						{
+							"name"  : "Unlocking The Mastermind",
+							"title" : "解鎖技能樹",
+							"text"  : "可以攜帶醫療包"
+						}
+					]
+				},
+				{
+					"tier" : 1,
+					"skills" : [
+						{
+							"name"  : "Cable Guy",
+							"title" : "捆工",
+							"basic" : "捆綁人質快<strong>75%</strong>",
+							"ace"   : "攜帶的綁繩增加<strong>4</strong>條，共<strong>6</strong>條",
+							"text"  : "無"
+						},
+						{
+							"name"  : "Combat Medic",
+							"title" : "醫療兵",
+							"basic" : "當你救起一名隊友，可以獲得<strong>10</strong>秒的<strong>25%</strong>傷害加乘",
+							"ace"   : "被你救起的隊友可以獲得多<strong>30%</strong>的生命值",
+							"text"  : ""
+						},
+						{
+							"name"  : "Endurance",
+							"title" : "耐力",
+							"basic" : "你跑步的耐力增加<strong>100%</strong>",
+							"ace"   : "你和隊友的耐力增加<strong>75%</strong>。（你自己增加共<strong>150%</strong>）",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 2,
+					"skills" : [
+						{
+							"name"  : "Control Freak",
+							"title" : "控制狂",
+							"basic" : "你製造的噪音可壓制平民。（包括開槍、敲破玻璃、手榴彈、甚至開電鋸。武器威嚇值越高就越遠越有效。）壓制平民的有效時間增加<strong>50%</strong>，他們會乖乖伏地更長時間。",
+							"ace"   : "可以購買特殊任務支援，例如逃亡車輛。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Painkillers",
+							"title" : "鎮痛藥",
+							"basic" : "隊友在被你救起的<strong>5</strong>秒內，減少<strong>10%</strong>所受到的傷害。",
+							"ace"   : "上述效能增加<strong>20%</strong>，即總共減少<strong>30%</strong>所受到的傷害。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Leadership",
+							"title" : "領導力",
+							"basic" : "你和隊友的手槍系武器的穩定度提升２５％，但對雙槍無效。",
+							"ace"   : "你和隊友的所有武器（包括雙槍）的穩定度提升５０％。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 3,
+					"skills" : [
+						{
+							"name"  : "Spotter",
+							"title" : "天文台",
+							"basic" : "被你標記的特殊敵人會受多１５％的額外傷害。",
+							"ace"   : "可購買特殊任務支援「觀察員」。他會在任務中站在高處監視環境。潛行階段時，他會標記出地圖上的守衛。火拼階段時，他會標記出所有特殊敵人。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Equilibrium",
+							"title" : "重裝上陣",
+							"basic" : "手槍命中率提升１０％，切換／切出手槍快５０％。",
+							"ace"   : "手槍射速增加１００％。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Dominator",
+							"title" : "支配者",
+							"basic" : "你和隊友可以按Ｆ鍵呼喝警察及警衛進行壓制。成功的話他們會舉手投降，再呼喝就可讓他們反綁自己。被壓制的警察可以當成人質來交換被逮捕的隊友。受傷的敵人較易壓制。黑幫及特殊敵人無法壓制。",
+							"ace"   : "你的呼叫距離及壓制力增加５０％。包括指出並標示目標的距離。（連同扛壩子的馬拉松人職業獎勵則一共增加７５％）",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 4,
+					"skills" : [
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						},
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						},
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 5,
+					"skills" : [
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						},
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						},
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 6,
+					"skills" : [
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						},
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						},
+						{
+							"name"  : "Name",
+							"title" : "Title",
+							"basic" : "Basic Information",
+							"ace"   : "Ace Information",
+							"text"  : ""
+						}
+					]
+				}
+			]
+		}
+	]
+}

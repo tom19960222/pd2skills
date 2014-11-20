@@ -1,28 +1,118 @@
-﻿body {
+﻿/**
+ * ================================================================
+ * = Reset
+ * ================================================================
+ */
+
+body {
 	background-color:#0b0b15;
-	color:#eee;
+	color:#EEE;
+	font-family: "微軟正黑體"
 }
 
-ul {
+
+ul, p, h1, h2, h3, h4, h5, h6 {
 	margin:0;
 	padding:0;
+	font-weight:normal;
 }
 
-li {
+
+/**
+ * ================================================================
+ * = Skill
+ * ================================================================
+ */
+
+.skill {
 	list-style:none;
+	box-sizing:border-box;
+	position:relative;
 	float:left;
+	width:160px;
+	height:68px;
 	
-	width:60px;
-	height:60px;
-	margin:3px;
-	background:#DDD;
-	border:2px solid #999;
+	border:2px solid transparent;
+	border:2px solid #0b0b15;
 }
 
-hr {
-	
+.skill:hover {
+	border:2px solid #eee;
 }
 
+.skill-text {
+	margin:24px 4px 4px 68px;
+	font-size:16px;
+}
+
+.skill-button {
+	position:absolute;
+	top:0;
+	right:0;
+	font-size:24px;
+}
+
+.skill-icon {
+	position:absolute;
+	top:0;
+	left:0;
+	width:64px;
+	height:64px;
+	line-height:64px;
+	background:#373b44;
+}
+
+.unlocked .skill-icon{
+	background:#5e7d91;
+}
+
+.basic .skill-icon{
+	background:#fcfcfc;
+}
+
+.ace .skill-icon{
+	background:#406d9a;
+}
+
+
+/**
+ * ================================================================
+ * = Info
+ * ================================================================
+ */
+.info-title {
+	margin:10px 0;
+}
+
+.info-title .title1 {
+	font-size:18px;
+	font-weight:bold;
+}
+
+.info-title .title2 {
+	font-size:12px;
+}
+
+.info-block {
+	margin:20px 0;
+	font-weight:bold;
+}
+
+.info-block p{
+	margin:5px 0;
+}
+
+.info-strong, .info-block strong {
+	margin: 0 2px;
+	color:#3aa5e6;
+}
+
+
+/**
+ * ================================================================
+ * = Other
+ * ================================================================
+ */
 .main {
 	overflow:auto;
 	clear:both;
@@ -31,26 +121,17 @@ hr {
 }
 
 .left, .right {
-	width:48%;
+	
 	height:600px;
 	border:2px solid #eee;
 }
 
 .left {
+	
 	float:left;
+	width:480px
 }
 
 .right {
-	float:right;
-}
-
-
-
-
-.basic {
-	background:#ADD;
-}
-
-.ace {
-	background:#AAD;
+	margin-left:500px;
 }

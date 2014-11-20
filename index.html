@@ -15,26 +15,71 @@
 		
 		<div class="main" >
 			<div class="left">
-				<ul>
+				
+				<ul
+					ng-repeat="tier in tree | orderBy:'-tier'"
+				>
 					<li	
-						ng-repeat="element in tree track by element.name"
-						ng-mouseover="hover(element)"
-						ng-click="click(element)"
-						ng-class="{basic:element.basic, ace:element.ace}"
+						class="skill"
+						ng-repeat="skill in tier.skills track by $index"
+						ng-mouseover="skillHover(skill, tier)"
+						ng-click="skillClick(skill, tier)"
+						ng-class="{
+							unlocked:tier.isUnlocked,
+							basic:skill.own.basic,
+							ace:skill.own.ace
+						}"
 					>
-						{{ element.name }}
-						<span
-							ng-show="element.basic || element.ace"
-							ng-click="click2(element); $event.stopPropagation()"
-						>x</span>
+						<a
+							class="skill-button"
+							ng-show="skill.own.basic || skill.own.ace"
+							ng-click="skillCancel(skill, tier); $event.stopPropagation()"
+						>x</a>
+						<div class="skill-icon"></div>
+						<div class="skill-text">
+							<span ng-show="skill.own.basic && ! skill.own.ace">基本</span>
+							<span ng-show="skill.own.ace">王牌</span>
+						</div>
+						
 					</li>
 				</ul>
+				
 			</div>
 			
 			<div class="right">
 			
-				<h3>{{ display.name }}</h3>
-				<p>{{ display.note }}</p>
+				<div class="info-title">
+					<h1 class="title1">{{ display.skill.title }}</h1>
+					<h2 class="title2">{{ display.skill.name }}</h2>
+				</div>
+				
+				<div class="info-block">
+					<p>
+						<span>基本: </span>
+						
+						<span class="info-strong" ng-hide="display.skill.own.basic">
+							{{ display.tier.unlockPoint.basic }} 點 / ${{ display.tier.unlockCost.basic | number}}
+						</span>
+						
+						<span class="info-strong" ng-show="display.skill.own.basic">擁有</span>
+					</p>
+					<p ng-bind-html="display.skill.basic | htmlSafe"></p>
+				</div>
+				
+				<div class="info-block" ng-show="display.tier.unlockPoint.ace">
+					<p>
+						<span>王牌: </span>
+						
+						<span class="info-strong" ng-hide="display.skill.own.ace">
+							{{ display.tier.unlockPoint.ace }} 點 / ${{ display.tier.unlockCost.ace | number}}
+						</span>
+						
+						<span class="info-strong" ng-show="display.skill.own.ace">擁有</span>
+					</p>
+					<p ng-bind-html="display.skill.ace | htmlSafe"></p>
+				</div>
+				
+				<div class="info-block">{{ display.text }}</div>
 			
 			</div>
 			
