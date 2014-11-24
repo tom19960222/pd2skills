@@ -3,21 +3,21 @@
 		{
 			"tier" : 0,
 			"tierUnlockPoint" : 0,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 1
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 500
 			}
 		},
 		{
 			"tier" : 1,
 			"tierUnlockPoint" : 1,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 1,
 				"ace"   : 3
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 4500,
 				"ace"   : 12500
 			}
@@ -25,11 +25,11 @@
 		{
 			"tier" : 2,
 			"tierUnlockPoint" : 5,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 1,
 				"ace"   : 3
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 100,
 				"ace"   : 500
 			}
@@ -37,11 +37,11 @@
 		{
 			"tier" : 3,
 			"tierUnlockPoint" : 10,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 1,
 				"ace"   : 3
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 100,
 				"ace"   : 500
 			}
@@ -49,11 +49,11 @@
 		{
 			"tier" : 4,
 			"tierUnlockPoint" : 20,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 4,
 				"ace"   : 8
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 100,
 				"ace"   : 500
 			}
@@ -61,11 +61,11 @@
 		{
 			"tier" : 5,
 			"tierUnlockPoint" : 30,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 4,
 				"ace"   : 8
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 100,
 				"ace"   : 500
 			}
@@ -73,11 +73,11 @@
 		{
 			"tier" : 6,
 			"tierUnlockPoint" : 40,
-			"unlockPoint" : {
+			"skillUnlockPoint" : {
 				"basic" : 4,
 				"ace"   : 8
 			},
-			"unlockCost" : {
+			"skillUnlockCost" : {
 				"basic" : 100,
 				"ace"   : 500
 			}

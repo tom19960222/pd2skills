@@ -13,7 +13,8 @@
 						{
 							"name"  : "Unlocking The Mastermind",
 							"title" : "解鎖技能樹",
-							"text"  : "可以攜帶醫療包"
+							"basic" : "可以攜帶並設置<strong>1</strong>個醫療包，醫療包可使用<strong>2</strong>次。",
+							"text"  : "醫療包使用前需先設置在平面上。<br>使用醫療包可補滿生命值，並重設倒地次數至<strong>0</strong>次。<br>需習得戰地醫生王牌技能才能將醫療包的使用次數增至最大值（<strong>8</strong>次）。<br>"
 						}
 					]
 				},
@@ -25,7 +26,7 @@
 							"title" : "捆工",
 							"basic" : "捆綁人質快<strong>75%</strong>",
 							"ace"   : "攜帶的綁繩增加<strong>4</strong>條，共<strong>6</strong>條",
-							"text"  : "無"
+							"text"  : ""
 						},
 						{
 							"name"  : "Combat Medic",
@@ -63,8 +64,8 @@
 						{
 							"name"  : "Leadership",
 							"title" : "領導力",
-							"basic" : "你和隊友的手槍系武器的穩定度提升２５％，但對雙槍無效。",
-							"ace"   : "你和隊友的所有武器（包括雙槍）的穩定度提升５０％。",
+							"basic" : "你和隊友的手槍系武器的穩定度提升<strong>25%</strong>。",
+							"ace"   : "你和隊友的所有武器的穩定度提升<strong>55%</strong>。",
 							"text"  : ""
 						}
 					]
@@ -75,22 +76,22 @@
 						{
 							"name"  : "Spotter",
 							"title" : "天文台",
-							"basic" : "被你標記的特殊敵人會受多１５％的額外傷害。",
+							"basic" : "被你標記的特殊敵人會受多<strong>15%</strong>的額外傷害。",
 							"ace"   : "可購買特殊任務支援「觀察員」。他會在任務中站在高處監視環境。潛行階段時，他會標記出地圖上的守衛。火拼階段時，他會標記出所有特殊敵人。",
-							"text"  : ""
+							"text"  : "Spotter 觀察員：<br>他只能標記出他能見到的守衛和敵人，但他未必能看見室內的人，也不會標記出監視鏡頭和平民。<br>守衛和敵人離開他的視線範圍一段時間後，其標記也會消失。<br>他出現的地點都是隨機的，故此能見範圍每次不同。"
 						},
 						{
 							"name"  : "Equilibrium",
 							"title" : "重裝上陣",
-							"basic" : "手槍命中率提升１０％，切換／切出手槍快５０％。",
-							"ace"   : "手槍射速增加１００％。",
+							"basic" : "手槍及雙槍命中率提升<strong>10%</strong>，切換／切出手槍快<strong>50%</strong>",
+							"ace"   : "手槍及雙槍射速增加<strong>100%</strong>。",
 							"text"  : ""
 						},
 						{
 							"name"  : "Dominator",
 							"title" : "支配者",
-							"basic" : "你和隊友可以按Ｆ鍵呼喝警察及警衛進行壓制。成功的話他們會舉手投降，再呼喝就可讓他們反綁自己。被壓制的警察可以當成人質來交換被逮捕的隊友。受傷的敵人較易壓制。黑幫及特殊敵人無法壓制。",
-							"ace"   : "你的呼叫距離及壓制力增加５０％。包括指出並標示目標的距離。（連同扛壩子的馬拉松人職業獎勵則一共增加７５％）",
+							"basic" : "你和隊友可以按<strong>F</strong>鍵呼喝警察及警衛進行壓制。成功的話他們會舉手投降，再呼喝就可讓他們反綁自己。被壓制的警察可以當成人質來交換被逮捕的隊友。受傷的敵人較易壓制。黑幫及特殊敵人無法壓制。",
+							"ace"   : "你的呼叫距離及壓制力增加<strong>50%</strong>。包括指出並標示目標的距離。（連同扛壩子的馬拉松人職業獎勵則一共增加<strong>75%</strong>）",
 							"text"  : ""
 						}
 					]
@@ -99,24 +100,726 @@
 					"tier" : 4,
 					"skills" : [
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
+							"name"  : "Stockholm Syndrome",
+							"title" : "斯德哥爾摩症候群",
+							"basic" : "當你倒地時，你可以向附近未被綁住的平民按<strong>F</strong>鍵互動，有機會他們會救起你。",
+							"ace"   : "救你的平民會有機會再送你子彈。",
 							"text"  : ""
 						},
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
+							"name"  : "Combat Doctor",
+							"title" : "戰地醫生",
+							"basic" : "你攜帶的醫療包增加至<strong>2</strong>個。",
+							"ace"   : "醫療包的使用次數增加至<strong>4</strong>次。",
 							"text"  : ""
 						},
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
+							"name"  : "Joker",
+							"title" : "小丑",
+							"basic" : "你可對成為人質的警察按Ｆ鍵互動，讓他變節成為我方同伴。本技能在潛行階段無法使用。你只能擁有一名變節警察，但擁有本技能的同伴可各自擁有自己的變節警察。",
+							"ace"   : "變節警察增加<strong>55%</strong>生命值，並增加<strong>45%</strong>攻擊力。變節所需時間減少<strong>65%</strong>。",
+							"text"  : "",
+							"require" : "Dominator"
+						}
+					]
+				},
+				{
+					"tier" : 5,
+					"skills" : [
+						{
+							"name"  : "Kilmer",
+							"title" : "槍片王",
+							"basic" : "突擊步槍及狙擊槍裝彈速度增快<strong>25%</strong>",
+							"ace"   : "使用突擊步槍及狙擊槍進行移動射擊時的命中率提升<strong>50%</strong>。衝刺時可更換彈匣。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Gunslinger",
+							"title" : "西部槍客",
+							"basic" : "手槍及雙槍裝彈速度增快<strong>50%</strong>。",
+							"ace"   : "手槍及雙槍增加<strong>15</strong>傷害值。雖然雙槍是兩支槍各開一發但系統只視作同一發，傷害加值只會計算一次。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Partner in Crime",
+							"title" : "共犯",
+							"basic" : "當你擁有一名變節警察，你的移動速度快<strong>10%</strong>。變節警察受傷減少<strong>40%</strong>。",
+							"ace"   : "當你擁有一名變節警察，你的生命值增加<strong>20%</strong>。變節警察受傷額外減少<strong>40%</strong>，共<strong>80%</strong>。",
+							"text"  : "當變節警察戰死技能即失效，直到你抓到另一名變節警察。",
+							"require" : "Joker"
+						}
+					]
+				},
+				{
+					"tier" : 6,
+					"skills" : [
+						{
+							"name"  : "Hostage Taker",
+							"title" : "綁匪",
+							"basic" : "當隊伍擁有最少<strong>1</strong>名人質（包括變節警察）時，每<strong>5</strong>秒你能回復<strong>0.6%</strong>生命值。",
+							"ace"   : "上述效能增加至每<strong>5</strong>秒回復<strong>2%</strong>生命值。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Pistol Messiah",
+							"title" : "手槍彌賽亞",
+							"basic" : "當你倒地時，你能用手槍或雙槍射殺一名敵人的話就能立即復活。機會只有<strong>1</strong>次。你被逮捕釋放後就能再來<strong>1</strong>次。",
+							"ace"   : "機會增加至<strong>3</strong>次。你被捕釋放後又能再來<strong>3</strong>次。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Inspire",
+							"title" : "激勵",
+							"basic" : "你救起隊友的時間快<strong>50%</strong>。呼喝隊友可增加他的移動速度<strong>20%</strong>，維持<strong>10</strong>秒。",
+							"ace"   : "你能用叫聲遙距救起隊友，成功率<strong>75%</strong>，有效距離為<strong>7</strong>米，就算隔著牆壁和地板也可以。",
+							"text"  : "Get The Fxxk Up"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name"  : "Enforcer",
+			"title" : "暴徙",
+			"text"  : "世上無難事，只怕硬拳頭。",
+			"tiers" : [
+				{
+					"tier" : 0,
+					"skills" : [
+						{
+							"name"  : "Unlocking The Enforcer",
+							"title" : "解鎖技能樹",
+							"basic" : "可以攜帶<strong>1</strong>個彈藥包",
+							"text"  : "彈藥包有<strong>300%</strong>彈藥，「平均」可使用<strong>3</strong>次。"
+						}
+					]
+				},
+				{
+					"tier" : 1,
+					"skills" : [
+						{
+							"name"  : "Oppressor",
+							"title" : "暴君",
+							"basic" : "火力壓制能力增加<strong>25%</strong>。",
+							"ace"   : "火力壓制能力增加<strong>50%</strong>，共<strong>75%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Bullet Storm",
+							"title" : "槍林彈雨",
+							"basic" : "當你放下彈藥包後，<strong>5</strong>秒內你可以瘋狂開槍而不會扣彈數也不用裝彈。",
+							"ace"   : "上述效果增加<strong>10</strong>秒，共<strong>15</strong>秒。",
+							"text"  : "本技能對榴彈砲無效。用電鋸鋸死物同樣無效。"
+						},
+						{
+							"name"  : "Transporter",
+							"title" : "挑夫",
+							"basic" : "背著包包時的移動速度增加<strong>50%</strong>。",
+							"ace"   : "投擲包包的距離增加<strong>50%</strong>。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 2,
+					"skills" : [
+						{
+							"name"  : "Die Hard",
+							"title" : "虎膽龍威",
+							"basic" : "你倒地時可以用主武器還擊，亦可切換至副武器。",
+							"ace"   : "防彈衣回復間隔時間少<strong>15%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Underdog",
+							"title" : "困獸鬥",
+							"basic" : "當你被３名敵人圍攻時，你增加<strong>15%</strong>殺傷力。",
+							"ace"   : "上述效果追加你受傷減少<strong>15%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Pumping Iron",
+							"title" : "大隻佬",
+							"basic" : "你對普通警察及敵人的近戰傷害增加<strong>50%</strong>。",
+							"ace"   : "你對特殊警察的近戰傷害增加<strong>50%</strong>。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 3,
+					"skills" : [
+						{
+							"name"  : "Shotgun Impact",
+							"title" : "霰彈槍衝擊",
+							"basic" : "霰彈槍的穩定性增加<strong>25%</strong>",
+							"ace"   : "霰彈槍的傷害值增加<strong>35%</strong>",
+							"text"  : ""
+						},
+						{
+							"name"  : "Equilibrium",
+							"title" : "暈眩抗性",
+							"basic" : "震撼彈影響你的視覺時間減少<strong>25%</strong>",
+							"ace"   : "影響時間減少<strong>50%</strong>",
+							"text"  : ""
+						},
+						{
+							"name"  : "Tough Guy",
+							"title" : "硬漢",
+							"basic" : "你中彈時造成的鏡頭搖晃效果減少<strong>50%</strong>",
+							"ace"   : "倒地時的生命值增加<strong>25%</strong>（由<strong>100</strong>增加至<strong>125</strong>）。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 4,
+					"skills" : [
+						{
+							"name"  : "Shotgun CQB",
+							"title" : "霰彈槍近戰技",
+							"basic" : "霰彈槍裝彈時間快<strong>50%</strong>",
+							"ace"   : "霰彈槍切換瞄鏡速度快<strong>125%</strong>",
+							"text"  : ""
+						},
+						{
+							"name"  : "Ammunition Specialist",
+							"title" : "彈藥專家",
+							"basic" : "你攜帶的彈藥包增加至<strong>2</strong>個。",
+							"ace"   : "彈藥包的彈藥量增加至<strong>500%</strong>，「平均」可使用<strong>5</strong>次。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Berserker",
+							"title" : "狂戰士",
+							"basic" : "你的近戰傷害（包括電鋸）隨血量減少而增加。最大值為當生命值低過<strong>25%</strong>時近戰提高<strong>2.5</strong>倍傷害。",
+							"ace"   : "當生命值低過<strong>25%</strong>時，你的槍械提高<strong>2</strong>倍傷害。",
+							"text"  : "本技能對榴彈砲無效。"
+						}
+					]
+				},
+				{
+					"tier" : 5,
+					"skills" : [
+						{
+							"name"  : "Hard Boiled",
+							"title" : "辣手神賊",
+							"basic" : "使用霰彈槍進行腰間射擊（即不用瞄具）時，命中率提升<strong>20%</strong>。",
+							"ace"   : "使用所有武器進行腰間射擊時命中率提升<strong>20%</strong>，包括電鋸。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Fully Loaded",
+							"title" : "荷槍實彈",
+							"basic" : "你的攜彈量增加<strong>25%</strong>。",
+							"ace"   : "從敵人身上拾取的彈藥量增至<strong>175%</strong>。本技能對特製霰彈無效。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Portable Saw",
+							"title" : "便攜式電鋸",
+							"basic" : "解鎖OVE9000便攜式電鋸可供選購，可攜帶<strong>2</strong>片鋸片。",
+							"ace"   : "你多帶<strong>1</strong>片鋸片，總共<strong>3</strong>片。",
+							"text"  : "電鋸也是近戰武器，上述近戰殺傷力加乘效果統統有效！"
+						}
+					]
+				},
+				{
+					"tier" : 6,
+					"skills" : [
+						{
+							"name"  : "Overkill",
+							"title" : "大開殺戒",
+							"basic" : "當你使用霰彈槍或電鋸殺死一個敵人後，<strong>5</strong>秒鐘內霰彈槍或電鋸的殺傷力增加<strong>75%</strong>。",
+							"ace"   : "上述效果提升為<strong>5</strong>秒鐘內所有武器的殺傷力增加<strong>75%</strong>。",
+							"text"  : "本技能對榴彈砲無效。"
+						},
+						{
+							"name"  : "Iron Man",
+							"title" : "鋼鐵人",
+							"basic" : "解鎖「<strong>強化戰術背心（俗稱ICTV）</strong>」，裝甲值為戰術背心（CTV）的<strong>2</strong>倍。",
+							"ace"   : "你可以用近戰攻擊打退防暴盾警察。你可以一邊衝刺一邊開槍（不開瞄鏡）。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Carbon Blade",
+							"title" : "碳纖維鋸片",
+							"basic" : "電鋸效能增加<strong>20%</strong>。",
+							"ace"   : "電鋸效能再增加<strong>20%</strong>，共<strong>40%</strong>。使用電鋸鋸敵人時鋸片消耗減少<strong>50%</strong>。電鋸可作為副武器來裝備。你甚至可以主副武器都裝備電鋸。",
+							"text"  : ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name"  : "Technician",
+			"title" : "技師",
+			"text"  : "有人呼叫管理員嗎？",
+			"tiers" : [
+				{
+					"tier" : 0,
+					"skills" : [
+						{
+							"name"  : "Unlocking The Technician",
+							"title" : "解鎖技能樹",
+							"basic" : "可以攜帶<strong>2</strong>枚詭雷。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 1,
+					"skills" : [
+						{
+							"name"  : "Rifleman",
+							"title" : "步槍兵",
+							"basic" : "突擊步槍及狙擊槍切換瞄準速度快<strong>2</strong>倍。",
+							"ace"   : "突擊步槍及狙擊槍的瞄具放大倍率提升<strong>25%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Demolition Man",
+							"title" : "爆破手",
+							"basic" : "可以多攜帶<strong>1</strong>枚詭雷，總共<strong>3</strong>枚。",
+							"ace"   : "設置詭雷的所需時間快<strong>20%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Nerves of Steel",
+							"title" : "鋼鐵意志",
+							"basic" : "使用Ｆ鍵進行互動時所受的傷害減少<strong>50%</strong>",
+							"ace"   : "倒地時可以使用武器的瞄具進行射擊。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 2,
+					"skills" : [
+						{
+							"name"  : "Sharpshooter",
+							"title" : "狙擊手",
+							"basic" : "單發武器的命中率增加<strong>20%</strong>。非全自動武器即視為單發武器，例如M308、左輪手槍、Gage Sniper Pack的狙擊槍等等。適用於以Gage Weapon Pack #01的Single-fire套件改成單發射擊的武器，不適用於用Ｖ鍵切換成單發模式的武器。",
+							"ace"   : "所有步槍及狙擊槍的穩定性增加<strong>25%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Combat Engineer",
+							"title" : "戰地工兵",
+							"basic" : "可以按Ｆ鍵關閉／開啟詭雷的引信。不論自己或隊友設置的詭雷都可以控制。關掉後只能用其他方式來手動引爆。",
+							"ace"   : "能將詭雷升級為發射藍色雷射的感應器模式（取代上述的關閉功能）。當有警衛和特殊敵人經過時不會引爆，改為發出警報聲並會標記出來。沒有此技能的隊友所設置的詭雷，你無法將之改成感應器。注意：感應器不會對一般人和普通警察有反應！連警報聲也沒有！",
+							"text"  : ""
+						},
+						{
+							"name"  : "Hardware Expert",
+							"title" : "工具專家",
+							"basic" : "你修理電鑽快<strong>25%</strong>，設置詭雷的所需時間快<strong>20%</strong>。（連同爆破手王牌技能則總共快４０％。）",
+							"ace"   : "你設置自動炮台（sentry gun）的所需時間快<strong>50%</strong>。你有<strong>30%</strong>機會裝設的電鑽具備自動修復機能，該電鑽會於故障一段時間後自行重啟。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 3,
+					"skills" : [
+						{
+							"name"  : "Sentry Gun",
+							"title" : "自動炮台",
+							"basic" : "解鎖自動機槍炮台。可攜帶<strong>1</strong>部炮台，內有<strong>150</strong>發彈藥。",
+							"ace"   : "炮台生命值增加<strong>150%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Tactical Mines",
+							"title" : "戰術詭雷",
+							"basic" : "詭雷的爆炸範圍增加<strong>30%</strong>。",
+							"ace"   : "被你設置的感應器詭雷標記出的特殊敵人會受到<strong>15%</strong>額外傷害。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Drill Sergeant",
+							"title" : "電鑽軍曹",
+							"basic" : "電鑽開啟門及夾萬的時間少<strong>15%</strong>。",
+							"ace"   : "電鑽開啟門及夾萬的時間再少<strong>15%</strong>，共<strong>30%</strong>。本技能對銀行的熱能鑽同樣有效，但對Big Bank的鑽石電鑽無效。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 4,
+					"skills" : [
+						{
+							"name"  : "Sentry Targeting Package",
+							"title" : "炮台瞄準套件",
+							"basic" : "炮台的命中率提升<strong>2</strong>倍。",
+							"ace"   : "炮台的迴轉速度提升<strong>150%</strong>。炮台彈藥增加<strong>50%</strong>，即共<strong>235</strong>發彈藥。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Jack of All Trades",
+							"title" : "萬事通",
+							"basic" : "詭雷的爆炸範圍增加<strong>70%</strong>。連同戰術詭雷技能則一共增加為<strong>2</strong>倍範圍。",
+							"ace"   : "你可以同時攜帶炮台和詭雷上場了。假如你在準備畫面中選擇攜帶詭雷，當詭雷用光了就會自動切換成炮台，反之亦然。本技能要先擁有自動炮台技能才生效。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Silent Drilling",
+							"title" : "靜音電鑽",
+							"basic" : "減少電鑽發出的聲量<strong>65%</strong>，警衛要接近電鑽約<strong>9</strong>米範圍內才能聽到它並前來察看。你和隊友會聽到電鑽發出的聲音變小了。",
+							"ace"   : "靜音電鑽，平民及警衛要直接看見電鑽才能察覺它。本技能對銀行的熱能鑽同樣有效，但對Big Bank的鑽石電鑽無效。",
+							"text"  : "",
+							"require" : ""
+						}
+					]
+				},
+				{
+					"tier" : 5,
+					"skills" : [
+						{
+							"name"  : "Sentry Combat Upgrade",
+							"title" : "炮台戰力升級",
+							"basic" : "你可以對炮台按Ｆ鍵用身上的彈藥來為它補充彈藥了。你亦可以看見炮台的彈藥量百分比。裝填時會依填滿炮台彈藥的分量，一同扣除身上主副兩把武器同等比例份量的彈藥。",
+							"ace"   : "炮台增加了裝甲板，效果等同防暴盾牌一樣可正面彈開子彈。（扣除的算式大體可參考彈藥包的說明，亦有版友寫了一篇詳細的實驗報告。）",
+							"text"  : ""
+						},
+						{
+							"name"  : "Shaped Charge",
+							"title" : "成型炸藥",
+							"basic" : "可以多攜帶<strong>3</strong>枚詭雷。連同爆破手技能就總共<strong>6</strong>枚",
+							"ace"   : "詭雷可以當成Ｃ４來用，用來炸開夾萬或門等等。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Shockproof",
+							"title" : "防雷",
+							"basic" : "電擊警察對你電擊時，有<strong>25%</strong>機會逆火反彈將他擊退。",
+							"ace"   : "電擊警察對你電擊時，你可以按Ｆ鍵反過來電他，做成<strong>50%</strong>傷害。",
+							"text"  : "",
+							"require" : ""
+						}
+					]
+				},
+				{
+					"tier" : 6,
+					"skills" : [
+						{
+							"name"  : "Sentry Tower Defense",
+							"title" : "自動炮台塔防",
+							"basic" : "可攜帶並裝設<strong>2</strong>部炮台。",
+							"ace"   : "炮台殺傷力增加<strong>300%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Mag Plus",
+							"title" : "彈匣＋",
+							"basic" : "你的武器彈匣容量增多<strong>5</strong>發。",
+							"ace"   : "你的武器彈匣容量增多<strong>10</strong>發。",
+							"text"  : "本技能對狙擊槍無效。同時因為物理上的局限，雙管獵槍、左輪手槍、左輪散彈槍，以及電鋸恕無此優惠。"
+						},
+						{
+							"name"  : "Bulletproof",
+							"title" : "防彈",
+							"basic" : "你的防彈衣裝甲值增加<strong>50%</strong>。",
+							"ace"   : "你和隊友的防彈衣的回復間隔時間快<strong>25%</strong>。",
+							"text"  : ""
+						}
+					]
+				}
+			]
+		},
+				{
+			"name"  : "Ghost",
+			"title" : "幽靈",
+			"text"  : "就是那些基佬，很愛插人屁屁的。",
+			"tiers" : [
+				{
+					"tier" : 0,
+					"skills" : [
+						{
+							"name"  : "Unlocking The Ghost",
+							"title" : "解鎖技能樹",
+							"basic" : "可以電子干擾器(ECM)",
+							"text"  : "就只有20秒可以防止別人打電話"
+						}
+					]
+				},
+				{
+					"tier" : 1,
+					"skills" : [
+						{
+							"name"  : "Dead Presidents",
+							"title" : "孫中山先生",
+							"basic" : "你取得的小量贓物的價值增加<strong>10%</strong>",
+							"ace"   : "你取得的小量贓物的價值再增加<strong>20%</strong>，共<strong>30%</strong>",
+							"text"  : ""
+						},
+						{
+							"name"  : "Sprinter",
+							"title" : "短跑健將",
+							"basic" : "你的耐力耗盡後回復間隔時間少<strong>25%</strong>，回復速度快<strong>25%</strong>",
+							"ace"   : "你衝刺快<strong>25%</strong>，跑步時躲閃子彈機率增加<strong>25%</strong>",
+							"text"  : ""
+						},
+						{
+							"name"  : "Cat Burglar",
+							"title" : "樑上君子",
+							"basic" : "你從非致命高度跌落時受到的傷害減少<strong>75%</strong>",
+							"ace"   : "你從高處跌落時受到的傷害可先從防彈衣扣起。你被逮捕後等待釋放的時間縮短<strong>50%</strong>",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 2,
+					"skills" : [
+						{
+							"name"  : "Fast Hands",
+							"title" : "巧手",
+							"basic" : "打包贓物及提起包包的速度快<strong>25%</strong>。",
+							"ace"   : "打包贓物及提起包包的速度再快<strong>50%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Chameleon",
+							"title" : "變色龍",
+							"basic" : "在未戴上面具時的隱匿值增加<strong>25%</strong>。你能按<strong>Ｆ</strong>鍵標記出警衛和監視鏡頭。",
+							"ace"   : "當你與隊友在一起時，敵人向你攻擊的機會少<strong>15%</strong>，（換言之隊友會多１５％機會代你吃子彈。）",
+							"text"  : ""
+						},
+						{
+							"name"  : "Cleaner",
+							"title" : "清潔工",
+							"basic" : "你對特殊警察的殺傷力增加<strong>5%</strong>。你可以購買特殊任務支援「屍袋箱」，內有３個額外屍袋可供你和隊友取用。",
+							"ace"   : "你一開始身上會有２個屍袋，也能攜帶２個。（如有習得逃犯的善後工作基本技能就一共能攜帶３個屍袋。）",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 3,
+					"skills" : [
+						{
+							"name"  : "Shinobi",
+							"title" : "忍",
+							"basic" : "你的移動速度快<strong>25%</strong>，蹲下走動時快<strong>10%</strong>。未戴面具時有效。",
+							"ace"   : "你以近戰及射殺的平民和警衛時的慘叫聲音量範圍壓低<strong>95%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Martial Arts",
+							"title" : "武鬥家",
+							"basic" : "你的近戰攻擊將敵人打倒在地的機率增加<strong>50%</strong>。",
+							"ace"   : "敵人對你近戰攻擊所受的傷害減輕<strong>50%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "SMG Specialist",
+							"title" : "衝鋒槍專家",
+							"basic" : "衝鋒槍裝彈時間快<strong>35%</strong>。",
+							"ace"   : "衝鋒槍的射速快<strong>20%</strong>。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 4,
+					"skills" : [
+						{
+							"name"  : "Nine Lives",
+							"title" : "九命貓",
+							"basic" : "你要倒地第<strong>5</strong>次才會直接被逮捕。（一般是<strong>4</strong>次，第<strong>3</strong>次倒地時畫面變黑白，再被擊倒就會直接收監。）",
+							"ace"   : "你倒地時有<strong>35%</strong>機會能即時復活。",
+							"text"  : ""
+						},
+						{
+							"name"  : "ECM Specialist",
+							"title" : "干擾器專家",
+							"basic" : "可以攜帶２個電子干擾器。",
+							"ace"   : "干擾器的有效時間增加<strong>25%</strong>，即<strong>25</strong>秒。干擾器反饋的有效時間亦增加<strong>25%</strong>。干擾器新增可延後無線電回覆的功能。（必須在擊倒警衛前設置，效果完結後無線電仍會響起並需要回覆。）",
+							"text"  : ""
+						},
+						{
+							"name"  : "Silent Killer",
+							"title" : "沉默殺手",
+							"basic" : "加裝消音器的武器殺傷力增加<strong>15%</strong>。",
+							"ace"   : "消音武器殺傷力再增加<strong>15%</strong>，共<strong>30%</strong>，並有<strong>15%</strong>機會能射穿裝甲。",
+							"text"  : "",
+							"require" : ""
+						}
+					]
+				},
+				{
+					"tier" : 5,
+					"skills" : [
+						{
+							"name"  : "Lockpicking Expert",
+							"title" : "開鎖專家",
+							"basic" : "徙手開鎖的時間快<strong>25%</strong>",
+							"ace"   : "你可以徙手開夾萬的鎖了，不論大小夾萬一律只需<strong>45%</strong>秒。徙手開鎖的時間再快<strong>25%</strong>，共<strong>50%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "ECM Overdrive",
+							"title" : "干擾器超頻",
+							"basic" : "干擾器的有效時間再增加<strong>25%</strong>。（有習得「干擾器專家」王牌技能則共<strong>30</strong>秒。）",
+							"ace"   : "要用電子卡才能打開的電子門，現在可以用干擾器直接打開。",
+							"text"  : ""
+						},
+						{
+							"name"  : "The Professional",
+							"title" : "職業殺手",
+							"basic" : "消音武器的穩定性增加<strong>50%</strong>。消音武器切換瞄鏡的速度快<strong>2</strong>倍。",
+							"ace"   : "消音武器的命中率增加<strong>50%</strong>，並有<strong>15%</strong>機會能射穿裝甲。（連同沉默殺手技能則總共<strong>30%</strong>。）",
+							"text"  : "",
+							"require" : ""
+						}
+					]
+				},
+				{
+					"tier" : 6,
+					"skills" : [
+						{
+							"name"  : "Camera Loop",
+							"title" : "鏡頭干擾",
+							"basic" : "可以在近距離對監視鏡頭按Ｆ鍵進行互動令該鏡頭失效<strong>10</strong>秒。同一時間只能干擾<strong>1</strong>支鏡頭。",
+							"ace"   : "增加有效時間至<strong>20</strong>秒。",
+							"text"  : ""
+						},
+						{
+							"name"  : "ECM Feedback",
+							"title" : "干擾器反饋",
+							"basic" : "裝設的干擾器新增反饋功能開關。長按<strong>F</strong>啟動後會每<strong>1.5</strong>秒發出音波，<strong>25</strong>米內的警察有<strong>50%</strong>至<strong>100%</strong>機會遭到癱瘓令他們動彈不得。有效時間為<strong>15</strong>至<strong>20</strong>秒。反饋無法癱瘓潛匿者及黑幫。",
+							"ace"   : "干擾器只須按<strong>F</strong>一下即可啟動反饋功能。反饋有效時間增加<strong>25%</strong>。干擾器每<strong>4</strong>分鐘即可再次啟動反饋。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Moving Target",
+							"title" : "移動標靶",
+							"basic" : "你可以向左右方衝刺。（一般只能向前跑）。",
+							"ace"   : "你可以向任何方向衝刺，即是說你可以向後方跑了。",
+							"text"  : ""
+						}
+					]
+				}
+			]
+		},
+				{
+			"name"  : "Fugitive",
+			"title" : "逃犯",
+			"text"  : "錢財誠可貴，友情價更高；若為自由故，兩者皆可拋。",
+			"tiers" : [
+				{
+					"tier" : 0,
+					"skills" : [
+						{
+							"name"  : "Unlocking The Fugitive",
+							"title" : "解鎖技能樹",
+							"basic" : "可以攜帶並設置<strong>4</strong>個小型急救包。",
+							"text"  : "急救包在使用前需要設置在平面上。<br>急救包可使用<strong>1</strong>次。長按<strong>F</strong>即可使用急救包補滿生命值，使用後會消失。<br>急救包不會重設倒地次數。<br>急救包需習得濫藥成癮王牌技能才能攜帶最多數量（<strong>14</strong>個）。"
+						}
+					]
+				},
+				{
+					"tier" : 1,
+					"skills" : [
+						{
+							"name"  : "Daredevil",
+							"title" : "藝高膽大",
+							"basic" : "爬梯的速度快<strong>20%</strong>。",
+							"ace"   : "使用遊繩時你能躲閃子彈的機會增加<strong>15%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Hidden Blade",
+							"title" : "袖劍",
+							"basic" : "近戰武器的隱匿度增加<strong>2</strong>，但對電鋸無效。",
+							"ace"   : "你以近戰及射殺的平民和警衛時的慘叫聲音量範圍壓低<strong>95%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Thick Skin",
+							"title" : "皮厚肉韌",
+							"basic" : "你的穩定度增加<strong>10</strong>。<br>（穩定度越高，被打中時畫面搖晃程度越少。）",
+							"ace"   : "防彈背心的裝甲值增加<strong>20</strong>。<br>本技能只對<strong>防彈背心（Ballistic Vests）</strong>有效。對，就是指最弱的那3件防彈衣。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 2,
+					"skills" : [
+						{
+							"name"  : "Run and Gun",
+							"title" : "跑轟戰術",
+							"basic" : "你的移動速度增加<strong>10%</strong>。",
+							"ace"   : "使用瞄鏡時移動速度不變。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Sixth Sense",
+							"title" : "第六感",
+							"basic" : "潛行時段時，當你站定<strong>3.5</strong>秒後，你會自動標記出<strong>10</strong>米範圍內的所有人。標記的對象包括平民、警察和警衛。密室內的人一樣探測得到。當你一移動後標記就會立即消失。火拚時段時技能無效。",
+							"ace"   : "在未戴上面具時你可以按<strong>F</strong>鍵偷走小型物品，像是電子卡，現金等等。無法偷走需要長按<strong>F</strong>鍵才能取得的物品（包括包裹），以及封在玻璃箱內的物品。因為是用偷的所以能拿取的距離比正常短一半。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Duck and Cover",
+							"title" : "卧倒掩護",
+							"basic" : "蹲下時躲閃子彈的機會增加<strong>5%</strong>。",
+							"ace"   : "上述效果再增加<strong>10%</strong>，共<strong>15%</strong>。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 3,
+					"skills" : [
+						{
+							"name"  : "Brother's Keeper",
+							"title" : "兄弟仁義",
+							"basic" : "黑幫對你造成的傷害減少<strong>10%</strong>。",
+							"ace"   : "上述效果再增加<strong>25%</strong>，共減少<strong>25%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Winston Wolfe",
+							"title" : "善後工作",
+							"basic" : "你能攜帶<strong>2</strong>個屍袋。<br>（但一開始你身上還是只有<strong>1</strong>個屍袋）<br>（如有習得鬼魅的清潔工王牌技能一共能攜帶<strong>3</strong>個屍袋，一開始身上有<strong>2</strong>個屍袋。）",
+							"ace"   : "潛行時段時，你殺害平民的善後罰款減少<strong>75%</strong>。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Quick Fix",
+							"title" : "應急處置",
+							"basic" : "設置急救包所需時間快<strong>1</strong>倍。",
+							"ace"   : "隊友使用你的急救包後，<strong>10</strong>秒內受傷減少<strong>20%</strong>。",
+							"text"  : ""
+						}
+					]
+				},
+				{
+					"tier" : 4,
+					"skills" : [
+						{
+							"name"  : "Swan Song",
+							"title" : "天鵝絕唱",
+							"basic" : "當你被敵人擊倒時（生命值0），你可以繼續行動<strong>3</strong>秒鐘時間作垂死掙扎後才正式倒地。這時你可以<strong>60%</strong>速度移動以及做幾乎所有動作，唯獨無法衝刺。",
+							"ace"   : "上述有效時間增加<strong>6</strong>秒，共<strong>9</strong>秒時間作最後反抗。倒地前你可瘋狂射擊而不用重新裝彈亦不消耗彈藥。",
+							"text"  : ""
+						},
+						{
+							"name"  : "Undertake",
+							"title" : "送葬者",
+							"basic" : "解鎖便攜屍袋箱，內有<strong>3</strong>個屍袋可供你和同伴取用。",
+							"ace"   : "你攜帶的屍袋箱增加至<strong>2</strong>個。",
+							"text"  : "Body Bag Case 便攜屍袋箱：<br>效果等同購買特殊任務支援的屍袋箱，但你可帶著走並自由設置在任何地點。<br>屍袋箱在使用前需要設置在平面上。"
+						},
+						{
+							"name"  : "Uppers",
+							"title" : "濫藥成癮",
+							"basic" : "你攜帶的急救包增加<strong>3</strong>個，共<strong>7</strong>個。",
+							"ace"   : "你攜帶的急救包再增加<strong>7</strong>個，共<strong>14</strong>個。",
 							"text"  : ""
 						}
 					]
@@ -125,24 +828,24 @@
 					"tier" : 5,
 					"skills" : [
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
-							"text"  : ""
+							"name"  : "Trigger Happy",
+							"title" : "開槍狂",
+							"basic" : "用手槍射中敵人後你的傷害值增加<strong>10%</strong>，維持<strong>2</strong>秒。可累積最多<strong>4</strong>次，即<strong>40%</strong>。",
+							"ace"   : "上述技能維持時間增加至<strong>8</strong>秒。",
+							"text"  : "效果生效時如果你手賤射失了的話效果會立即消失。"
 						},
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
-							"text"  : ""
+							"name"  : "Low Blow",
+							"title" : "下流手段",
+							"basic" : "當你的暴露值低過<strong>35</strong>，每壓低<strong>3</strong>點暴露值就能獲得<strong>3%</strong>爆擊機率。暴露值為<strong>5</strong>時即為最大值<strong>30%</strong>。",
+							"ace"   : "上述效果強化為每壓低<strong>1</strong>點暴露值就能獲得<strong>3%</strong>爆擊機率。暴露值為<strong>25</strong>時即為最大值<strong>30%</strong>。",
+							"text"  : "本技能對榴彈砲無效。（注意：推土機對爆擊傷害和爆頭傷害有減值。）"
 						},
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
+							"name"  : "Counter-Strike",
+							"title" : "反擊技",
+							"basic" : "使用近戰武器進入蓄力狀態時，敵人對你近戰時會自動將對方打倒在地，但不造成傷害。對潛匿者無效。",
+							"ace"   : "你對潛匿者也能使用反擊技，對潛匿者的背襲同樣有效。",
 							"text"  : ""
 						}
 					]
@@ -151,29 +854,32 @@
 					"tier" : 6,
 					"skills" : [
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
+							"name"  : "Bullseye",
+							"title" : "正中紅心",
+							"basic" : "每<strong>1</strong>次成功爆頭擊殺，你能回復<strong>16</strong>點裝甲值。此效果每<strong>3</strong>秒只會發動<strong>1</strong>次。",
+							"ace"   : "上述效果再額外回復<strong>16</strong>點裝甲值，共<strong>32</strong>點。",
+							"text"  : "本技能對榴彈砲無效。"
+						},
+						{
+							"name"  : "Sneaky Bastard",
+							"title" : "鬼祟小人",
+							"basic" : "當你的暴露值低過<strong>35</strong>，每壓低<strong>3</strong>點暴露值就能獲得<strong>1%</strong>躲閃子彈機率。暴露值為<strong>5</strong>時即為最大值<strong>10%</strong>。",
+							"ace"   : "上述效果強化為每壓低<strong>1</strong>點暴露值就能獲得<strong>1%</strong>躲閃子彈機率。暴露值為<strong>25</strong>時即為最大值<strong>10%</strong>。",
 							"text"  : ""
 						},
 						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
-							"text"  : ""
-						},
-						{
-							"name"  : "Name",
-							"title" : "Title",
-							"basic" : "Basic Information",
-							"ace"   : "Ace Information",
+							"name"  : "Akimbo",
+							"title" : "雙槍客",
+							"basic" : "解鎖雙槍。你可以使用兩把手槍作為主武器。雙槍武器的穩定度是<strong>-50%</strong>。",
+							"ace"   : "改善雙槍武器的穩定度至<strong>-25%</strong>，同時雙槍的彈藥量增加至<strong>150%</strong>。",
 							"text"  : ""
 						}
 					]
 				}
 			]
 		}
+
+
+
 	]
 }

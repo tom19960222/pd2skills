@@ -8,11 +8,13 @@ app.filter('htmlSafe', ['$sce', function($sce) {
 }]);
 
 app.controller('MainCtrl', function($scope, $http) {
-	$scope.totalPoint = 120;
-	$scope.usedPoint = 0;
 	
-	$scope.tree = [];
-	$scope.skillInit = null;
+	$scope.skillTree = [];
+	
+	// ================================================================
+	// = 載入技能樹
+	// ================================================================
+	var skillTree = null;
 	$http.get('skills.json').success(function loadSkillTree(skills) {
 		
 		var tiers = skills.trees[0].tiers;
@@ -24,93 +26,243 @@ app.controller('MainCtrl', function($scope, $http) {
 					"title" : (typeof skill.title !== "undefined")? skill.title : "[undefined]",
 					"basic" : (typeof skill.basic !== "undefined")? skill.basic : "[undefined]",
 					"ace"   : (typeof skill.ace !== "undefined")? skill.ace : "[undefined]",
-					"text"  : (typeof skill.text !== "undefined")? skill.text : "[undefined]",
-					"own"   : {
-						"basic"     : false,
-						"ace"       : false
-					}
+					"text"  : (typeof skill.text !== "undefined")? skill.text : "",
+					"require" : (typeof skill.require !== "undefined")? skill.require : false
 				};
 			});
 			
 			return tier;
 		});
 		
-		$http.get('skills_init.json').success(function(init) {
-			$scope.skillInit = init;
+		skillTree = tiers;
+		initSkillTree();
+    });
+	
+	
+	// ================================================================
+	// = 載入技能資訊
+	// ================================================================
+	var skillTreeInfo = null;
+	$http.get('skills_init.json').success(function(init) {
+		skillTreeInfo = init;
+		initSkillTree();
+	});
+	
+	
+	// ================================================================
+	// = 初始化技能樹
+	// ================================================================
+	function initSkillTree() {
+		if (skillTree == null || skillTreeInfo == null) return false;
+		
+		var info = skillTreeInfo.normal;
+		var tiers = skillTree;
+		
+		tiers = tiers.map(function(tier) {
 			
-			var normal = init.normal;
-			tiers = tiers.map(function(tier) {
-				for (var attr in normal[tier.tier]) {
-					tier[attr] = normal[tier.tier][attr];
+			initTreeTier(tier);
+			
+			tier.skills = tier.skills.map(function(skill) {
+				initTreeSkill(skill);
+				return skill;
+			});
+			
+			
+			// 載入階級資訊設定
+			for (var attr in info[tier.tier]) {
+				tier[attr] = info[tier.tier][attr];
+			}
+			
+			return tier;
+		});
+		
+		loadSkillRequirePoint(tiers);
+		$scope.skillTree = skillTree;
+		
+		console.log(skillTree);
+	}
+	
+	function initTreeTier(tier) {
+		tier.unlockStatus = false;
+		tier.unlockRequire = 0;
+	}
+	
+	function initTreeSkill(skill) {
+		
+		skill.ownBasic = false;
+		skill.ownAce   = false;
+		
+		skill.unlockBasic = false;
+		skill.unlockAce   = false;
+		
+		skill.hover = false;
+		skill.alert = false;
+		
+		if (skill.require) {
+			initSkillRequirePoint(skill);
+		}
+	}
+	
+	var skillRequirePool = {};
+	function initSkillRequirePoint(skill) {
+		skillRequirePool[skill.require] = {"skill" : {}};
+		skill.require = skillRequirePool[skill.require];
+	}
+	
+	function loadSkillRequirePoint(tiers) {
+		
+		var skillNames = []
+		for (var skillName in skillRequirePool) {
+			skillNames.push(skillName);
+		}
+		
+		tiers.map(function(tier) {
+			tier.skills.map(function(skill) {
+				if (skillNames.indexOf(skill.name) >= 0) {
+					skillRequirePool[skill.name].skill = skill;
 				}
-				return tier;
 			});
 		});
 		
 		
-		$scope.tree = tiers;
-    });
+	}
 	
 	
-	
-	
-	
+	// ================================================================
+	// = 技能 Hover
+	// ================================================================
 	$scope.display = {};
 	$scope.skillHover = function(skill, tier) {
+		
+		updateSkillUnlockStatus(skill, tier);
+		
+		skill.hover = true;
+		if (skill.unlockRequire === false) skill.require.skill.alert = true;
+		
 		$scope.display.skill = skill;
-		$scope.display.tier = tier;
+		$scope.display.tier  = tier;
 	};
 	
-	$scope.skillClick = function(skill, tier) {
+	$scope.skillLeave = function(skill, tier) {
 		
-		if (tier.isUnlocked !== true) return false;
+		skill.hover = false;
+		if (skill.unlockRequire === false) skill.require.skill.alert = false;
 		
+	}
+	
+	function updateSkillUnlockStatus(skill, tier) {
 		var leftPoint = $scope.totalPoint - $scope.usedPoint;
 		
-		if (skill.own.basic !== true) {
+		if (skill.require !== false) {
+			skill.unlockRequire = (skill.require.skill.ownBasic === true)
+		} else {
+			skill.unlockRequire = true;
+		}
+		
+		if (tier.unlockStatus === true && skill.unlockRequire === true) {
+			skill.unlockBasic = (leftPoint >= tier.skillUnlockPoint.basic);
+			skill.unlockAce = (skill.ownBasic)
+					? (leftPoint >= tier.skillUnlockPoint.ace)
+					: (leftPoint >= tier.skillUnlockPoint.basic + tier.skillUnlockPoint.ace)
+		} else {
+			skill.unlockBasic = false;
+			skill.unlockAce   = false;
+		}
+	}
+	
+	
+	// ================================================================
+	// = 技能狀態更新
+	// ================================================================
+	$scope.skillUpdate = function(skill, tier, tree) {
+		if (tier.unlockStatus !== true) {
+			// 移除技能
+			unsetSkill(skill);
+		}
+		
+		return (function(skill, tier) {
 			
-			if (tier.unlockPoint.basic <= leftPoint) skill.own.basic = true;
+			if (skill.hover === true) {
+				if (tier.unlockStatus !== true) return "locked";
+				else if (skill.ownBasic !== true) return "basic-hover";
+				else if (skill.ownAce !== true)
+					if (typeof tier.skillUnlockPoint.ace !== "undefined")
+						return "ace-hover";
+			}
 			
-		} else if (skill.own.ace !== true) {
+			if (skill.ownAce === true) return "ace";
+			else if (skill.ownBasic === true) return "basic";
+			else return "none"
+		})(skill, tier);
+	}
+	
+	
+	// ================================================================
+	// = 技能點擊事件
+	// ================================================================
+	$scope.skillClick = function(skill, tier) {
+		
+		if (skill.ownBasic !== true) {
 			
-			if (tier.unlockPoint.ace <= leftPoint) skill.own.ace = true;
+			if (skill.unlockBasic) skill.ownBasic = true;
+			
+		} else if (skill.ownAce !== true) {
+			
+			if (skill.unlockAce) skill.ownAce = true;
 			
 		}
 		
 	}
 	
-	$scope.skillCancel = function(skill, tier) {
+	
+	// ================================================================
+	// = 技能取消事件
+	// ================================================================
+	$scope.skillRemove = function(skill, tier) {
 		unsetSkill(skill);
 	}
 	
-	$scope.getUsed = function() {
-		var usedPoint = 0;
+	function unsetSkill(skill) {
+		skill.ownBasic = false;
+		skill.ownAce = false;
+	}
+	
+	
+	// ================================================================
+	// = 計算技能點
+	// ================================================================
+	$scope.totalPoint = 120;
+	$scope.usedPoint = 0;
+	
+	$scope.updateTreeStatus = function(tree) {
+		if (typeof tree === "undefined") return false;
 		
-		angular.forEach($scope.tree, function(tier) {
-			// 判斷是否解鎖
-			tier.isUnlocked = (tier.tierUnlockPoint <= usedPoint);
-			if (tier.isUnlocked === true) {
-				// 計算消耗技能點
+		var usedPoint = 0;
+		var tiers = tree;
+		
+		
+		for (var i = 0; i < tiers.length; i++) {
+			var tier = tiers[i];
+			
+			tier.unlockRequire = tier.tierUnlockPoint - usedPoint;
+			tier.unlockStatus = (tier.unlockRequire <= 0);
+			
+			if (tier.unlockStatus === true) {
+				// 計算該階層消耗技能點
 				tier.skills.map(function(skill) {
-					if (skill.own.basic === true) usedPoint += tier.unlockPoint.basic;
-					if (skill.own.ace === true) usedPoint += tier.unlockPoint.ace;
-				});
-			} else {
-				// 移除技能
-				tier.skills.map(function(skill) {
-					unsetSkill(skill);
+					if (skill.ownBasic === true) usedPoint += tier.skillUnlockPoint.basic;
+					if (skill.ownAce === true) usedPoint += tier.skillUnlockPoint.ace;
 				});
 			}
 			
-		});
+		}
 		
 		$scope.usedPoint = usedPoint;
-		return $scope.totalPoint - $scope.usedPoint;
 	}
 	
-
-	function unsetSkill(skill) {
-		skill.own.basic = false;
-		skill.own.ace   = false;
+	$scope.getUsed = function() {
+		return $scope.usedPoint
 	}
+	
+	
 });

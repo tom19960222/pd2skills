@@ -34,24 +34,61 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	
 	border:2px solid transparent;
 	border:2px solid #0b0b15;
+	
+	color:#ddd;
 }
 
 .skill:hover {
 	border:2px solid #eee;
 }
 
+
+/**
+ * ================================================================
+ * = Skill-Text
+ * ================================================================
+ */
 .skill-text {
+	line-height:1.1;
 	margin:24px 4px 4px 68px;
-	font-size:16px;
+	font-size:14px;
 }
 
-.skill-button {
+
+/**
+ * ================================================================
+ * = Skill-Remove
+ * ================================================================
+ */
+.skill-remove {
 	position:absolute;
 	top:0;
 	right:0;
-	font-size:24px;
 }
 
+.skill-remove-icon {
+	display:none;
+	width:20px;
+	height:20px;
+	text-align:center;
+	color:#ddd;
+	font-size:20px;
+}
+
+.skill:hover .skill-remove-icon {
+	display:inline-block;
+}
+
+.skill:hover .skill-remove-icon:hover {
+	display:inline-block;
+	color:#fff;
+}
+
+/**
+ * ================================================================
+ * = Skill-Icon
+ * ================================================================
+ */
 .skill-icon {
 	position:absolute;
 	top:0;
@@ -62,7 +99,7 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	background:#373b44;
 }
 
-.unlocked .skill-icon{
+.unlock .skill-icon{
 	background:#5e7d91;
 }
 
@@ -71,7 +108,12 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 }
 
 .ace .skill-icon{
-	background:#406d9a;
+	background:#3aa5e6;
+	#background:gold;
+}
+
+.alert .skill-icon{
+	background:#bf3247;
 }
 
 
@@ -84,29 +126,28 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	margin:10px 0;
 }
 
-.info-title .title1 {
+.info-title > .title1 {
 	font-size:18px;
 	font-weight:bold;
 }
 
-.info-title .title2 {
+.info-title > .title2 {
 	font-size:12px;
 }
 
 .info-block {
-	margin:20px 0;
-	font-weight:bold;
+	margin:10px 0;
 }
 
-.info-block p{
+.info-block p {
 	margin:5px 0;
 }
 
 .info-strong, .info-block strong {
-	margin: 0 2px;
+	margin:0 2px;
 	color:#3aa5e6;
+	font-weight:bold;
 }
-
 
 /**
  * ================================================================
@@ -134,4 +175,8 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 
 .right {
 	margin-left:500px;
+}
+
+.alert {
+	color:#bf3247;
 }
