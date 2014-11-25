@@ -17,6 +17,10 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	font-weight:normal;
 }
 
+ul, li {
+	list-style:none;
+}
+
 
 /**
  * ================================================================
@@ -25,7 +29,6 @@ ul, p, h1, h2, h3, h4, h5, h6 {
  */
 
 .skill {
-	list-style:none;
 	box-sizing:border-box;
 	position:relative;
 	float:left;
@@ -149,6 +152,53 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	font-weight:bold;
 }
 
+
+/**
+ * ================================================================
+ * = Tab
+ * ================================================================
+ */
+.tab {
+	float:left;
+	
+}
+
+.tab-nav {
+	box-sizing:border-box;
+	display:inline-block;
+	height:30px;
+	line-height:30px;
+	margin-right:2px;
+	padding:0 10px;
+	color:#3aa5e6;
+	font-size:14px;
+}
+
+.tab-main {
+	display:none;
+	position:absolute;
+	top:30px;
+	left:0;
+	height:500px;
+	border:2px solid #eee;
+}
+
+.tab > input[type=radio] {
+	display:none;
+}
+
+.tab > input[type=radio]:checked + label {
+	z-index:2;
+	background:#eee;
+	color:#333;
+}
+
+.tab > input[type=radio]:checked ~ .tab-main {
+	display:block;
+	z-index:1;
+}
+
+
 /**
  * ================================================================
  * = Other
@@ -161,17 +211,29 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	margin:0 auto;
 }
 
-.left, .right {
+.trees {
+	position:relative;
+	float:left;
+	width:490px;
+	padding:-1px;
+}
+
+.tree-tier {
+	overflow:auto;
+}
+
+.tier0 {
+	float:none;
+	margin:0 auto;
+}
+
+.right {
 	
 	height:600px;
 	border:2px solid #eee;
 }
 
-.left {
-	
-	float:left;
-	width:480px
-}
+
 
 .right {
 	margin-left:500px;

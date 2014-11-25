@@ -1,12 +1,3 @@
-
-var app = angular.module('myApp', []);
-
-app.filter('htmlSafe', ['$sce', function($sce) {
-	return function(text) {
-		return $sce.trustAsHtml(text);
-	}
-}]);
-
 app.controller('MainCtrl', function($scope, $http) {
 	
 	$scope.skillTree = [];
@@ -14,118 +5,78 @@ app.controller('MainCtrl', function($scope, $http) {
 	// ================================================================
 	// = 載入技能樹
 	// ================================================================
-	var skillTree = null;
-	$http.get('skills.json').success(function loadSkillTree(skills) {
+	var treeInfo = null;
+	$http.get('skills.json').success(function loadSkillTree(data) {
 		
-		var tiers = skills.trees[0].tiers;
-		tiers = tiers.map(function(tier) {
+		var trees = data.trees;
+		trees = trees.map(function(tree) {
+			tree = initTree(tree);
 			
-			tier.skills = tier.skills.map(function(skill) {
-				return {
-					"name"  : (typeof skill.name !== "undefined")? skill.name : "[undefined]",
-					"title" : (typeof skill.title !== "undefined")? skill.title : "[undefined]",
-					"basic" : (typeof skill.basic !== "undefined")? skill.basic : "[undefined]",
-					"ace"   : (typeof skill.ace !== "undefined")? skill.ace : "[undefined]",
-					"text"  : (typeof skill.text !== "undefined")? skill.text : "",
-					"require" : (typeof skill.require !== "undefined")? skill.require : false
-				};
+			tree.tiers = tree.tiers.map(function(tier) {
+				tier = initTier(tier);
+				
+				tier.skills = tier.skills.map(function(skill) {
+					skill = initSkill(skill);
+					setSkillPointer(skill)
+					
+					return skill;
+				});
+				
+				return tier;
 			});
 			
-			return tier;
+			return tree;
 		});
 		
-		skillTree = tiers;
-		initSkillTree();
+		loadSkillPointers(trees);
+		
+		$http.get('skills_init.json').success(function(data) {
+			treeInfo = data;
+			
+			trees.forEach(function(tree) {
+				tree.tiers.forEach(function(tier, tierIndex) {
+					var info = data.normal[tier.tier];
+					for (var attr in info) {
+						tier[attr] = info[attr];
+					}
+				});
+			});
+			
+			$scope.skillTree = trees;
+		});
+		
     });
 	
 	
 	// ================================================================
 	// = 載入技能資訊
 	// ================================================================
-	var skillTreeInfo = null;
-	$http.get('skills_init.json').success(function(init) {
-		skillTreeInfo = init;
-		initSkillTree();
-	});
 	
-	
-	// ================================================================
-	// = 初始化技能樹
-	// ================================================================
-	function initSkillTree() {
-		if (skillTree == null || skillTreeInfo == null) return false;
+	var skillPointers = {};
+	function setSkillPointer(skill) {
+		if (typeof skill.require !== "string") return skill.require = false;
 		
-		var info = skillTreeInfo.normal;
-		var tiers = skillTree;
-		
-		tiers = tiers.map(function(tier) {
-			
-			initTreeTier(tier);
-			
-			tier.skills = tier.skills.map(function(skill) {
-				initTreeSkill(skill);
-				return skill;
-			});
-			
-			
-			// 載入階級資訊設定
-			for (var attr in info[tier.tier]) {
-				tier[attr] = info[tier.tier][attr];
-			}
-			
-			return tier;
-		});
-		
-		loadSkillRequirePoint(tiers);
-		$scope.skillTree = skillTree;
-		
-		console.log(skillTree);
+		var pointerName = skill.require;
+		return skill.require = skillPointers[pointerName] = {"skill" : {}};
 	}
 	
-	function initTreeTier(tier) {
-		tier.unlockStatus = false;
-		tier.unlockRequire = 0;
-	}
-	
-	function initTreeSkill(skill) {
+	function loadSkillPointers(trees) {
+		var skillNames = [];
+		for (var skillName in skillPointers) skillNames.push(skillName);
 		
-		skill.ownBasic = false;
-		skill.ownAce   = false;
-		
-		skill.unlockBasic = false;
-		skill.unlockAce   = false;
-		
-		skill.hover = false;
-		skill.alert = false;
-		
-		if (skill.require) {
-			initSkillRequirePoint(skill);
-		}
-	}
-	
-	var skillRequirePool = {};
-	function initSkillRequirePoint(skill) {
-		skillRequirePool[skill.require] = {"skill" : {}};
-		skill.require = skillRequirePool[skill.require];
-	}
-	
-	function loadSkillRequirePoint(tiers) {
-		
-		var skillNames = []
-		for (var skillName in skillRequirePool) {
-			skillNames.push(skillName);
-		}
-		
-		tiers.map(function(tier) {
-			tier.skills.map(function(skill) {
-				if (skillNames.indexOf(skill.name) >= 0) {
-					skillRequirePool[skill.name].skill = skill;
-				}
+		trees.forEach(function(tree) {
+			tree.tiers.forEach(function(tier) {
+				tier.skills.forEach(function(skill) {
+					if (skillNames.indexOf(skill.name) >= 0) {
+						skillPointers[skill.name].skill = skill;
+					}
+				});
 			});
 		});
 		
-		
 	}
+	
+	
 	
 	
 	// ================================================================
@@ -133,8 +84,6 @@ app.controller('MainCtrl', function($scope, $http) {
 	// ================================================================
 	$scope.display = {};
 	$scope.skillHover = function(skill, tier) {
-		
-		updateSkillUnlockStatus(skill, tier);
 		
 		skill.hover = true;
 		if (skill.unlockRequire === false) skill.require.skill.alert = true;
@@ -150,36 +99,17 @@ app.controller('MainCtrl', function($scope, $http) {
 		
 	}
 	
-	function updateSkillUnlockStatus(skill, tier) {
-		var leftPoint = $scope.totalPoint - $scope.usedPoint;
-		
-		if (skill.require !== false) {
-			skill.unlockRequire = (skill.require.skill.ownBasic === true)
-		} else {
-			skill.unlockRequire = true;
-		}
-		
-		if (tier.unlockStatus === true && skill.unlockRequire === true) {
-			skill.unlockBasic = (leftPoint >= tier.skillUnlockPoint.basic);
-			skill.unlockAce = (skill.ownBasic)
-					? (leftPoint >= tier.skillUnlockPoint.ace)
-					: (leftPoint >= tier.skillUnlockPoint.basic + tier.skillUnlockPoint.ace)
-		} else {
-			skill.unlockBasic = false;
-			skill.unlockAce   = false;
-		}
-	}
-	
 	
 	// ================================================================
 	// = 技能狀態更新
 	// ================================================================
 	$scope.skillUpdate = function(skill, tier, tree) {
+		
 		if (tier.unlockStatus !== true) {
 			// 移除技能
 			unsetSkill(skill);
 		}
-		
+		updateSkillUnlockStatus(skill, tier);
 		return (function(skill, tier) {
 			
 			if (skill.hover === true) {
@@ -192,8 +122,29 @@ app.controller('MainCtrl', function($scope, $http) {
 			
 			if (skill.ownAce === true) return "ace";
 			else if (skill.ownBasic === true) return "basic";
-			else return "none"
+			else return "none";
 		})(skill, tier);
+	}
+	
+	function updateSkillUnlockStatus(skill, tier) {
+		var leftPoint = $scope.totalPoint - $scope.usedPoint;
+		
+		if (skill.require !== false) {
+			skill.unlockRequire = (skill.require.skill.ownBasic === true)
+		} else {
+			skill.unlockRequire = true;
+		}
+		
+		// 判斷階層是否解鎖
+		if (tier.unlockStatus === true && skill.unlockRequire === true) {
+			skill.unlockBasic = (leftPoint >= tier.skillUnlockPoint.basic);
+			skill.unlockAce = (skill.ownBasic)
+					? (leftPoint >= tier.skillUnlockPoint.ace)
+					: (leftPoint >= tier.skillUnlockPoint.basic + tier.skillUnlockPoint.ace)
+		} else {
+			skill.unlockBasic = false;
+			skill.unlockAce   = false;
+		}
 	}
 	
 	
@@ -238,31 +189,47 @@ app.controller('MainCtrl', function($scope, $http) {
 		if (typeof tree === "undefined") return false;
 		
 		var usedPoint = 0;
-		var tiers = tree;
+		var tiers = tree.tiers;
 		
 		
-		for (var i = 0; i < tiers.length; i++) {
-			var tier = tiers[i];
+		tree.tiers.forEach(function(tier) {
 			
 			tier.unlockRequire = tier.tierUnlockPoint - usedPoint;
 			tier.unlockStatus = (tier.unlockRequire <= 0);
 			
 			if (tier.unlockStatus === true) {
 				// 計算該階層消耗技能點
-				tier.skills.map(function(skill) {
+				tier.skills.forEach(function(skill) {
 					if (skill.ownBasic === true) usedPoint += tier.skillUnlockPoint.basic;
 					if (skill.ownAce === true) usedPoint += tier.skillUnlockPoint.ace;
 				});
 			}
 			
-		}
+		});
 		
-		$scope.usedPoint = usedPoint;
+		return tree.used = usedPoint;
 	}
 	
 	$scope.getUsed = function() {
-		return $scope.usedPoint
+		
+		var usedPoint = 0;
+		$scope.skillTree.forEach(function(tree) {
+			usedPoint += tree.used;
+		});
+		
+		$scope.usedPoint = usedPoint;
+		return $scope.totalPoint - $scope.usedPoint;
 	}
 	
+	// ================================================================
+	var tab = "";
+	$scope.clickTab = function(name) {
+		tab = name;
+		$scope.display = {};
+	}
+	
+	$scope.isShowTree = function(name) {
+		return (tab === name);
+	}
 	
 });

@@ -13,50 +13,58 @@
 	
 	<body ng-app="myApp" ng-controller="MainCtrl">
 		
-		<div class="main" >
-			
-			<ul class="left trees">
-				
-				<li class="tree">
+		<div class="main">
+			<ul class="trees">
+				<li class="tab" ng-repeat="tree in skillTree">
 					
-					<div class="tree-tab"></div>
+					<input type="radio" id="tab{{ $index }}" name="tabs" ng-checked="$first">
 					
-					<ul	ng-repeat="tier in skillTree | orderBy:'-tier'">
+					<label for="tab{{ ::$index }}" class="tab-nav">
+						<span>{{ ::tree.title }}</span>
+						<span>({{ updateTreeStatus(tree) }})</span>
+					</label>
 					
-						<li	
-							class="skill"
-							ng-repeat="skill in tier.skills track by $index"
-							ng-mouseover="skillHover(skill, tier)"
-							ng-mouseleave="skillLeave(skill, tier)"
-							ng-click="skillClick(skill, tier)"
-							ng-class="{
-								unlock : tier.unlockStatus,
-								basic  : skill.ownBasic,
-								ace    : skill.ownAce,
-								alert  : skill.alert
-							}"
-						>
-							<a
-								class="skill-remove"
-								ng-show="skill.ownBasic || skill.ownAce"
-								ng-click="skillRemove(skill, tier); $event.stopPropagation()"
-							>
-								<span class="skill-remove-icon">x</span>
-							</a>
-							<div class="skill-icon"></div>
-							<div class="skill-text" ng-switch="skillUpdate(skill, tier)">
-								<span ng-switch-when="locked">未解鎖</span>
-								<span ng-switch-when="basic">擁有</span>
-								<span ng-switch-when="ace">王牌</span>
-								<span ng-switch-when="basic-hover">購買 基本<br>花費 {{ tier.skillUnlockPoint.basic }} 點</span>
-								<span ng-switch-when="ace-hover">購買 王牌<br>花費 {{ tier.skillUnlockPoint.ace }} 點</span>
-							</div>	
-							
-						</li>
+					<div class="tab-main">
+					
+						<ul	class="tree-tier" ng-repeat="tier in tree.tiers | orderBy:'-tier'">
 						
-					</ul>
+							<li	
+								class="skill"
+								ng-repeat="skill in tier.skills"
+								ng-mouseover="skillHover(skill, tier)"
+								ng-mouseleave="skillLeave(skill, tier)"
+								ng-click="skillClick(skill, tier)"
+								ng-class="{
+									unlock : tier.unlockStatus,
+									basic  : skill.ownBasic,
+									ace    : skill.ownAce,
+									alert  : skill.alert,
+									tier0  : $first && $last
+								}"
+							>
+								<a
+									class="skill-remove"
+									ng-show="skill.ownBasic || skill.ownAce"
+									ng-click="skillRemove(skill, tier); $event.stopPropagation()"
+								>
+									<span class="skill-remove-icon">x</span>
+								</a>
+								<div class="skill-icon"></div>
+								<div class="skill-text" ng-switch="skillUpdate(skill, tier)">
+									<span ng-switch-when="locked">未解鎖</span>
+									<span ng-switch-when="basic">擁有</span>
+									<span ng-switch-when="ace">王牌</span>
+									<span ng-switch-when="basic-hover">購買 基本<br>花費 {{ tier.skillUnlockPoint.basic }} 點</span>
+									<span ng-switch-when="ace-hover">購買 王牌<br>花費 {{ tier.skillUnlockPoint.ace }} 點</span>
+								</div>	
+								
+							</li>
+							
+						</ul>
+						
+					</div>
 					
-				<div> {{updateTreeStatus(skillTree)}} </div>
+				</li>
 				
 			</ul>
 			
@@ -69,7 +77,7 @@
 				
 				<div class="info-block alert">
 					<p ng-show="display.tier.unlockStatus === false">
-						你必須再花費 {{ display.tier.tierUnlockRequire }} 點來解鎖第 {{ display.tier.tier }} 階技能
+						你必須再花費 {{ display.tier.unlockRequire }} 點來解鎖第 {{ display.tier.tier }} 階技能
 					</p>
 					<p ng-show="display.skill.unlockRequire === false">
 						必須要擁有前置技能 : {{ display.skill.require.skill.title }} ({{ display.skill.require.skill.name }})
@@ -82,7 +90,7 @@
 						
 						<span
 							class="info-strong"
-							ng-class="{lock : display.skill.unlockBasic === false}"
+							ng-class="{alert : ! display.skill.unlockBasic}"
 							ng-hide="display.skill.ownBasic"
 						>
 							{{ display.tier.skillUnlockPoint.basic }} 點 / ${{ display.tier.skillUnlockCost.basic | number}}
@@ -99,7 +107,7 @@
 						
 						<span
 							class="info-strong"
-							ng-class="{lock : ! display.skill.unlockAce}"
+							ng-class="{alert : ! display.skill.unlockAce}"
 							ng-hide="display.skill.ownAce"
 						>
 							{{ display.tier.skillUnlockPoint.ace }} 點 / ${{ display.tier.skillUnlockCost.ace | number}}
@@ -117,6 +125,8 @@
 		</div>
 		<p> 剩餘點數: {{ getUsed(); }} </p>
 		
+		
+		<script src="filter.js"></script>
 		<script src="test.js"></script>
 	</body>
 </html>
