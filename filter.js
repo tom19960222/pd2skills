@@ -1,6 +1,4 @@
 
-
-var app = angular.module('myApp', []);
 app.filter('htmlSafe', ['$sce', function($sce) {
 	return function(text) {
 		return $sce.trustAsHtml(text);

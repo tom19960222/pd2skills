@@ -1,7 +1,11 @@
 <div class="main">
+	
 	<div class="tree-border"></div>
-	<ul class="trees">
+
+	<ul class="tabs cant_select">
+		
 		<li class="tab" ng-repeat="(treeIndex, tree) in skillTree track by $index">
+			
 			<input type="radio" id="tab{{ $index }}" name="tabs" ng-checked="$first">
 			
 			<label for="tab{{ ::$index }}" class="tab-nav">
@@ -28,7 +32,8 @@
 					>
 						<div
 							class="skill-icon"
-							ng-style="{'backgroundPosition' : skillStyle(skillIndex, tierIndex, treeIndex)}"
+							ng-style="style"
+							ng-init="style=skillStyle(skillIndex, tierIndex, treeIndex)"
 						>
 						</div>
 						
@@ -62,62 +67,80 @@
 			
 		</li><!-- tab -->
 		
-	</ul><!-- trees -->
+	</ul><!-- tabs -->
 	
-	<div class="aside">
-		<div class="info">
+	
+	
+	<div class="ctrl-right">
+		<p class="ctrl-availavle"><span>{{ getUsed() }}</span> 點技能點數可用</p>
+		<p class="ctrl-respec">重置這個技能樹</p>
+		<p class="ctrl-respec small">重置所有技能樹</p>
+	</div>
+
+</div><!-- main -->
+
+<div class="aside">
+	
+	<div class="info">
+		
+		<div class="info-skill" ng-if="displaySkill">
+			
 			<div class="info-title">
-				<h1 class="title1">{{ display.skill.title }}</h1>
-				<h2 class="title2">{{ display.skill.name }}</h2>
+				<h1 class="title1">{{ displaySkill.skill.title }}</h1>
+				<h2 class="title2">{{ displaySkill.skill.name }}</h2>
 			</div>
 			
 			<div class="info-block alert">
-				<p ng-show="display.tier.unlockStatus === false">
-					你必須再花費 {{ display.tier.unlockRequire }} 點來解鎖第 {{ display.tier.tier }} 階技能
+				<p ng-show="displaySkill.tier.unlockStatus === false">
+					你必須再花費 <span>{{ displaySkill.tier.unlockRequire }}</span> 點來解鎖第 <span>{{ displaySkill.tier.tier }}</span> 階技能
 				</p>
-				<p ng-show="display.skill.unlockRequire === false">
-					必須要擁有前置技能 : {{ display.skill.require.skill.title }} ({{ display.skill.require.skill.name }})
+				<p ng-show="displaySkill.skill.unlockRequire === false">
+					必須要擁有前置技能 : <span>{{ displaySkill.skill.require.skill.title }}</span> (<span>{{ displaySkill.skill.require.skill.name }}</span>)
 				</p>
 			</div>
 			
-			<div class="info-block" ng-show="display.tier.skillUnlockPointBasic > 0">
+			<div class="info-block" ng-show="displaySkill.tier.skillUnlockPointBasic > 0">
 				<p>
 					<span>基本: </span>
 					
 					<span
 						class="info-strong"
-						ng-class="{alert : ! display.skill.unlockBasic}"
-						ng-hide="display.skill.ownBasic"
+						ng-class="{alert : ! displaySkill.skill.unlockBasic}"
+						ng-hide="displaySkill.skill.ownBasic"
 					>
-						{{ display.tier.skillUnlockPointBasic }} 點 / ${{ display.tier.skillUnlockCostBasic | number}}
+						<span>{{ displaySkill.tier.skillUnlockPointBasic }} 點</span>
+						<span> / </span> 
+						<span>${{ displaySkill.tier.skillUnlockCostBasic | number}}</span>
 					</span>
 					
-					<span class="info-strong" ng-show="display.skill.ownBasic">擁有</span>
+					<span class="info-strong" ng-show="displaySkill.skill.ownBasic">擁有</span>
 				</p>
-				<p ng-bind-html="display.skill.basic | htmlSafe"></p>
+				<p ng-bind-html="displaySkill.skill.basic | htmlSafe"></p>
 			</div>
 			
-			<div class="info-block" ng-show="display.tier.skillUnlockPointAce > 0">
+			<div class="info-block" ng-show="displaySkill.tier.skillUnlockPointAce > 0">
 				<p>
 					<span>王牌: </span>
 					
 					<span
 						class="info-strong"
-						ng-class="{alert : ! display.skill.unlockAce}"
-						ng-hide="display.skill.ownAce"
+						ng-class="{alert : ! displaySkill.skill.unlockAce}"
+						ng-hide="displaySkill.skill.ownAce"
 					>
-						{{ display.tier.skillUnlockPointAce }} 點 / ${{ display.tier.skillUnlockCostAce | number}}
+						<span>{{ displaySkill.tier.skillUnlockPointAce }} 點</span>
+						<span> / </span> 
+						<span>${{ displaySkill.tier.skillUnlockCostAce | number}}</span>
 					</span>
 					
-					<span class="info-strong" ng-show="display.skill.ownAce">擁有</span>
+					<span class="info-strong" ng-show="displaySkill.skill.ownAce">擁有</span>
 				</p>
-				<p ng-bind-html="display.skill.ace | htmlSafe"></p>
+				<p ng-bind-html="displaySkill.skill.ace | htmlSafe"></p>
 			</div>
 			
-			<div class="info-block" ng-bind-html="display.skill.text | htmlSafe"></div>
+			<div class="info-block" ng-bind-html="displaySkill.skill.text | htmlSafe"></div>
 		
-		</div>
+		</div><!-- info-skill -->
 		
-	</div>
+	</div><!-- info -->
 	
-</div>
+</div><!-- aside -->
