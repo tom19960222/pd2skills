@@ -52,13 +52,18 @@ function initTree(tree) {
 
 function initTier(tier) {
 	return {
-		"tier"   : (typeof tier.tier   !== "undefined")? tier.tier : "[undefined]",
+		"tier"   : (typeof tier.tier   !== "undefined")? tier.tier : -1,
 		"skills" : (typeof tier.skills !== "undefined")? tier.skills : [],
 		
-		"skillUnlockPoint" : (typeof tier.skillUnlockPoint !== "undefined")? tier.skillUnlockPoint : "[undefined]",
-		"skillUnlockCost"  : (typeof tier.skillUnlockCost  !== "undefined")? tier.skillUnlockCost : "[undefined]",
+		"tierUnlockPoint"       : (typeof tier.tierUnlockPoint !== "undefined")? tier.tierUnlockPoint : 0,
+		"tierUnlockPointImfamy" : (typeof tier.tierUnlockPointImfamy !== "undefined")? tier.tierUnlockPointImfamy : 0,
 		
-		"tierUnlockPoint" : (typeof tier.tierUnlockPoint !== "undefined")? tier.tierUnlockPoint : "[undefined]",
+		"skillUnlockPointBasic" : (typeof tier.skillUnlockPointBasic !== "undefined")? tier.skillUnlockPointBasic : 0,
+		"skillUnlockPointAce"   : (typeof tier.skillUnlockPointAce   !== "undefined")? tier.skillUnlockPointAce : -1,
+		
+		"skillUnlockCostBasic"  : (typeof tier.skillUnlockCostBasic  !== "undefined")? tier.skillUnlockCostBasic : -1,
+		"skillUnlockCostAce"    : (typeof tier.skillUnlockCostAce    !== "undefined")? tier.skillUnlockCostAce : 0,
+		
 		"unlockRequire"   : 0,
 		"unlockStatus"    : false
 	};

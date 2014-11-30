@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<title> Angular Test </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=0">
+		
+		<link rel="stylesheet" href="style.css">
+		
+		<script src="angular.min.js"></script>
+		
+	</head>
+	
+	<body ng-app="myApp" ng-controller="MainCtrl">
+		
+		
+		<div ng-repeat="v1 in arr track by $index">
+			<div ng-repeat="(k2, v2) in v1 track by $index">
+				<input ng-model="v2">
+				<p ng-style="style" ng-init="style=getStyle()">{{ k1 }}-{{ k2 }}值 : {{ show(k1, k2, v2) }}</p>
+			</div>
+		</div>
+		
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('MainCtrl', function($scope, $http) {
+				var arr = {
+					a : {
+						a : 0,
+						b : 0,
+						c : 0
+					},
+					b : {
+						a : 0,
+						b : 0,
+						c : 0
+					},
+					c : {
+						a : 0,
+						b : 0,
+						c : 0
+					}
+				};
+				
+				$scope.arr = arr;
+				
+				$scope.show = function(a, b, c) {
+					console.log(a, b, c);
+					return c;
+				};
+				$scope.getStyle = function() {
+					return {'background': 'red'};
+				};
+			});
+		</script>
+	</body>
+</html>

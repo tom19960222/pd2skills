@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ================================================================
  * = Reset
  * ================================================================
@@ -15,6 +15,7 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	margin:0;
 	padding:0;
 	font-weight:normal;
+	#font-weight:bold;
 }
 
 ul, li {
@@ -32,12 +33,9 @@ ul, li {
 	box-sizing:border-box;
 	position:relative;
 	float:left;
-	width:160px;
+	width:180px;
 	height:68px;
-	
 	border:2px solid transparent;
-	border:2px solid #0b0b15;
-	
 	color:#ddd;
 }
 
@@ -45,12 +43,6 @@ ul, li {
 	border:2px solid #eee;
 }
 
-
-/**
- * ================================================================
- * = Skill-Text
- * ================================================================
- */
 .skill-text {
 	line-height:1.1;
 	margin:24px 4px 4px 68px;
@@ -58,11 +50,6 @@ ul, li {
 }
 
 
-/**
- * ================================================================
- * = Skill-Remove
- * ================================================================
- */
 .skill-remove {
 	position:absolute;
 	top:0;
@@ -99,24 +86,35 @@ ul, li {
 	width:64px;
 	height:64px;
 	line-height:64px;
-	background:#373b44;
+	#background:#373b44;
+	background-image:url('icon/skill-dark.png');
 }
 
 .unlock .skill-icon{
-	background:#5e7d91;
+	#background:#5e7d91;
+	background-image:url('icon/skill-halflight.png');
 }
 
 .basic .skill-icon{
-	background:#fcfcfc;
+	#background:#fcfcfc;
+	background-image:url('icon/skill-light.png');
 }
 
-.ace .skill-icon{
-	background:#3aa5e6;
-	#background:gold;
+.ace .skill-icon:after{
+	content:'';
+	display:block;
+	position:absolute;
+	top:-32px;
+	left:-32px;
+	z-index:-1;
+	width:128px;
+	height:128px;
+	background-image:url('icon/ace.png');
 }
 
 .alert .skill-icon{
-	background:#bf3247;
+	#background:#bf3247;
+	background-image:url('icon/skill-alert.png');
 }
 
 
@@ -125,8 +123,16 @@ ul, li {
  * = Info
  * ================================================================
  */
+
+.info {
+	box-sizing:border-box;
+	
+	height:408px;
+	border:10px solid transparent;
+	border-image:url('icon/border.gif') 10 10;
+}
+
 .info-title {
-	margin:10px 0;
 }
 
 .info-title > .title1 {
@@ -158,18 +164,27 @@ ul, li {
  * = Tab
  * ================================================================
  */
+
+.tabs {
+	width:100%;
+	height:506px;
+}
+
 .tab {
 	float:left;
-	
 }
 
 .tab-nav {
 	box-sizing:border-box;
 	display:inline-block;
+	z-index:200;
+	cursor:pointer;
+	
 	height:30px;
 	line-height:30px;
 	margin-right:2px;
 	padding:0 10px;
+	
 	color:#3aa5e6;
 	font-size:14px;
 }
@@ -179,8 +194,8 @@ ul, li {
 	position:absolute;
 	top:30px;
 	left:0;
-	height:500px;
-	border:2px solid #eee;
+	
+	height:476px;
 }
 
 .tab > input[type=radio] {
@@ -188,38 +203,45 @@ ul, li {
 }
 
 .tab > input[type=radio]:checked + label {
-	z-index:2;
 	background:#eee;
 	color:#333;
 }
 
 .tab > input[type=radio]:checked ~ .tab-main {
 	display:block;
-	z-index:1;
 }
 
 
 /**
  * ================================================================
- * = Other
+ * = 主要區塊
  * ================================================================
  */
-.main {
-	overflow:auto;
-	clear:both;
-	width:80%;
+.contain {
+	min-width:920px;
+	max-width:1280px;
 	margin:0 auto;
 }
 
-.trees {
+.main {
 	position:relative;
 	float:left;
-	width:490px;
-	padding:-1px;
+	width:540px;
+}
+
+.tree-border {
+	box-sizing:border-box;
+	position:absolute;
+	top:30px;
+	
+	width:540px;
+	height:408px;
+	border:10px solid transparent;
+	border-image:url('icon/border-tree.gif') 10 10;
 }
 
 .tree-tier {
-	overflow:auto;
+	height:68px;
 }
 
 .tier0 {
@@ -227,18 +249,75 @@ ul, li {
 	margin:0 auto;
 }
 
-.right {
-	
-	height:600px;
-	border:2px solid #eee;
-}
-
-
-
-.right {
-	margin-left:500px;
+.aside {
+	margin-left:560px;
+	padding-top:30px;
 }
 
 .alert {
 	color:#bf3247;
+}
+
+
+/**
+ * ================================================================
+ * = 變動
+ * ================================================================
+ */
+
+.contain {
+	min-width:920px;
+	max-width:1280px;
+}
+
+.main {
+	width:540px;
+	height:566px;
+}
+
+.tree-border {
+	width:540px;
+}
+
+.tree-border {
+	width:540px;
+}
+.skill {
+	width:180px;
+}
+
+
+/**
+ * ================================================================
+ * = 其他
+ * ================================================================
+ */
+
+.cant_select {
+	-moz-user-select: none;  
+	-webkit-user-select: none;  
+	-ms-user-select: none;  
+}
+
+
+.ctrl-right {
+	position:absolute;
+	bottom:0;
+	right:0;
+	width:200px;
+	height:60px;
+}
+
+.ctrl-availavle {
+	font-size:16px;
+}
+
+.ctrl-respec {
+	color:#3aa5e6;
+	font-size:15px;
+	font-weight:bold;
+}
+
+.small {
+	font-size:12px;
 }
