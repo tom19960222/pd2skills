@@ -29,6 +29,10 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 			
 			loadSkillPointers(trees);
 			
+			var hash = $location.path().replace('/skill/', '');
+			console.log(hash);
+			loadUrlHash(trees, hash);
+			
 			$scope.skillTree = trees;
 		}
     });
@@ -353,13 +357,14 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 	
 	function toUrlHash(trees) {
 		
-		var hash = [];
+		var data = [];
 		
+		// 迴圈分析技能樹
 		trees.forEach(function(tree) {
 			
+			// 宣告計數器
 			var counter = 0;
-			
-			var treeText = "";
+			var treeData = "";
 			
 			tree.tiers.forEach(function(tier) {
 				
@@ -369,32 +374,88 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 						var code = counter + 97;
 						if (skill.ownAce) code -= 32;
 						
-						treeText += String.fromCharCode(code);
+						treeData += String.fromCharCode(code);
 					}
 					
 					// 計數器加一
 					counter++;
 				});
 				
-			});
+			}); // end forEach tiers
 			
-			if (treeText != "") {
+			if (treeData != "") {
+				// 取技能樹的標頭
 				var header = tree.name.charAt(0).toLowerCase();
-				treeText = header + treeText;
-				hash.push(treeText);
+				
+				treeData = header + treeData;
+				data.push(treeData);
 			}
-		});
+			
+		}); // end forEach trees
 		
-		return hash.join(':');
+		return data.join(':');
 	}
 	
-	function loadUrlHash(text) {
+	function loadUrlHash(trees, text) {
 		
-		var hash = text.split(':');
+		var data = {};
+		
+		// 分割字串
+		var parts = text.split(':');
+		
+		// 分析字串
+		parts.forEach(function(part) {
+			
+			// 分割字元
+			skillData = part.split('');
+			// 取標頭
+			var header = skillData.shift();
+			
+			// 字元轉Ascii碼
+			skillData = skillData.map(function(code) {
+				return code.charCodeAt(0);
+			});
+			
+			// 新增至資料物件
+			data[header] = skillData;
+		});
 		
 		
+		// 迴圈設定技能樹
+		trees.forEach(function(tree) {
+			
+			var counter = 0;
+			var header = tree.name.charAt(0).toLowerCase();
+			
+			if (typeof data[header] === "undefined") return;
+			
+			var treeData = data[header];
+			
+			tree.tiers.forEach(function(tier) {
+				
+				tier.skills.forEach(function(skill) {
+					
+					var skillAceCode = counter + 65;
+					
+					if (treeData.indexOf(skillAceCode) >= 0) {
+						// 擁有 Ace
+						skill.ownAce   = true;
+						skill.ownBasic = true;
+					} else if (treeData.indexOf(skillAceCode + 32) >= 0) {
+						// 擁有 Basic
+						skill.ownBasic = true;
+					}
+					
+					// 計數器加一
+					counter++;
+				});
+				
+			}); // end forEach tiers
+			
+		}); // end forEach trees
 		
 	}
+	
 });
 
 app.directive("skillTree", function() {
