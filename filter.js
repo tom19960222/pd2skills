@@ -5,37 +5,11 @@ app.filter('htmlSafe', ['$sce', function($sce) {
 	}
 }]);
 
-
-app.filter('skill', [function() {
-	return function(skills) {
-		if ( ! (skills instanceof Array)) return [];
-		return [];
-		return skills.map(function(skill) {
-			return initSkill(skill);
-		});
-	}
-}]);
-
-app.filter('tier', [function() {
-	return function(tiers) {
-		if ( ! (tiers instanceof Array)) return [];
-		return [];
-		return tiers.map(function(tier) {
-			return initTier(tier);
-		});
-	}
-}]);
-
-app.filter('tree', function() {
-	return function(trees) {
-		if ( ! (trees instanceof Array)) return [];
-		return [];
-		return trees.map(function(tree) {
-			return initTree(tree);
-		});
+app.filter('desc', function() {
+	return function(array) {
+		return array.slice(0).reverse();
 	}
 });
-
 
 function initTree(tree) {
 	return {

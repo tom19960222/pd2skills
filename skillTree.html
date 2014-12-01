@@ -4,9 +4,18 @@
 
 	<ul class="tabs cant_select">
 		
-		<li class="tab" ng-repeat="(treeIndex, tree) in skillTree track by $index">
+		<li class="tab" ng-repeat="(treeIndex, tree) in skillTrees track by $index">
 			
-			<input type="radio" id="tab{{ $index }}" name="tabs" ng-checked="$first">
+			<input
+				type="radio"
+				id="tab{{ ::$index }}"
+				name="tabs"
+				value="{{ ::tree.name }}"
+				ng-model="displayTree2"
+				ng-value="tree"
+				ng-checked="$first"
+				ng-init="0"
+			>
 			
 			<label for="tab{{ ::$index }}" class="tab-nav">
 				<span>{{ ::tree.title }}</span>
@@ -15,13 +24,13 @@
 			
 			<div class="tab-main">
 			
-				<ul	class="tree-tier" ng-repeat="(tierIndex, tier) in tree.tiers | orderBy: '-' track by $index">
+				<ul	class="tree-tier" ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index">
 					<li	
 						class="skill"
 						ng-repeat="(skillIndex, skill) in tier.skills track by $index"
 						ng-mouseover="skillHover(skill, tier)"
 						ng-mouseleave="skillLeave(skill, tier)"
-						ng-click="skillClick(skill, tier)"
+						ng-click="skillClick(skill, tier, tree)"
 						ng-class="{
 							unlock : tier.unlockStatus,
 							basic  : skill.ownBasic,
@@ -40,7 +49,7 @@
 						<a
 							class="skill-remove"
 							ng-show="skill.ownBasic || skill.ownAce"
-							ng-click="skillRemove(skill, tier); $event.stopPropagation()"
+							ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
 						>
 							<span class="skill-remove-icon">x</span>
 						</a>
@@ -69,12 +78,15 @@
 		
 	</ul><!-- tabs -->
 	
-	
+	<div class="ctrl-left">
+		<p class="ctrl-level">{{ 100 }}</p>
+		<p class="ctrl-spent">{{ 132456789 | number }}</p>
+	</div>
 	
 	<div class="ctrl-right">
 		<p class="ctrl-availavle"><span>{{ getUsed() }}</span> 點技能點數可用</p>
-		<p class="ctrl-respec">重置這個技能樹</p>
-		<p class="ctrl-respec small">重置所有技能樹</p>
+		<p class="ctrl-respec" ng-click="resetTree(displayTree2)">重置這個技能樹</p>
+		<p class="ctrl-respec small" ng-click="resetAll()">重置所有技能樹</p>
 	</div>
 
 </div><!-- main -->

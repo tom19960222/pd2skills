@@ -18,3 +18,11 @@ app.directive("skillTree", function() {
 });
 
 */
+
+app.directive("skillTree", function() {
+	return {
+		restrict : 'E',
+		templateUrl : 'skillTree.html',
+		controller  : 'skillTreeController',
+	};	
+});

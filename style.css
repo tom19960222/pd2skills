@@ -25,6 +25,23 @@ ul, li {
 
 /**
  * ================================================================
+ * = Header
+ * ================================================================
+ */
+
+.header {
+	display:block;
+	width:100%;
+	height:72px;
+}
+.header-logo {
+	float:right;
+	width:320px;
+	height:72px;
+}
+
+/**
+ * ================================================================
  * = Skill
  * ================================================================
  */
@@ -33,6 +50,7 @@ ul, li {
 	box-sizing:border-box;
 	position:relative;
 	float:left;
+	cursor:pointer;
 	width:180px;
 	height:68px;
 	border:2px solid transparent;
@@ -100,13 +118,15 @@ ul, li {
 	background-image:url('icon/skill-light.png');
 }
 
-.ace .skill-icon:after{
+.ace .skill-icon::before{
 	content:'';
+	
 	display:block;
 	position:absolute;
 	top:-32px;
 	left:-32px;
 	z-index:-1;
+	
 	width:128px;
 	height:128px;
 	background-image:url('icon/ace.png');
@@ -132,8 +152,7 @@ ul, li {
 	border-image:url('icon/border.gif') 10 10;
 }
 
-.info-title {
-}
+.info-title {}
 
 .info-title > .title1 {
 	font-size:18px;
@@ -168,6 +187,18 @@ ul, li {
 .tabs {
 	width:100%;
 	height:506px;
+}
+
+.tabs::before {
+	content:'';
+	box-sizing:border-box;
+	position:absolute;
+	top:30px;
+	
+	width:540px;
+	height:408px;
+	border:10px solid transparent;
+	border-image:url('icon/border-tree.gif') 10 10;
 }
 
 .tab {
@@ -229,16 +260,7 @@ ul, li {
 	width:540px;
 }
 
-.tree-border {
-	box-sizing:border-box;
-	position:absolute;
-	top:30px;
-	
-	width:540px;
-	height:408px;
-	border:10px solid transparent;
-	border-image:url('icon/border-tree.gif') 10 10;
-}
+.tree-border {}
 
 .tree-tier {
 	height:68px;
@@ -299,6 +321,36 @@ ul, li {
 	-ms-user-select: none;  
 }
 
+.ctrl-left {
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+.ctrl-level::before {
+	content:'';
+	
+	display:block;
+
+	
+	width:16px;
+	height:16px;
+	background-image:url('icon/icon.png');
+	background-position: 0 0;
+}
+
+.ctrl-spent::before {
+	content:'';
+	
+	display:block;
+
+	
+	width:16px;
+	height:16px;
+	background-image:url('icon/icon.png');
+	background-position: 0 -16px;
+}
+
 
 .ctrl-right {
 	position:absolute;
@@ -307,6 +359,8 @@ ul, li {
 	width:200px;
 	height:60px;
 }
+
+
 
 .ctrl-availavle {
 	font-size:16px;
