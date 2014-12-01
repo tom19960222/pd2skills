@@ -11,10 +11,9 @@
 				id="tab{{ ::$index }}"
 				name="tabs"
 				value="{{ ::tree.name }}"
-				ng-model="displayTree2"
+				ng-model="display.tree"
 				ng-value="tree"
 				ng-checked="$first"
-				ng-init="0"
 			>
 			
 			<label for="tab{{ ::$index }}" class="tab-nav">
@@ -85,7 +84,7 @@
 	
 	<div class="ctrl-right">
 		<p class="ctrl-availavle"><span>{{ getUsed() }}</span> 點技能點數可用</p>
-		<p class="ctrl-respec" ng-click="resetTree(displayTree2)">重置這個技能樹</p>
+		<p class="ctrl-respec" ng-click="resetTree(display.tree)">重置這個技能樹</p>
 		<p class="ctrl-respec small" ng-click="resetAll()">重置所有技能樹</p>
 	</div>
 
@@ -95,7 +94,7 @@
 	
 	<div class="info">
 		
-		<div class="info-skill" ng-if="displaySkill">
+		<div class="info-skill" ng-if="display">
 			
 			<div class="info-title">
 				<h1 class="title1">{{ displaySkill.skill.title }}</h1>
@@ -103,53 +102,53 @@
 			</div>
 			
 			<div class="info-block alert">
-				<p ng-show="displaySkill.tier.unlockStatus === false">
-					你必須再花費 <span>{{ displaySkill.tier.unlockRequire }}</span> 點來解鎖第 <span>{{ displaySkill.tier.tier }}</span> 階技能
+				<p ng-show="display.tier.unlockStatus === false">
+					你必須再花費 <span>{{ display.tier.unlockRequire }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
 				</p>
-				<p ng-show="displaySkill.skill.unlockRequire === false">
-					必須要擁有前置技能 : <span>{{ displaySkill.skill.require.skill.title }}</span> (<span>{{ displaySkill.skill.require.skill.name }}</span>)
+				<p ng-show="display.skill.unlockRequire === false">
+					必須要擁有前置技能 : <span>{{ display.skill.require.skill.title }}</span> (<span>{{ display.skill.require.skill.name }}</span>)
 				</p>
 			</div>
 			
-			<div class="info-block" ng-show="displaySkill.tier.skillUnlockPointBasic > 0">
+			<div class="info-block" ng-show="display.tier.skillUnlockPointBasic > 0">
 				<p>
 					<span>基本: </span>
 					
 					<span
 						class="info-strong"
-						ng-class="{alert : ! displaySkill.skill.unlockBasic}"
-						ng-hide="displaySkill.skill.ownBasic"
+						ng-class="{alert : ! display.skill.unlockBasic}"
+						ng-hide="display.skill.ownBasic"
 					>
-						<span>{{ displaySkill.tier.skillUnlockPointBasic }} 點</span>
+						<span>{{ display.tier.skillUnlockPointBasic }} 點</span>
 						<span> / </span> 
-						<span>${{ displaySkill.tier.skillUnlockCostBasic | number}}</span>
+						<span>${{ display.tier.skillUnlockCostBasic | number}}</span>
 					</span>
 					
-					<span class="info-strong" ng-show="displaySkill.skill.ownBasic">擁有</span>
+					<span class="info-strong" ng-show="display.skill.ownBasic">擁有</span>
 				</p>
-				<p ng-bind-html="displaySkill.skill.basic | htmlSafe"></p>
+				<p ng-bind-html="display.skill.basic | htmlSafe"></p>
 			</div>
 			
-			<div class="info-block" ng-show="displaySkill.tier.skillUnlockPointAce > 0">
+			<div class="info-block" ng-show="display.tier.skillUnlockPointAce > 0">
 				<p>
 					<span>王牌: </span>
 					
 					<span
 						class="info-strong"
-						ng-class="{alert : ! displaySkill.skill.unlockAce}"
-						ng-hide="displaySkill.skill.ownAce"
+						ng-class="{alert : ! display.skill.unlockAce}"
+						ng-hide="display.skill.ownAce"
 					>
-						<span>{{ displaySkill.tier.skillUnlockPointAce }} 點</span>
+						<span>{{ display.tier.skillUnlockPointAce }} 點</span>
 						<span> / </span> 
-						<span>${{ displaySkill.tier.skillUnlockCostAce | number}}</span>
+						<span>${{ display.tier.skillUnlockCostAce | number}}</span>
 					</span>
 					
-					<span class="info-strong" ng-show="displaySkill.skill.ownAce">擁有</span>
+					<span class="info-strong" ng-show="display.skill.ownAce">擁有</span>
 				</p>
-				<p ng-bind-html="displaySkill.skill.ace | htmlSafe"></p>
+				<p ng-bind-html="display.skill.ace | htmlSafe"></p>
 			</div>
 			
-			<div class="info-block" ng-bind-html="displaySkill.skill.text | htmlSafe"></div>
+			<div class="info-block" ng-bind-html="display.skill.text | htmlSafe"></div>
 		
 		</div><!-- info-skill -->
 		

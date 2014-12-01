@@ -345,48 +345,30 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 	// ================================================================
 	
 	// 初始
-	$scope.displaySkill = false;
+	$scope.display = {};
 	
 	// 設定顯示
 	function setDisplaySkill(skill, tier) {
-		if ($scope.displaySkill === false) {
-			var obj = {
-				"skill" : skill,
-				"tier"  : tier
-			};
-			
-			$scope.displaySkill = obj;
-		} else {
-			$scope.displaySkill.skill = skill;
-			$scope.displaySkill.tier  = tier;
-		}
+		$scope.display.skill = skill;
+		$scope.display.tier  = tier;
 	}
 	
 	// 清除顯示
 	function clearDisplaySkill() {
-		$scope.displaySkill = false;
+		$scope.display.skill = false;
+		$scope.display.tier  = false;
 	}
 	
-	// 初始
-	$scope.displayTree = false;
+	
 	
 	// 設定顯示
 	function setDisplayTree(tree) {
-		if ($scope.displayTree === false) {
-			var obj = {
-				"tree" : tree
-			};
-			
-			$scope.displayTree = obj;
-		} else {
-			$scope.displayTree.skill = skill;
-			$scope.displayTree.tier  = tier;
-		}
+		$scope.display.tree = tree;
 	}
 	
 	// 清除顯示
 	function clearDisplaySkill() {
-		$scope.displayTree = false;
+		$scope.display.tree = false;
 	}
 	
 	
@@ -418,7 +400,6 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 	}
 	
 	$scope.resetTree = function(tree) {
-		tree = $scope.displayTree;
 		console.log("resetTree:" + tree);
 		unsetTree(tree);
 	}
