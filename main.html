@@ -6,20 +6,28 @@
 		<meta name="viewport" content="width=device-width, user-scalable=0">
 		
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="skillTree.css">
 		
 		<script src="angular.min.js"></script>
 		
 	</head>
 	
 	<body ng-app="myApp">
-		<div class="contain">
+		<div id="contain">
 			
-			<div class="header">
+			<div id="header">
 				<img class="header-logo" src="icon/logo.png" alt="logo"></img>
 			</div>
 			
-			<skill-tree></skill-tree>
-
+			<skill-tree id="main"></skill-tree>
+			
+			<footer>
+				<div id="footar">
+					<p><small>test</small></p>
+					<p><small>(c) 2014 By Shisha</small></p>
+				</div>
+			</footer>
+			
 		</div><!-- contain -->
 		<script src="main.js"></script>
 		<script src="skillTreeController.js"></script>

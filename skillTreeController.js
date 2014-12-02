@@ -33,7 +33,6 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 			loadSkillPointers(trees);
 			
 			var hash = $location.path().replace('/skill/', '');
-			console.log(hash);
 			loadUrlHash(trees, hash);
 			
 			$scope.skillTrees = skillTrees = trees;
@@ -323,6 +322,9 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 	
 	$scope.skillClick = function(skill, tier, tree) {
 		unlockSkill(skill);
+		
+		var hash = toUrlHash(skillTrees);
+		$location.path("skill/" + hash);
 	}
 	
 	$scope.skillRemove = function(skill, tier, tree) {
@@ -392,8 +394,7 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 	}
 	
 	$scope.getUsed = function() {
-		var hash = toUrlHash(skillTrees);
-		$location.path("skill/" + hash);
+		
 		
 		$scope.usedPoint = getTotalUsedPoint($scope.skillTrees);
 		return $scope.totalPoint - $scope.usedPoint;
