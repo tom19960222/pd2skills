@@ -91,6 +91,10 @@ ul, li {
 	font-size:12px;
 }
 
+.alert {
+	color:#bf3247;
+}
+
 .hover {
 	display:none;
 }

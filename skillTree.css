@@ -1,176 +1,45 @@
+
 /**
  * ================================================================
- * = Skill
+ * = 變動
  * ================================================================
  */
 
-.skill {
-	box-sizing:border-box;
+.main {
+	width:540px;
+}
+
+.tier-skills {
+	width:540px;
+}
+
+.tier {
+	width:600px;
+}
+
+.aside {
+	margin-left:600px;
+}
+
+/**
+ * ================================================================
+ * = 主要區塊
+ * ================================================================
+ */
+#skill-tree {
+	height:580px;
+}
+
+.main {
 	position:relative;
 	float:left;
-	cursor:pointer;
-	width:180px;
-	height:68px;
-	border:2px solid transparent;
-	color:#ddd;
+	width:540px;
+	height:100%;
 }
 
-.skill:hover {
-	border:2px solid #eee;
-}
-
-.tier0 .skill {
-	float:none;
-	margin:0 auto;
-}
-
-.skill-remove {
-	position:absolute;
-	top:0;
-	right:0;
-}
-
-.skill-remove-icon {
-	display:none;
-	width:20px;
-	height:20px;
-	text-align:center;
-	color:#ddd;
-	font-size:20px;
-}
-
-.skill:hover .skill-remove-icon {
-	display:inline-block;
-}
-
-.skill:hover .skill-remove-icon:hover {
-	display:inline-block;
-	color:#fff;
-}
-
-
-/**
- * ================================================================
- * = Skill-Text
- * ================================================================
- */
-.skill-text-block {
-	box-sizing:border-box;
-	overflow:hidden;
-	height:40px;
-	margin:24px 4px 0 68px;
-}
-
-.skill-text {
-	display:none;
-	height:40px;
-}
-
-.skill-text > p{
-	height:14px;
-	line-height:1.1;
-	font-size:14px;
-}
-
-.basic .text-basic {
-	display:block;
-}
-
-.ace .text-ace {
-	display:block;
-}
-
-.unlock .skill:hover .text-basic-hover, .basic:hover .text-ace-hover {
-	display:block;
-}
-
-.skill:hover .text-locked{
-	display:block;
-}
-
-/**
- * ================================================================
- * = Skill-Icon
- * ================================================================
- */
-.skill-icon {
-	position:absolute;
-	top:0;
-	left:0;
-	width:64px;
-	height:64px;
-	line-height:64px;
-	#background:#373b44;
-	background-image:url('icon/skill-dark.png');
-}
-
-.unlock .skill-icon{
-	#background:#5e7d91;
-	background-image:url('icon/skill-halflight.png');
-}
-
-.basic .skill-icon{
-	#background:#fcfcfc;
-	background-image:url('icon/skill-light.png');
-}
-
-.ace .skill-icon::before{
-	content:'';
-	
-	display:block;
-	position:absolute;
-	top:-32px;
-	left:-32px;
-	z-index:-1;
-	
-	width:128px;
-	height:128px;
-	background-image:url('icon/ace.png');
-}
-
-.alert .skill-icon{
-	#background:#bf3247;
-	background-image:url('icon/skill-alert.png');
-}
-
-
-/**
- * ================================================================
- * = Info
- * ================================================================
- */
-
-.info {
-	box-sizing:border-box;
-	
-	height:408px;
-	border:10px solid transparent;
-	border-image:url('icon/border.gif') 10 10;
-}
-
-.info-title {}
-
-.info-title > .title1 {
-	font-size:18px;
-	font-weight:bold;
-}
-
-.info-title > .title2 {
-	font-size:12px;
-}
-
-.info-block {
-	margin:10px 0;
-}
-
-.info-block p {
-	margin:5px 0;
-}
-
-.info-strong, .info-block strong {
-	margin:0 2px;
-	color:#3aa5e6;;
-	font-weight:bold;
+.aside {
+	margin-left:600px;
+	padding-top:30px;
 }
 
 
@@ -241,19 +110,9 @@
 
 /**
  * ================================================================
- * = 主要區塊
+ * = Tier
  * ================================================================
  */
-#skill-tree {
-	height:580px;
-}
-
-.main {
-	position:relative;
-	float:left;
-	width:540px;
-	height:100%;
-}
 
 .tier {
 	position:relative;
@@ -267,64 +126,190 @@
 
 .tier-progress {
 	position:absolute;
-	right:10px;
+	right:12px;
 	bottom:0;
 	color:#667584;
 }
 
-.unlock .tier-progress{
+.unlock .tier-progress {
 	color:#fff;
 }
-
-.tier-progress > span{
-	display:inline-block;
-	width:24px;
-	margin:5px 0;
-	text-align:right;
-	font-size:13px;
-}
-
-
 
 .tier0 .tier-progress {
 	display:none;
 }
 
-.aside {
-	margin-left:600px;
-	padding-top:30px;
-}
-
-.alert {
-	color:#bf3247;
+.tier-progress > span{
+	display:inline-block;
+	width:24px;
+	margin:0;
+	text-align:right;
+	font-size:13px;
 }
 
 
 /**
  * ================================================================
- * = 變動
+ * = Progress Bar
  * ================================================================
  */
 
-.main {
-	width:540px;
+.progress-bar-container {
+	position:absolute;
+	top:66px;
+	right:32px;
+	width:3px;
+	height:340px;
 }
 
-.tier-skills {
-	width:540px;
+.progress-bar {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	background:#fff;
 }
 
-.tier {
-	width:600px;
-}
-
-.aside {
-	margin-left:600px;
-}
 
 /**
  * ================================================================
- * = 控制介面
+ * = Skill
+ * ================================================================
+ */
+
+.skill {
+	box-sizing:border-box;
+	position:relative;
+	float:left;
+	cursor:pointer;
+	width:180px;
+	height:68px;
+	border:2px solid transparent;
+	color:#ddd;
+}
+
+.skill:hover {
+	border:2px solid #eee;
+}
+
+.tier0 .skill {
+	float:none;
+	margin:0 auto;
+}
+
+.skill-remove {
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+.skill-remove-icon {
+	display:none;
+	width:20px;
+	height:20px;
+	color:#ddd;
+	text-align:center;
+	font-size:20px;
+}
+
+.skill:hover .skill-remove-icon {
+	display:inline-block;
+}
+
+.skill:hover .skill-remove-icon:hover {
+	display:inline-block;
+	color:#fff;
+}
+
+
+/**
+ * ================================================================
+ * = Skill-Icon
+ * ================================================================
+ */
+.skill-icon {
+	position:absolute;
+	top:0;
+	left:0;
+	width:64px;
+	height:64px;
+	line-height:64px;
+	#background:#373b44;
+	background-image:url('icon/skill-dark.png');
+}
+
+.unlock .skill-icon{
+	#background:#5e7d91;
+	background-image:url('icon/skill-halflight.png');
+}
+
+.basic .skill-icon{
+	#background:#fcfcfc;
+	background-image:url('icon/skill-light.png');
+}
+
+.ace .skill-icon::before{
+	content:'';
+	
+	display:block;
+	position:absolute;
+	top:-32px;
+	left:-32px;
+	z-index:-1;
+	
+	width:128px;
+	height:128px;
+	background-image:url('icon/ace.png');
+}
+
+.alert .skill-icon{
+	#background:#bf3247;
+	background-image:url('icon/skill-alert.png');
+}
+
+
+/**
+ * ================================================================
+ * = Skill-Text
+ * ================================================================
+ */
+.skill-text-block {
+	box-sizing:border-box;
+	overflow:hidden;
+	height:40px;
+	margin:24px 4px 0 68px;
+}
+
+.skill-text {
+	display:none;
+	height:40px;
+}
+
+.skill-text > p{
+	height:14px;
+	line-height:1.1;
+	font-size:14px;
+}
+
+.basic .text-basic {
+	display:block;
+}
+
+.ace .text-ace {
+	display:block;
+}
+
+.unlock .skill:hover .text-basic-hover, .basic:hover .text-ace-hover {
+	display:block;
+}
+
+.skill:hover .text-locked{
+	display:block;
+}
+
+
+/**
+ * ================================================================
+ * = Ctrl Left
  * ================================================================
  */
 
@@ -358,11 +343,18 @@
 	background-position: 0 -16px;
 }
 
+
+/**
+ * ================================================================
+ * = Ctrl Right
+ * ================================================================
+ */
+ 
 .ctrl-right {
 	position:absolute;
 	bottom:0;
 	right:0;
-	width:200px;
+	width:180px;
 	height:60px;
 }
 
@@ -382,27 +374,48 @@
 	text-decoration:underline;
 }
 
-.small {
+.ctrl-right > .small {
 	font-size:12px;
 }
 
+
 /**
  * ================================================================
- * = 進度條
+ * = Info
  * ================================================================
  */
 
-.progress-bar-container {
-	position:absolute;
-	top:60px;
-	right:30px;
-	width:3px;
-	height:340px;
+.info {
+	box-sizing:border-box;
+	
+	height:408px;
+	border:10px solid transparent;
+	border-image:url('icon/border.gif') 10 10;
 }
 
-.progress-bar {
-	position:absolute;
-	bottom:0;
-	width:100%;
-	background:#fff;
+.info-title {
+
+}
+
+.info-title > .title1 {
+	font-size:18px;
+	font-weight:bold;
+}
+
+.info-title > .title2 {
+	font-size:12px;
+}
+
+.info-block {
+	margin:10px 0;
+}
+
+.info-block p {
+	margin:5px 0;
+}
+
+.info-strong, .info-block strong {
+	margin:0 2px;
+	color:#3aa5e6;
+	font-weight:bold;
 }
