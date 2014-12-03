@@ -19,13 +19,6 @@
 	border:2px solid #eee;
 }
 
-.skill-text {
-	line-height:1.1;
-	margin:24px 4px 4px 68px;
-	font-size:14px;
-}
-
-
 .skill-remove {
 	position:absolute;
 	top:0;
@@ -48,6 +41,46 @@
 .skill:hover .skill-remove-icon:hover {
 	display:inline-block;
 	color:#fff;
+}
+
+
+/**
+ * ================================================================
+ * = Skill-Text
+ * ================================================================
+ */
+.skill-text-block {
+	box-sizing:border-box;
+	overflow:hidden;
+	height:40px;
+	margin:24px 4px 0 68px;
+}
+
+.skill-text {
+	display:none;
+	height:40px;
+}
+
+.skill-text > p{
+	height:14px;
+	line-height:1.1;
+	font-size:14px;
+}
+
+.basic .text-basic {
+	display:block;
+}
+
+.ace .text-ace {
+	display:block;
+}
+
+.unlock .skill:hover .text-basic-hover, .basic:hover .text-ace-hover {
+	display:block;
+}
+
+.skill:hover .text-locked{
+	display:block;
 }
 
 /**
@@ -131,7 +164,7 @@
 
 .info-strong, .info-block strong {
 	margin:0 2px;
-	color:#156fa5;
+	color:#3aa5e6;;
 	font-weight:bold;
 }
 
@@ -174,7 +207,7 @@
 	margin-right:2px;
 	padding:0 10px;
 	
-	color:#156fa5;
+	color:#3aa5e6;;
 	font-size:14px;
 }
 
@@ -207,17 +240,43 @@
  * ================================================================
  */
 #skill-tree {
-	height:566px;
+	height:580px;
 }
 
 .main {
 	position:relative;
 	float:left;
 	width:540px;
+	height:100%;
 }
 
-.tree-tier {
+.tier {
+	position:relative;
+	width:600px;
 	height:68px;
+}
+
+.tier-skills {
+	width:540px;
+}
+
+.tier-progress {
+	position:absolute;
+	right:10px;
+	bottom:0;
+	color:#667584;
+}
+
+.unlock .tier-progress{
+	color:#fff;
+}
+
+.tier-progress > span{
+	display:inline-block;
+	width:24px;
+	margin:5px 0;
+	text-align:right;
+	font-size:13px;
 }
 
 .tier0 {
@@ -226,7 +285,7 @@
 }
 
 .aside {
-	margin-left:560px;
+	margin-left:600px;
 	padding-top:30px;
 }
 
@@ -243,15 +302,18 @@
 
 .main {
 	width:540px;
-	height:566px;
 }
 
-.skill {
-	width:180px;
+.tier-skills {
+	width:540px;
+}
+
+.tier {
+	width:600px;
 }
 
 .aside {
-	
+	margin-left:600px;
 }
 
 /**
@@ -267,21 +329,26 @@
 }
 
 .ctrl-line {
+	float:left;
 	height:16px;
-	font-size:16px;
+	margin-bottom:2px;
+	line-height:16px;
+	font-size:14px;
 }
 
-.ctrl-level, .ctrl-spent {
-	
-	display:inline-block;
+.ctrl-level::before, .ctrl-spent::before {
+	content:'';
+	display:block;
+	float:left;
 	
 	width:16px;
 	height:16px;
+	margin-right:2px;
 	background-image:url('icon/icon.png');
 	background-position: 0 0;
 }
 
-.ctrl-spent {
+.ctrl-spent::before {
 	background-position: 0 -16px;
 }
 

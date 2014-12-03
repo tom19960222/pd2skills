@@ -139,10 +139,10 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 		
 		// 判斷階層是否解鎖
 		if (tier.unlockStatus === true && skill.unlockRequire === true) {
-			skill.unlockBasic = (leftPoint >= tier.skillUnlockPointBasic);
+			skill.unlockBasic = (leftPoint >= tier.skillUnlockPointBasic || skill.ownBasic);
 			skill.unlockAce   = (tier.skillUnlockPointAce > 0)
 				? (skill.ownBasic)
-					? (leftPoint >= tier.skillUnlockPointAce)
+					? (leftPoint >= tier.skillUnlockPointAce || skill.ownAce)
 					: (leftPoint >= tier.skillUnlockPointBasic + tier.skillUnlockPointAce)
 				: false;
 		} else {
@@ -228,6 +228,7 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 		
 		// 迴圈技能樹階層
 		tree.tiers.forEach(function(tier) {
+			
 			// 更新解鎖狀態
 			tier.unlockRequire = tier.tierUnlockPoint - usedPoint;
 			tier.unlockStatus = (tier.unlockRequire <= 0);
@@ -239,7 +240,6 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 					if (skill.ownAce === true) usedPoint += tier.skillUnlockPointAce;
 				});
 			}
-			
 		});
 		
 		return tree.used = usedPoint;

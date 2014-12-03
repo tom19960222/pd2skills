@@ -58,8 +58,8 @@ ul, li {
 }
 
 #footar {
-	width:200px;
-	margin:20px auto 40px;
+	width:600px;
+	margin:40px auto 60px;
 	text-align:center;
 }
 
@@ -89,4 +89,16 @@ ul, li {
 
 .small {
 	font-size:12px;
+}
+
+.hover {
+	display:none;
+}
+
+.hover:hover {
+	display:block;
+}
+
+.hide {
+	display:none;
 }

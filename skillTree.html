@@ -24,54 +24,86 @@
 				</label>
 				
 				<div class="tab-main">
-				
-					<ul	class="tree-tier" ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index">
-						<li	
-							class="skill"
-							ng-repeat="(skillIndex, skill) in tier.skills track by $index"
-							ng-mouseover="skillHover(skill, tier)"
-							ng-mouseleave="skillLeave(skill, tier)"
-							ng-click="skillClick(skill, tier, tree)"
-							ng-class="{
-								unlock : tier.unlockStatus,
-								basic  : skill.ownBasic,
-								ace    : skill.ownAce,
-								alert  : skill.alert,
-								tier0  : $first && $last
-							}"
-						>
-							<div
-								class="skill-icon"
-								ng-style="style"
-								ng-init="style=skillStyle(skillIndex, tierIndex, treeIndex)"
+					
+					<div
+						class="tier"
+						ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index" 
+						ng-class="{unlock : tier.unlockStatus,}"
+					>
+						<ul	class="tier-skills">
+							<li	
+								class="skill"
+								ng-repeat="(skillIndex, skill) in tier.skills track by $index"
+								ng-mouseover="skillHover(skill, tier)"
+								ng-mouseleave="skillLeave(skill, tier)"
+								ng-click="skillClick(skill, tier, tree)"
+								ng-class="{
+									basic  : skill.ownBasic,
+									ace    : skill.ownAce,
+									alert  : skill.alert,
+									tier0  : $first && $last
+								}"
 							>
-							</div>
-							
-							<a
-								class="skill-remove"
-								ng-show="skill.ownBasic || skill.ownAce"
-								ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
-							>
-								<span class="skill-remove-icon">x</span>
-							</a>
-							
-							<div class="skill-text" ng-switch="skillUpdate(skill, tier)">
-								<p ng-switch-when="locked">未解鎖</p>
-								<p ng-switch-when="basic">擁有</p>
-								<p ng-switch-when="ace">王牌</p>
-								<p ng-switch-when="basic-hover">
-									<span>購買 基本 </span>
-									<span>花費 {{ ::tier.skillUnlockPointBasic }} 點</span>
-								</p>
-								<p ng-switch-when="ace-hover">
-									<span>購買 王牌 </span>
-									<span>花費 {{ ::tier.skillUnlockPointAce }} 點</span>
-								</p>
-							</div>	
-							
-						</li><!-- skill -->
+								<div
+									class="skill-icon"
+									ng-style="style"
+									ng-init="style=skillStyle(skillIndex, tierIndex, treeIndex)"
+								></div>
+								
+								<a
+									class="skill-remove"
+									ng-show="skill.ownBasic || skill.ownAce"
+									ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
+								>
+									<span class="skill-remove-icon">x</span>
+								</a>
+								
+								<div class="skill-text-block">
+									<div class="skill-text text-ace">
+										<p>王牌</p>
+									</div>
+									<div class="skill-text text-ace-hover" ng-if="!($first && $last)">
+										<p>購買 王牌</p>
+										<p>花費 <span>{{ ::tier.skillUnlockPointAce }}</span> 點</p>
+									</div>
+									<div class="skill-text text-basic">
+										<p>擁有</p>
+									</div>
+									<div class="skill-text text-basic-hover">
+										<p>購買 基本</p>
+										<p>花費 <span>{{ ::tier.skillUnlockPointBasic }}</span> 點</p>
+									</div>
+									<div class="skill-text text-locked">
+										<p>未解鎖</p>
+									</div>
+									
+								</div>	
+								
+								
+								<div class="skill-text hide" ng-switch="skillUpdate(skill, tier)">
+									<p ng-switch-when="locked">未解鎖</p>
+									<p ng-switch-when="basic">擁有</p>
+									<p ng-switch-when="ace">王牌</p>
+									<p ng-switch-when="basic-hover">
+										<span>購買 基本 </span>
+										<span>花費 {{ ::tier.skillUnlockPointBasic }} 點</span>
+									</p>
+									<p ng-switch-when="ace-hover">
+										<span>購買 王牌 </span>
+										<span>花費 {{ ::tier.skillUnlockPointAce }} 點</span>
+									</p>
+								</div>	
+								
+							</li><!-- skill -->
+
+						</ul><!-- tier-skills -->
 						
-					</ul><!-- tree-tier -->
+						<div class="tier-progress">
+							<span>{{tier.unlockRequire}}</span>
+							<span>{{tier.tierUnlockPoint}}</span>
+						</div>
+						
+					</div><!-- tier-->
 					
 				</div><!-- tab-main -->
 				
@@ -80,8 +112,8 @@
 		</ul><!-- tabs -->
 		
 		<div class="ctrl-left">
-			<p class="ctrl-line ctrl-level"><span>{{ 100 }}</span></p>
-			<p class="ctrl-line ctrl-spent"><span>{{ 132456789 | number }}</p>
+			<p><span class="ctrl-line ctrl-level">{{ 100 }}</span></p>
+			<p><span class="ctrl-line ctrl-spent">{{ 1234567890 | number }}</p>
 		</div>
 		
 		<div class="ctrl-right">
@@ -99,8 +131,8 @@
 			<div class="info-skill" ng-if="display">
 				
 				<div class="info-title">
-					<h1 class="title1">{{ displaySkill.skill.title }}</h1>
-					<h2 class="title2">{{ displaySkill.skill.name }}</h2>
+					<h1 class="title1">{{ display.skill.title }}</h1>
+					<h2 class="title2">{{ display.skill.name }}</h2>
 				</div>
 				
 				<div class="info-block alert">
