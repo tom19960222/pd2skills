@@ -516,5 +516,33 @@ app.controller('skillTreeController', function($scope, $http, $location) {
 	}
 	
 	
+	// ================================================================
+	// = Progress Bar
+	// ================================================================
+	
+	function getProgressPercent(tree) {
+		
+		for (var i = 1; i < tree.tiers.length; i++) {
+			var tier = tree.tiers[i];
+			
+			if (tier.unlockStatus == false) {
+				if (i == 1) return 0;
+				var basic = tree.tiers[i - 1].tierUnlockPoint;
+				
+				var range = tier.tierUnlockPoint - basic;
+				var tierUsed = tree.used - basic;
+				var tierProgress = Math.floor(tierUsed / range * 100 * 0.2);
+				var progress = (i - 2) * 20;
+				
+				return progress + tierProgress;
+			}
+		}
+		
+		return 100;
+	}
+	
+	$scope.getProgressBarStyle = function(tree) {
+		return {height : getProgressPercent(tree) + '%'};
+	}
 });
 

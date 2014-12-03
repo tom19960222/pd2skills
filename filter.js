@@ -11,6 +11,21 @@ app.filter('desc', function() {
 	}
 });
 
+app.filter('padLeft', function() {
+	return function(str, lenght) {
+		
+		return padLeft(String(str), lenght);
+		
+		function padLeft(str, lenght){
+			if (str.length < lenght) {
+				return padLeft('0'+ str, lenght);
+			} else {
+				return str;
+			}
+		}
+	}
+});
+
 function initTree(tree) {
 	return {
 		"name"  : (typeof tree.name  !== "undefined")? tree.name : "[undefined]",

@@ -28,7 +28,10 @@
 					<div
 						class="tier"
 						ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index" 
-						ng-class="{unlock : tier.unlockStatus,}"
+						ng-class="{
+							unlock : tier.unlockStatus,
+							tier0  : tier.tier == 0
+						}"
 					>
 						<ul	class="tier-skills">
 							<li	
@@ -40,8 +43,7 @@
 								ng-class="{
 									basic  : skill.ownBasic,
 									ace    : skill.ownAce,
-									alert  : skill.alert,
-									tier0  : $first && $last
+									alert  : skill.alert
 								}"
 							>
 								<div
@@ -49,14 +51,6 @@
 									ng-style="style"
 									ng-init="style=skillStyle(skillIndex, tierIndex, treeIndex)"
 								></div>
-								
-								<a
-									class="skill-remove"
-									ng-show="skill.ownBasic || skill.ownAce"
-									ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
-								>
-									<span class="skill-remove-icon">x</span>
-								</a>
 								
 								<div class="skill-text-block">
 									<div class="skill-text text-ace">
@@ -92,18 +86,30 @@
 										<span>購買 王牌 </span>
 										<span>花費 {{ ::tier.skillUnlockPointAce }} 點</span>
 									</p>
-								</div>	
+								</div>
+
+								<a
+									class="skill-remove"
+									ng-show="skill.ownBasic || skill.ownAce"
+									ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
+								>
+									<span class="skill-remove-icon">x</span>
+								</a>								
 								
 							</li><!-- skill -->
 
 						</ul><!-- tier-skills -->
 						
 						<div class="tier-progress">
-							<span>{{tier.unlockRequire}}</span>
-							<span>{{tier.tierUnlockPoint}}</span>
+							<span>{{ ::tier.tier }}</span>
+							<span>{{ tier.tierUnlockPoint | padLeft:2 }}</span>
 						</div>
 						
 					</div><!-- tier-->
+					
+					<div class="progress-bar-container">
+						<div class="progress-bar" ng-style="getProgressBarStyle(tree)">
+					</div>
 					
 				</div><!-- tab-main -->
 				

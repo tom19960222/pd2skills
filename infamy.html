@@ -1,0 +1,49 @@
+<style>
+	.infamy-block {
+		width:135px;
+		height:144px;
+	}
+	.infamy-icon {
+		width:128px;
+		height:128px;
+	}
+	
+	.infamy-text {
+		height:16px;
+		font-size:14px;
+	}
+</style>
+
+<div id="infamy">
+	
+	<div class="main">
+		
+		<div>
+			<ul ng-repeat="infamy in infamys">
+				<li class="infamy-block">
+					<div class="infamy-icon"></div>
+					<div class="infamy-text">文字{{infamy.name}}</div>
+					<a
+						class="skill-remove"
+						ng-show="skill.ownBasic || skill.ownAce"
+						ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
+					>
+						<span class="skill-remove-icon">x</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+	</div><!-- main -->
+
+	<div class="aside">
+		
+		<div class="info">
+			
+			
+			
+		</div><!-- info -->
+		
+	</div><!-- aside -->
+	
+</div><!-- skill-tree -->

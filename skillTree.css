@@ -19,6 +19,11 @@
 	border:2px solid #eee;
 }
 
+.tier0 .skill {
+	float:none;
+	margin:0 auto;
+}
+
 .skill-remove {
 	position:absolute;
 	top:0;
@@ -279,9 +284,10 @@
 	font-size:13px;
 }
 
-.tier0 {
-	float:none;
-	margin:0 auto;
+
+
+.tier0 .tier-progress {
+	display:none;
 }
 
 .aside {
@@ -352,7 +358,6 @@
 	background-position: 0 -16px;
 }
 
-
 .ctrl-right {
 	position:absolute;
 	bottom:0;
@@ -360,8 +365,6 @@
 	width:200px;
 	height:60px;
 }
-
-
 
 .ctrl-availavle {
 	font-size:16px;
@@ -381,4 +384,25 @@
 
 .small {
 	font-size:12px;
+}
+
+/**
+ * ================================================================
+ * = 進度條
+ * ================================================================
+ */
+
+.progress-bar-container {
+	position:absolute;
+	top:60px;
+	right:30px;
+	width:3px;
+	height:340px;
+}
+
+.progress-bar {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	background:#fff;
 }
