@@ -63,7 +63,7 @@
 	width:540px;
 	height:408px;
 	border:10px solid transparent;
-	border-image:url('icon/border-tree.gif') 10 10;
+	border-image:url('icon/border-tree.gif') 10 10 repeat;
 }
 
 .tab {
@@ -391,7 +391,7 @@
 	
 	height:408px;
 	border:10px solid transparent;
-	border-image:url('icon/border.gif') 10 10;
+	border-image:url('icon/border.gif') 10 10 repeat;
 }
 
 .info-title {
