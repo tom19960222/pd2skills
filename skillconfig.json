@@ -1,0 +1,87 @@
+{
+	"gameverson" : "46.1",
+	"files" : [
+		"skills/mastermind.json",
+		"skills/enforcer.json",
+		"skills/technician.json",
+		"skills/ghost.json",
+		"skills/fugitive.json"
+	],
+	"tierinfo" : [
+		{
+			"tier" : 0,
+			"tierUnlockPoint"       : 0,
+			"tierUnlockPointImfamy" : 0,
+			
+			"skillUnlockPointBasic" : 1,
+			
+			"skillUnlockCostBasic"  : 500
+		},
+		{
+			"tier" : 1,
+			"tierUnlockPoint"       : 1,
+			"tierUnlockPointImfamy" : 1,
+			
+			"skillUnlockPointBasic" : 1,
+			"skillUnlockPointAce"   : 3,
+			
+			"skillUnlockCostBasic"  : 4500,
+			"skillUnlockCostAce"    : 12500
+		},
+		{
+			"tier" : 2,
+			"tierUnlockPoint"       : 5,
+			"tierUnlockPointImfamy" : 5,
+			
+			"skillUnlockPointBasic" : 1,
+			"skillUnlockPointAce"   : 3,
+			
+			"skillUnlockCostBasic"  : 23500,
+			"skillUnlockCostAce"    : 69500
+		},
+		{
+			"tier" : 3,
+			"tierUnlockPoint"       : 10,
+			"tierUnlockPointImfamy" : 9,
+			
+			"skillUnlockPointBasic" : 1,
+			"skillUnlockPointAce"   : 3,
+			
+			"skillUnlockCostBasic"  : 44500,
+			"skillUnlockCostAce"    : 132500
+		},
+		{
+			"tier" : 4,
+			"tierUnlockPoint"       : 20,
+			"tierUnlockPointImfamy" : 18,
+			
+			"skillUnlockPointBasic" : 4,
+			"skillUnlockPointAce"   : 8,
+			
+			"skillUnlockCostBasic"  : 264500,
+			"skillUnlockCostAce"    : 528500
+		},
+		{
+			"tier" : 5,
+			"tierUnlockPoint"       : 30,
+			"tierUnlockPointImfamy" : 27,
+			
+			"skillUnlockPointBasic" : 4,
+			"skillUnlockPointAce"   : 8,
+			
+			"skillUnlockCostBasic"  : 356500,
+			"skillUnlockCostAce"    : 712500
+		},
+		{
+			"tier" : 6,
+			"tierUnlockPoint"       : 40,
+			"tierUnlockPointImfamy" : 36,
+			
+			"skillUnlockPointBasic" : 4,
+			"skillUnlockPointAce"   : 8,
+			
+			"skillUnlockCostBasic"  : 452500,
+			"skillUnlockCostAce"    : 904500
+		}
+	]
+}

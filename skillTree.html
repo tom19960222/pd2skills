@@ -1,0 +1,199 @@
+<div id="skill-tree">
+	
+	<div class="main">
+		
+		<div class="tree-border"></div>
+
+		<ul class="tabs cant_select">
+			
+			<li class="tab" ng-repeat="(treeIndex, tree) in skillTrees track by $index">
+				
+				<input
+					type="radio"
+					id="tab{{ ::$index }}"
+					name="tabs"
+					value="{{ ::tree.name }}"
+					ng-model="display.tree"
+					ng-value="tree"
+					ng-init="($first)? display.tree=tree : null"
+				>
+				
+				<label for="tab{{ ::$index }}" class="tab-nav">
+					<span>{{ ::tree.title }}</span>
+					<span>({{ updateTreeStatus(tree) }})</span>
+				</label>
+				
+				<div class="tab-main">
+					
+					<div
+						class="tier"
+						ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index" 
+						ng-class="{
+							unlock : tier.unlockStatus,
+							tier0  : tier.tier == 0
+						}"
+					>
+						<ul	class="tier-skills">
+							<li	
+								class="skill"
+								ng-repeat="(skillIndex, skill) in tier.skills track by $index"
+								ng-mouseover="skillHover(skill, tier)"
+								ng-mouseleave="skillLeave(skill, tier)"
+								ng-click="skillClick(skill, tier, tree)"
+								ng-class="{
+									basic  : skill.ownBasic,
+									ace    : skill.ownAce,
+									alert  : skill.alert
+								}"
+							>
+								<div
+									class="skill-icon"
+									ng-style="style"
+									ng-init="style=skillStyle(skillIndex, tierIndex, treeIndex)"
+								></div>
+								
+								<div class="skill-text-block">
+									<div class="skill-text text-ace">
+										<p>王牌</p>
+									</div>
+									<div class="skill-text text-ace-hover" ng-if="!($first && $last)">
+										<p>購買 王牌</p>
+										<p>花費 <span>{{ ::tier.skillUnlockPointAce }}</span> 點</p>
+									</div>
+									<div class="skill-text text-basic">
+										<p>擁有</p>
+									</div>
+									<div class="skill-text text-basic-hover">
+										<p>購買 基本</p>
+										<p>花費 <span>{{ ::tier.skillUnlockPointBasic }}</span> 點</p>
+									</div>
+									<div class="skill-text text-locked">
+										<p>未解鎖</p>
+									</div>
+									
+								</div>	
+								
+								
+								<div class="skill-text hide" ng-switch="skillUpdate(skill, tier)">
+									<p ng-switch-when="locked">未解鎖</p>
+									<p ng-switch-when="basic">擁有</p>
+									<p ng-switch-when="ace">王牌</p>
+									<p ng-switch-when="basic-hover">
+										<span>購買 基本 </span>
+										<span>花費 {{ ::tier.skillUnlockPointBasic }} 點</span>
+									</p>
+									<p ng-switch-when="ace-hover">
+										<span>購買 王牌 </span>
+										<span>花費 {{ ::tier.skillUnlockPointAce }} 點</span>
+									</p>
+								</div>
+
+								<a
+									class="skill-remove"
+									ng-show="skill.ownBasic || skill.ownAce"
+									ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
+								>
+									<span class="skill-remove-icon">×</span>
+								</a>								
+								
+							</li><!-- skill -->
+
+						</ul><!-- tier-skills -->
+						
+						<div class="tier-progress">
+							<span>{{ ::tier.tier }}</span>
+							<span>{{ tier.tierUnlockPoint | padLeft:2 }}</span>
+						</div>
+						
+					</div><!-- tier-->
+					
+					<div class="progress-bar-container">
+						<div class="progress-bar" ng-style="getProgressBarStyle(tree)">
+					</div>
+					
+				</div><!-- tab-main -->
+				
+			</li><!-- tab -->
+			
+		</ul><!-- tabs -->
+		
+		<div class="ctrl-left">
+			<p><span class="ctrl-line ctrl-level">{{ 100 }}</span></p>
+			<p><span class="ctrl-line ctrl-spent">{{ 1234567890 | number }}</p>
+		</div>
+		
+		<div class="ctrl-right">
+			<p class="ctrl-availavle"><span>{{ getUsed() }}</span> 點技能點數可用</p>
+			<p class="ctrl-respec" ng-click="resetTree(display.tree)">重置這個技能樹</p>
+			<p class="ctrl-respec small" ng-click="resetAll()">重置所有技能樹</p>
+		</div>
+
+	</div><!-- main -->
+
+	<div class="aside">
+		
+		<div class="info">
+			
+			<div class="info-skill" ng-if="display">
+				
+				<div class="info-title">
+					<h1 class="title1">{{ display.skill.title }}</h1>
+					<h2 class="title2">{{ display.skill.name }}</h2>
+				</div>
+				
+				<div class="info-block alert">
+					<p ng-show="display.tier.unlockStatus === false">
+						你必須再花費 <span>{{ display.tier.unlockRequire }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
+					</p>
+					<p ng-show="display.skill.unlockRequire === false">
+						必須要擁有前置技能 : <span>{{ display.skill.require.skill.title }}</span> (<span>{{ display.skill.require.skill.name }}</span>)
+					</p>
+				</div>
+				
+				<div class="info-block" ng-show="display.tier.skillUnlockPointBasic > 0">
+					<p>
+						<span>基本: </span>
+						
+						<span
+							class="info-strong"
+							ng-class="{alert : ! display.skill.unlockBasic}"
+							ng-hide="display.skill.ownBasic"
+						>
+							<span>{{ display.tier.skillUnlockPointBasic }} 點</span>
+							<span> / </span> 
+							<span>${{ display.tier.skillUnlockCostBasic | number}}</span>
+						</span>
+						
+						<span class="info-strong" ng-show="display.skill.ownBasic">擁有</span>
+					</p>
+					<p ng-bind-html="display.skill.basic | htmlSafe"></p>
+				</div>
+				
+				<div class="info-block" ng-show="display.tier.skillUnlockPointAce > 0">
+					<p>
+						<span>王牌: </span>
+						
+						<span
+							class="info-strong"
+							ng-class="{alert : ! display.skill.unlockAce}"
+							ng-hide="display.skill.ownAce"
+						>
+							<span>{{ display.tier.skillUnlockPointAce }} 點</span>
+							<span> / </span> 
+							<span>${{ display.tier.skillUnlockCostAce | number}}</span>
+						</span>
+						
+						<span class="info-strong" ng-show="display.skill.ownAce">擁有</span>
+					</p>
+					<p ng-bind-html="display.skill.ace | htmlSafe"></p>
+				</div>
+				
+				<div class="info-block" ng-bind-html="display.skill.text | htmlSafe"></div>
+			
+			</div><!-- info-skill -->
+			
+		</div><!-- info -->
+		
+	</div><!-- aside -->
+	
+</div><!-- skill-tree -->
