@@ -5,6 +5,14 @@ app.filter('htmlSafe', ['$sce', function($sce) {
 	}
 }]);
 
+app.filter('skillInfo', ['$sce', function($sce) {
+	return function(text) {
+		text = text || '';
+		text = text.replace(/\[/g, '<strong>').replace(/\]/g, '</strong>');
+		return $sce.trustAsHtml(text);
+	}
+}]);
+
 app.filter('desc', function() {
 	return function(array) {
 		return array.slice(0).reverse();

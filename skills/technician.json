@@ -1,9 +1,10 @@
 {
-	"editor": "Yami",
-	"name"  : "Technician",
-	"title" : "技師",
-	"text"  : "有人呼叫管理員嗎？",
-	"tiers" :
+	"editor" : "Yami",
+	"date"   : "2014-11-21",
+	"name"   : "Technician",
+	"title"  : "技師",
+	"text"   : "有人呼叫管理員嗎？",
+	"tiers"  :
 	[
 		{
 			"tier" : 0,
@@ -11,7 +12,7 @@
 				{
 					"name"  : "Unlocking The Technician",
 					"title" : "解鎖技能樹",
-					"basic" : "可以攜帶<strong>2</strong>枚詭雷。",
+					"basic" : "可以攜帶[2]枚詭雷。",
 					"text"  : ""
 				}
 			]
@@ -22,21 +23,21 @@
 				{
 					"name"  : "Rifleman",
 					"title" : "步槍兵",
-					"basic" : "突擊步槍及狙擊槍切換瞄準速度快<strong>2</strong>倍。",
-					"ace"   : "突擊步槍及狙擊槍的瞄具放大倍率提升<strong>25%</strong>。",
+					"basic" : "突擊步槍及狙擊槍切換瞄準速度快[2]倍。",
+					"ace"   : "突擊步槍及狙擊槍的瞄具放大倍率提升[25%]。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Demolition Man",
 					"title" : "爆破手",
-					"basic" : "可以多攜帶<strong>1</strong>枚詭雷，總共<strong>3</strong>枚。",
-					"ace"   : "設置詭雷的所需時間快<strong>20%</strong>。",
+					"basic" : "可以多攜帶[1]枚詭雷，總共[3]枚。",
+					"ace"   : "設置詭雷的所需時間快[20%]。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Nerves of Steel",
 					"title" : "鋼鐵意志",
-					"basic" : "使用Ｆ鍵進行互動時所受的傷害減少<strong>50%</strong>",
+					"basic" : "使用Ｆ鍵進行互動時所受的傷害減少[50%]",
 					"ace"   : "倒地時可以使用武器的瞄具進行射擊。",
 					"text"  : ""
 				}
@@ -48,8 +49,8 @@
 				{
 					"name"  : "Sharpshooter",
 					"title" : "狙擊手",
-					"basic" : "單發武器的命中率增加<strong>20%</strong>。非全自動武器即視為單發武器，例如M308、左輪手槍、Gage Sniper Pack的狙擊槍等等。適用於以Gage Weapon Pack #01的Single-fire套件改成單發射擊的武器，不適用於用Ｖ鍵切換成單發模式的武器。",
-					"ace"   : "所有步槍及狙擊槍的穩定性增加<strong>25%</strong>。",
+					"basic" : "單發武器的命中率增加[20%]。非全自動武器即視為單發武器，例如M308、左輪手槍、Gage Sniper Pack的狙擊槍等等。適用於以Gage Weapon Pack #01的Single-fire套件改成單發射擊的武器，不適用於用Ｖ鍵切換成單發模式的武器。",
+					"ace"   : "所有步槍及狙擊槍的穩定性增加[25%]。",
 					"text"  : ""
 				},
 				{
@@ -62,8 +63,8 @@
 				{
 					"name"  : "Hardware Expert",
 					"title" : "工具專家",
-					"basic" : "你修理電鑽快<strong>25%</strong>，設置詭雷的所需時間快<strong>20%</strong>。（連同爆破手王牌技能則總共快４０％。）",
-					"ace"   : "你設置自動炮台（sentry gun）的所需時間快<strong>50%</strong>。你有<strong>30%</strong>機會裝設的電鑽具備自動修復機能，該電鑽會於故障一段時間後自行重啟。",
+					"basic" : "你修理電鑽快[25%]，設置詭雷的所需時間快[20%]。（連同爆破手王牌技能則總共快４０％。）",
+					"ace"   : "你設置自動炮台（sentry gun）的所需時間快[50%]。你有[30%]機會裝設的電鑽具備自動修復機能，該電鑽會於故障一段時間後自行重啟。",
 					"text"  : ""
 				}
 			]
@@ -74,22 +75,22 @@
 				{
 					"name"  : "Sentry Gun",
 					"title" : "自動炮台",
-					"basic" : "解鎖自動機槍炮台。可攜帶<strong>1</strong>部炮台，內有<strong>150</strong>發彈藥。",
-					"ace"   : "炮台生命值增加<strong>150%</strong>。",
+					"basic" : "解鎖自動機槍炮台。可攜帶[1]部炮台，內有[150]發彈藥。",
+					"ace"   : "炮台生命值增加[150%]。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Tactical Mines",
 					"title" : "戰術詭雷",
-					"basic" : "詭雷的爆炸範圍增加<strong>30%</strong>。",
-					"ace"   : "被你設置的感應器詭雷標記出的特殊敵人會受到<strong>15%</strong>額外傷害。",
+					"basic" : "詭雷的爆炸範圍增加[30%]。",
+					"ace"   : "被你設置的感應器詭雷標記出的特殊敵人會受到[15%]額外傷害。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Drill Sergeant",
 					"title" : "電鑽軍曹",
-					"basic" : "電鑽開啟門及夾萬的時間少<strong>15%</strong>。",
-					"ace"   : "電鑽開啟門及夾萬的時間再少<strong>15%</strong>，共<strong>30%</strong>。本技能對銀行的熱能鑽同樣有效，但對Big Bank的鑽石電鑽無效。",
+					"basic" : "電鑽開啟門及夾萬的時間少[15%]。",
+					"ace"   : "電鑽開啟門及夾萬的時間再少[15%]，共[30%]。本技能對銀行的熱能鑽同樣有效，但對Big Bank的鑽石電鑽無效。",
 					"text"  : ""
 				}
 			]
@@ -100,22 +101,22 @@
 				{
 					"name"  : "Sentry Targeting Package",
 					"title" : "炮台瞄準套件",
-					"basic" : "炮台的命中率提升<strong>2</strong>倍。",
-					"ace"   : "炮台的迴轉速度提升<strong>150%</strong>。炮台彈藥增加<strong>50%</strong>，即共<strong>235</strong>發彈藥。",
+					"basic" : "炮台的命中率提升[2]倍。",
+					"ace"   : "炮台的迴轉速度提升[150%]。炮台彈藥增加[50%]，即共[235]發彈藥。",
 					"text"  : "",
 					"require" : "Sentry Gun"
 				},
 				{
 					"name"  : "Jack of All Trades",
 					"title" : "萬事通",
-					"basic" : "詭雷的爆炸範圍增加<strong>70%</strong>。連同戰術詭雷技能則一共增加為<strong>2</strong>倍範圍。",
+					"basic" : "詭雷的爆炸範圍增加[70%]。連同戰術詭雷技能則一共增加為[2]倍範圍。",
 					"ace"   : "你可以同時攜帶炮台和詭雷上場了。假如你在準備畫面中選擇攜帶詭雷，當詭雷用光了就會自動切換成炮台，反之亦然。本技能要先擁有自動炮台技能才生效。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Silent Drilling",
 					"title" : "靜音電鑽",
-					"basic" : "減少電鑽發出的聲量<strong>65%</strong>，警衛要接近電鑽約<strong>9</strong>米範圍內才能聽到它並前來察看。你和隊友會聽到電鑽發出的聲音變小了。",
+					"basic" : "減少電鑽發出的聲量[65%]，警衛要接近電鑽約[9]米範圍內才能聽到它並前來察看。你和隊友會聽到電鑽發出的聲音變小了。",
 					"ace"   : "靜音電鑽，平民及警衛要直接看見電鑽才能察覺它。本技能對銀行的熱能鑽同樣有效，但對Big Bank的鑽石電鑽無效。",
 					"text"  : ""
 				}
@@ -135,15 +136,15 @@
 				{
 					"name"  : "Shaped Charge",
 					"title" : "成型炸藥",
-					"basic" : "可以多攜帶<strong>3</strong>枚詭雷。連同爆破手技能就總共<strong>6</strong>枚",
+					"basic" : "可以多攜帶[3]枚詭雷。連同爆破手技能就總共[6]枚",
 					"ace"   : "詭雷可以當成Ｃ４來用，用來炸開夾萬或門等等。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Shockproof",
 					"title" : "防雷",
-					"basic" : "電擊警察對你電擊時，有<strong>25%</strong>機會逆火反彈將他擊退。",
-					"ace"   : "電擊警察對你電擊時，你可以按Ｆ鍵反過來電他，做成<strong>50%</strong>傷害。",
+					"basic" : "電擊警察對你電擊時，有[25%]機會逆火反彈將他擊退。",
+					"ace"   : "電擊警察對你電擊時，你可以按Ｆ鍵反過來電他，做成[50%]傷害。",
 					"text"  : ""
 				}
 			]
@@ -154,23 +155,23 @@
 				{
 					"name"  : "Sentry Tower Defense",
 					"title" : "自動炮台塔防",
-					"basic" : "可攜帶並裝設<strong>2</strong>部炮台。",
-					"ace"   : "炮台殺傷力增加<strong>300%</strong>。",
+					"basic" : "可攜帶並裝設[2]部炮台。",
+					"ace"   : "炮台殺傷力增加[300%]。",
 					"text"  : "",
 					"require" : "Sentry Gun"
 				},
 				{
 					"name"  : "Mag Plus",
 					"title" : "彈匣＋",
-					"basic" : "你的武器彈匣容量增多<strong>5</strong>發。",
-					"ace"   : "你的武器彈匣容量增多<strong>10</strong>發。",
+					"basic" : "你的武器彈匣容量增多[5]發。",
+					"ace"   : "你的武器彈匣容量增多[10]發。",
 					"text"  : "本技能對狙擊槍無效。同時因為物理上的局限，雙管獵槍、左輪手槍、左輪散彈槍，以及電鋸恕無此優惠。"
 				},
 				{
 					"name"  : "Bulletproof",
 					"title" : "防彈",
-					"basic" : "你的防彈衣裝甲值增加<strong>50%</strong>。",
-					"ace"   : "你和隊友的防彈衣的回復間隔時間快<strong>25%</strong>。",
+					"basic" : "你的防彈衣裝甲值增加[50%]。",
+					"ace"   : "你和隊友的防彈衣的回復間隔時間快[25%]。",
 					"text"  : ""
 				}
 			]

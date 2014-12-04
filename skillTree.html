@@ -164,7 +164,7 @@
 						
 						<span class="info-strong" ng-show="display.skill.ownBasic">擁有</span>
 					</p>
-					<p ng-bind-html="display.skill.basic | htmlSafe"></p>
+					<p ng-bind-html="display.skill.basic | skillInfo"></p>
 				</div>
 				
 				<div class="info-block" ng-show="display.tier.skillUnlockPointAce > 0">
@@ -183,10 +183,10 @@
 						
 						<span class="info-strong" ng-show="display.skill.ownAce">擁有</span>
 					</p>
-					<p ng-bind-html="display.skill.ace | htmlSafe"></p>
+					<p ng-bind-html="display.skill.ace | skillInfo"></p>
 				</div>
 				
-				<div class="info-block" ng-bind-html="display.skill.text | htmlSafe"></div>
+				<div class="info-block" ng-bind-html="display.skill.text | skillInfo"></div>
 			
 			</div><!-- info-skill -->
 			
