@@ -1,16 +1,28 @@
-var app = angular.module('myApp', [])
+var app = angular.module('myApp', []);
 
-app.directive("skillTree", function() {
+
+app.factory("HashStorage", ["$location", function($location) {
+	return new SkillsHashStorage($location);
+}]);
+
+app.directive("skills", function() {
 	return {
-		restrict : 'E',
-		templateUrl : 'skillTree.html',
-		controller  : 'skillTreeController',
+		restrict : 'C',
+		templateUrl : 'skills.html',
+		controller  : 'skillsController',
+	};	
+});
+
+app.directive("skillAside", function() {
+	return {
+		restrict : 'A',
+		templateUrl : 'skills-aside.html'
 	};	
 });
 
 app.directive("infamy", function() {
 	return {
-		restrict : 'E',
+		restrict : 'C',
 		templateUrl : 'infamy.html',
 		controller  : 'infamyController',
 	};	

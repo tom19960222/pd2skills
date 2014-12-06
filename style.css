@@ -7,7 +7,7 @@
 body {
 	background-color:#0b0b15;
 	color:#EEE;
-	font-family: "微軟正黑體"
+	font-family:"微軟正黑體";
 }
 
 
@@ -15,7 +15,6 @@ ul, p, h1, h2, h3, h4, h5, h6 {
 	margin:0;
 	padding:0;
 	font-weight:normal;
-	#font-weight:bold;
 }
 
 ul, li {
@@ -25,11 +24,73 @@ ul, li {
 
 /**
  * ================================================================
+ * = 變動
+ * ================================================================
+ */
+
+.wrapper {
+	min-width:920px;
+	max-width:1280px;
+}
+
+.main {
+	width:600px;
+}
+
+.aside {
+	margin-left:600px;
+	position:relative;
+}
+
+
+/**
+ * ================================================================
+ * = Main
+ * ================================================================
+ */
+
+.wrapper {
+	min-width:920px;
+	max-width:1280px;
+	margin:0 auto;
+}
+
+.contain {
+	display:block;
+	width:100%;
+	height:600px;
+}
+
+.main {
+	position:relative;
+	float:left;
+	width:600px;
+	height:100%;
+}
+
+.main > div {
+	width:100%;
+	height:100%;
+}
+
+.aside {
+	margin-left:600px;
+}
+
+.footar {
+	width:600px;
+	margin:40px auto 60px;
+	text-align:center;
+}
+
+
+/**
+ * ================================================================
  * = Header
  * ================================================================
  */
 
-#header {
+.header {
 	display:block;
 	width:100%;
 	height:72px;
@@ -41,37 +102,75 @@ ul, li {
 	height:72px;
 }
 
+
 /**
  * ================================================================
- * = 主要區塊
+ * = Main-tab
  * ================================================================
  */
-#contain {
-	min-width:920px;
-	max-width:1280px;
-	margin:0 auto;
+
+.nav {
+	box-sizing:border-box;
+	height:72px;
+	padding:8px 0;
 }
 
-#main {
+.nav li {
 	display:block;
-	margin-bottom:20px;
+	float:left;
+	
+	height:36px;
+	line-height:36px;
+	margin-right:12px;
+	padding-right:12px;
+	border-right:3px solid #156fa5;
 }
 
-#footar {
-	width:600px;
-	margin:40px auto 60px;
-	text-align:center;
+.nav li:last-child {
+	border-right:none;
 }
+
+.nav span {
+	color:#156fa5;
+	font-family:"Fjalla One", sans-serif;
+	font-size:36px;
+	text-transform:uppercase;
+	cursor:pointer;
+}
+
+.nav span:hover {
+	color:#3aa5e6;
+}
+
+.nav span.checked {
+	color:#fff;
+}
+
 
 /**
  * ================================================================
- * = 變動
+ * = 特殊邊框
  * ================================================================
  */
+ 
+.border:before {
+	content:'';
+	box-sizing:border-box;
+	display:block;
+	position:absolute;
+	z-index:-200;
+	
+	width:100%;
+	height:100%;
+	border:10px solid transparent;
+	border-image:url('icon/border.gif') 10 10 repeat;
+}
 
-#contain {
-	min-width:920px;
-	max-width:1280px;
+.hr:after {
+	content:'';
+	position:absolute;
+	width:100%;
+	border-top:2px solid #fff;
 }
 
 
@@ -80,15 +179,16 @@ ul, li {
  * = 其他
  * ================================================================
  */
-
-.cant_select {
-	-moz-user-select: none;  
-	-webkit-user-select: none;  
-	-ms-user-select: none;  
-}
-
 .small {
 	font-size:12px;
+}
+
+.strong {
+	#156fa5;
+}
+
+.strong:hover {
+	color:#3aa5e6;
 }
 
 .alert {
@@ -105,4 +205,21 @@ ul, li {
 
 .hide {
 	display:none;
+}
+
+
+/**
+ * ================================================================
+ * = 指標類
+ * ================================================================
+ */
+
+.cant_select {
+	-moz-user-select: none;  
+	-webkit-user-select: none;  
+	-ms-user-select: none;  
+}
+
+.cursor {
+	cursor:pointer;
 }

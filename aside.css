@@ -1,0 +1,62 @@
+/**
+ * ================================================================
+ * = Set
+ * ================================================================
+ */
+
+.set-tab-width {
+	width:540px;
+}
+
+.set-tab-height {
+	height:408px;
+}
+
+/**
+ * ================================================================
+ * = Info
+ * ================================================================
+ */
+
+.info {
+	box-sizing:border-box;
+	position:absolute;
+	top:30px;
+	width:100%;
+	height:408px;
+}
+
+.info-contain {
+	padding:10px;
+}
+
+.info-title {
+
+}
+
+.info-title > .title1 {
+	font-size:18px;
+	font-weight:bold;
+}
+
+.info-title > .title2 {
+	font-size:12px;
+}
+
+.info-block {
+	margin:10px 0;
+}
+
+.info-block p {
+	margin:5px 0;
+}
+
+.info-strong, .info-block strong {
+	margin:0 2px;
+	color:#3aa5e6;
+	font-weight:bold;
+}
+
+.info .alert {
+	color:#bf3247;
+}

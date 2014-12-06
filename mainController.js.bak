@@ -1,0 +1,131 @@
+app.controller(
+	'mainController',
+	[
+		'$scope',
+		'$http',
+		'HashStorage',
+
+function($scope, $http, HashStorage) {
+	
+	// ================================================================
+	// = 載入技能樹設定檔
+	// ================================================================
+	$scope.trees = [];
+	var trees = [];
+	var treesConfig = null;
+	
+	$http.get('skillsconfig.json').success(function loadTrees(data) {
+		
+		treesConfig = data;
+		
+		// 複製陣列
+		trees = data.files.slice(0);
+		var files = data.files;
+		var counter = files.length;
+		
+		files.forEach(function(file, index) {
+			$http.get(file).success(function(data) {
+				trees[index] = data;
+				
+				counter--;
+				if (counter == 0) setTrees(trees, treesConfig);
+			});
+			
+		});
+		
+		function setTrees(trees, treesConfig) {
+			setTreeTierInfo(trees, treesConfig);
+			trees = initTrees(trees);
+			
+			loadSkillPointers(trees);
+			
+			// 載入Hash技能資料
+			trees.forEach(function(tree) {
+				HashStorage.updateTreeData(tree);
+			})
+			
+			
+			$scope.trees = trees;
+		}
+    });
+	
+	/**
+	 * 設定階層訊息
+	 */
+	function setTreeTierInfo(trees, treeinfo) {
+		trees.forEach(function(tree) {
+			tree.tiers.forEach(function(tier) {
+				var info = treeinfo.tierinfo[tier.tier];
+				for (var attr in info) {
+					tier[attr] = info[attr];
+				}
+			});
+		});
+	}
+	
+	/**
+	 * 初始化技能樹
+	 */
+	function initTrees(trees) {
+		trees = trees.map(function(tree) {
+			tree = initTree(tree);
+			
+			tree.tiers = tree.tiers.map(function(tier) {
+				tier = initTier(tier);
+				
+				tier.skills = tier.skills.map(function(skill) {
+					skill = initSkill(skill);
+					setSkillPointer(skill);
+					
+					return skill;
+				});
+				return tier;
+			});
+			return tree;
+		});
+		return trees;
+	}
+	
+	
+	// ================================================================
+	// = 技能指標相關
+	// ================================================================
+	
+	// 初始化指標儲存物件
+	var skillPointers = {};
+	
+	/**
+	 * 設定技能指標
+	 */
+	function setSkillPointer(skill) {
+		if (typeof skill.require !== "string") return skill.require = false;
+		
+		var pointerName = skill.require;
+		if (typeof skillPointers[pointerName] === "undefined") {
+			skillPointers[pointerName] = {"skill" : {}};
+		}
+		
+		return skill.require = skillPointers[pointerName];
+	}
+	
+	/**
+	 * 讀取技能指標
+	 */
+	function loadSkillPointers(trees) {
+		var skillNames = [];
+		for (var skillName in skillPointers) skillNames.push(skillName);
+		
+		// 迴圈查找技能
+		trees.forEach(function(tree) {
+			tree.tiers.forEach(function(tier) {
+				tier.skills.forEach(function(skill) {
+					// 查找技能名稱
+					if (skillNames.indexOf(skill.name) >= 0) {
+						skillPointers[skill.name].skill = skill;
+					}
+				});
+			});
+		});
+	}
+	
+}]);

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<title> Angular Test </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=0">
+		
+		<link rel="stylesheet" href="style.css">
+		
+		<script src="angular.min.js"></script>
+		
+	</head>
+	
+	<body ng-app="myApp" ng-controller="MainCtrl">
+		
+		
+		<div ng-controller="MainCtrl">
+			<div>{{name1}}</div>
+			<div>{{name2}}</div>
+			<input type="button" ng-click="truch()">
+			<div ng-controller="ChildCtrl">
+				<div>{{name1}}</div>
+				<div>{{name2}}</div>
+				<input type="button" ng-click="truch()">
+			</div>
+		</div>
+		
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('MainCtrl', function($scope, $http) {
+				$scope.name1 = "main";
+				$scope.truch = function() {
+					
+					console.log($scope);
+				}
+			});
+			
+			app.controller('ChildCtrl', function($scope, $http) {
+				$scope.name2 = "child";
+				$scope.truch = function() {
+					
+					console.log($scope);
+				}
+			});
+		</script>
+	</body>
+</html>

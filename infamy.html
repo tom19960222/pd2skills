@@ -1,49 +1,42 @@
-<style>
-	.infamy-block {
-		width:135px;
-		height:144px;
-	}
-	.infamy-icon {
-		width:128px;
-		height:128px;
-	}
+<div class="infamy-contain">
 	
-	.infamy-text {
-		height:16px;
-		font-size:14px;
-	}
-</style>
-
-<div id="infamy">
-	
-	<div class="main">
+	<div class="infamy-main set-tab-width set-tab-height">
 		
-		<div>
-			<ul ng-repeat="infamy in infamys">
-				<li class="infamy-block">
-					<div class="infamy-icon"></div>
-					<div class="infamy-text">文字{{infamy.name}}</div>
-					<a
-						class="skill-remove"
-						ng-show="skill.ownBasic || skill.ownAce"
-						ng-click="skillRemove(skill, tier, tree); $event.stopPropagation()"
-					>
-						<span class="skill-remove-icon">x</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-
-	</div><!-- main -->
-
-	<div class="aside">
+		<div class="border"></div>
 		
-		<div class="info">
-			
-			
-			
-		</div><!-- info -->
-		
-	</div><!-- aside -->
-	
-</div><!-- skill-tree -->
+		<ul ng-repeat="tree in trees">
+
+			<li
+				class="infamy-block {{ ::tree.name }}"
+				ng-class="{
+					unlocked : true,
+					owned    : tree.infamy
+				}"
+				ng-click="infamyClick(tree)"
+			>
+				<div
+					class="infamy-icon"
+					ng-style="style"
+					ng-init="style=infamyIconStyle($index)"
+				></div>
+
+				<div class="infamy-text-block">
+					<p class="infamy-text text-owned">擁有</p>
+					<p class="infamy-text text-unlocked">解鎖</p>
+					<p class="infamy-text text-locked">未解鎖</p>
+				</div>
+
+				<a
+					class="infamy-remove"
+					ng-show="tree.infamy"
+					ng-click="infamyRemove(tree); $event.stopPropagation()"
+				>
+					<span class="infamy-remove-icon">×</span>
+				</a>
+			</li>
+
+		</ul>
+
+	</div>
+
+</div><!-- main -->

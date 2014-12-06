@@ -1,8 +1,10 @@
 {
-	"name"  : "Enforcer",
-	"title" : "暴徙",
-	"text"  : "世上無難事，只怕硬拳頭。",
-	"tiers" :
+	"editor" : "Shisha",
+	"date"   : "2014-11-21",
+	"name"   : "Enforcer",
+	"title"  : "暴徙",
+	"text"   : "世上無難事，只怕硬拳頭。",
+	"tiers"  :
 	[
 		{
 			"tier" : 0,
@@ -10,8 +12,8 @@
 				{
 					"name"  : "Unlocking The Enforcer",
 					"title" : "解鎖技能樹",
-					"basic" : "可以攜帶<strong>1</strong>個彈藥包",
-					"text"  : "彈藥包有<strong>300%</strong>彈藥，「平均」可使用<strong>3</strong>次。"
+					"basic" : "可以攜帶[1]個彈藥包",
+					"text"  : "彈藥包有[300%]彈藥，「平均」可使用[3]次。"
 				}
 			]
 		},
@@ -21,22 +23,22 @@
 				{
 					"name"  : "Oppressor",
 					"title" : "暴君",
-					"basic" : "火力壓制能力增加<strong>25%</strong>。",
-					"ace"   : "火力壓制能力增加<strong>50%</strong>，共<strong>75%</strong>。",
+					"basic" : "火力壓制能力增加[25%]。",
+					"ace"   : "火力壓制能力增加[50%]，共[75%]。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Bullet Storm",
 					"title" : "槍林彈雨",
-					"basic" : "當你放下彈藥包後，<strong>5</strong>秒內你可以瘋狂開槍而不會扣彈數也不用裝彈。",
-					"ace"   : "上述效果增加<strong>10</strong>秒，共<strong>15</strong>秒。",
+					"basic" : "當你放下彈藥包後，[5]秒內你可以瘋狂開槍而不會扣彈數也不用裝彈。",
+					"ace"   : "上述效果增加[10]秒，共[15]秒。",
 					"text"  : "本技能對榴彈砲無效。用電鋸鋸死物同樣無效。"
 				},
 				{
 					"name"  : "Transporter",
 					"title" : "挑夫",
-					"basic" : "背著包包時的移動速度增加<strong>50%</strong>。",
-					"ace"   : "投擲包包的距離增加<strong>50%</strong>。",
+					"basic" : "背著包包時的移動速度增加[50%]。",
+					"ace"   : "投擲包包的距離增加[50%]。",
 					"text"  : ""
 				}
 			]
@@ -48,21 +50,21 @@
 					"name"  : "Die Hard",
 					"title" : "虎膽龍威",
 					"basic" : "你倒地時可以用主武器還擊，亦可切換至副武器。",
-					"ace"   : "防彈衣回復間隔時間少<strong>15%</strong>。",
+					"ace"   : "防彈衣回復間隔時間少[15%]。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Underdog",
 					"title" : "困獸鬥",
-					"basic" : "當你被３名敵人圍攻時，你增加<strong>15%</strong>殺傷力。",
-					"ace"   : "上述效果追加你受傷減少<strong>15%</strong>。",
+					"basic" : "當你被３名敵人圍攻時，你增加[15%]殺傷力。",
+					"ace"   : "上述效果追加你受傷減少[15%]。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Pumping Iron",
 					"title" : "大隻佬",
-					"basic" : "你對普通警察及敵人的近戰傷害增加<strong>50%</strong>。",
-					"ace"   : "你對特殊警察的近戰傷害增加<strong>50%</strong>。",
+					"basic" : "你對普通警察及敵人的近戰傷害增加[50%]。",
+					"ace"   : "你對特殊警察的近戰傷害增加[50%]。",
 					"text"  : ""
 				}
 			]
@@ -73,22 +75,22 @@
 				{
 					"name"  : "Shotgun Impact",
 					"title" : "霰彈槍衝擊",
-					"basic" : "霰彈槍的穩定性增加<strong>25%</strong>",
-					"ace"   : "霰彈槍的傷害值增加<strong>35%</strong>",
+					"basic" : "霰彈槍的穩定性增加[25%]",
+					"ace"   : "霰彈槍的傷害值增加[35%]",
 					"text"  : ""
 				},
 				{
 					"name"  : "Equilibrium",
 					"title" : "暈眩抗性",
-					"basic" : "震撼彈影響你的視覺時間減少<strong>25%</strong>",
-					"ace"   : "影響時間減少<strong>50%</strong>",
+					"basic" : "震撼彈影響你的視覺時間減少[25%]",
+					"ace"   : "影響時間減少[50%]",
 					"text"  : ""
 				},
 				{
 					"name"  : "Tough Guy",
 					"title" : "硬漢",
-					"basic" : "你中彈時造成的鏡頭搖晃效果減少<strong>50%</strong>",
-					"ace"   : "倒地時的生命值增加<strong>25%</strong>（由<strong>100</strong>增加至<strong>125</strong>）。",
+					"basic" : "你中彈時造成的鏡頭搖晃效果減少[50%]",
+					"ace"   : "倒地時的生命值增加[25%]（由[100]增加至[125]）。",
 					"text"  : ""
 				}
 			]
@@ -99,22 +101,22 @@
 				{
 					"name"  : "Shotgun CQB",
 					"title" : "霰彈槍近戰技",
-					"basic" : "霰彈槍裝彈時間快<strong>50%</strong>",
-					"ace"   : "霰彈槍切換瞄鏡速度快<strong>125%</strong>",
+					"basic" : "霰彈槍裝彈時間快[50%]",
+					"ace"   : "霰彈槍切換瞄鏡速度快[125%]",
 					"text"  : ""
 				},
 				{
 					"name"  : "Ammunition Specialist",
 					"title" : "彈藥專家",
-					"basic" : "你攜帶的彈藥包增加至<strong>2</strong>個。",
-					"ace"   : "彈藥包的彈藥量增加至<strong>500%</strong>，「平均」可使用<strong>5</strong>次。",
+					"basic" : "你攜帶的彈藥包增加至[2]個。",
+					"ace"   : "彈藥包的彈藥量增加至[500%]，「平均」可使用[5]次。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Berserker",
 					"title" : "狂戰士",
-					"basic" : "你的近戰傷害（包括電鋸）隨血量減少而增加。最大值為當生命值低過<strong>25%</strong>時近戰提高<strong>2.5</strong>倍傷害。",
-					"ace"   : "當生命值低過<strong>25%</strong>時，你的槍械提高<strong>2</strong>倍傷害。",
+					"basic" : "你的近戰傷害（包括電鋸）隨血量減少而增加。最大值為當生命值低過[25%]時近戰提高[2.5]倍傷害。",
+					"ace"   : "當生命值低過[25%]時，你的槍械提高[2]倍傷害。",
 					"text"  : "本技能對榴彈砲無效。"
 				}
 			]
@@ -125,22 +127,22 @@
 				{
 					"name"  : "Hard Boiled",
 					"title" : "辣手神賊",
-					"basic" : "使用霰彈槍進行腰間射擊（即不用瞄具）時，命中率提升<strong>20%</strong>。",
-					"ace"   : "使用所有武器進行腰間射擊時命中率提升<strong>20%</strong>，包括電鋸。",
+					"basic" : "使用霰彈槍進行腰間射擊（即不用瞄具）時，命中率提升[20%]。",
+					"ace"   : "使用所有武器進行腰間射擊時命中率提升[20%]，包括電鋸。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Fully Loaded",
 					"title" : "荷槍實彈",
-					"basic" : "你的攜彈量增加<strong>25%</strong>。",
-					"ace"   : "從敵人身上拾取的彈藥量增至<strong>175%</strong>。本技能對特製霰彈無效。",
+					"basic" : "你的攜彈量增加[25%]。",
+					"ace"   : "從敵人身上拾取的彈藥量增至[175%]。本技能對特製霰彈無效。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Portable Saw",
 					"title" : "便攜式電鋸",
-					"basic" : "解鎖OVE9000便攜式電鋸可供選購，可攜帶<strong>2</strong>片鋸片。",
-					"ace"   : "你多帶<strong>1</strong>片鋸片，總共<strong>3</strong>片。",
+					"basic" : "解鎖OVE9000便攜式電鋸可供選購，可攜帶[2]片鋸片。",
+					"ace"   : "你多帶[1]片鋸片，總共[3]片。",
 					"text"  : "電鋸也是近戰武器，上述近戰殺傷力加乘效果統統有效！"
 				}
 			]
@@ -151,22 +153,22 @@
 				{
 					"name"  : "Overkill",
 					"title" : "大開殺戒",
-					"basic" : "當你使用霰彈槍或電鋸殺死一個敵人後，<strong>5</strong>秒鐘內霰彈槍或電鋸的殺傷力增加<strong>75%</strong>。",
-					"ace"   : "上述效果提升為<strong>5</strong>秒鐘內所有武器的殺傷力增加<strong>75%</strong>。",
+					"basic" : "當你使用霰彈槍或電鋸殺死一個敵人後，[5]秒鐘內霰彈槍或電鋸的殺傷力增加[75%]。",
+					"ace"   : "上述效果提升為[5]秒鐘內所有武器的殺傷力增加[75%]。",
 					"text"  : "本技能對榴彈砲無效。"
 				},
 				{
 					"name"  : "Iron Man",
 					"title" : "鋼鐵人",
-					"basic" : "解鎖「<strong>強化戰術背心（俗稱ICTV）</strong>」，裝甲值為戰術背心（CTV）的<strong>2</strong>倍。",
+					"basic" : "解鎖「[強化戰術背心（俗稱ICTV）]」，裝甲值為戰術背心（CTV）的[2]倍。",
 					"ace"   : "你可以用近戰攻擊打退防暴盾警察。你可以一邊衝刺一邊開槍（不開瞄鏡）。",
 					"text"  : ""
 				},
 				{
 					"name"  : "Carbon Blade",
 					"title" : "碳纖維鋸片",
-					"basic" : "電鋸效能增加<strong>20%</strong>。",
-					"ace"   : "電鋸效能再增加<strong>20%</strong>，共<strong>40%</strong>。使用電鋸鋸敵人時鋸片消耗減少<strong>50%</strong>。電鋸可作為副武器來裝備。你甚至可以主副武器都裝備電鋸。",
+					"basic" : "電鋸效能增加[20%]。",
+					"ace"   : "電鋸效能再增加[20%]，共[40%]。使用電鋸鋸敵人時鋸片消耗減少[50%]。電鋸可作為副武器來裝備。你甚至可以主副武器都裝備電鋸。",
 					"text"  : "",
 					"require" : "Portable Saw"
 				}
