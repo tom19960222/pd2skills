@@ -1,0 +1,28 @@
+
+/**
+ * ================================================================
+ * = Main
+ * ================================================================
+ */
+
+.perks-main {
+	margin-top:30px;
+	position:relative;
+	height:560px;
+}
+
+.perks-main p {
+	height:24px;
+	line-height:24px;
+	margin:20px 0;
+	font-size:18px;
+	text-align:center;	
+}
+
+.perks-bk {
+	position:absolute;
+	z-index:-200;
+	height:553px;
+	width:536px;
+	background-image:url('icon/perks.png');
+}

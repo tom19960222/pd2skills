@@ -1,0 +1,113 @@
+
+/**
+ * ================================================================
+ * = Main
+ * ================================================================
+ */
+
+.infamy-main {
+	position:absolute;
+	top:30px;
+}
+
+
+.infamy-block {
+	box-sizing:border-box;
+	position:relative;
+	float:left;
+	
+	width:25%;
+	height:156px;
+	border:2px solid transparent;
+	
+	cursor:pointer;
+}
+
+.infamy-block:hover {
+	border-color:#fff;
+}
+
+
+.infamy-remove {
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+.infamy-remove-icon {
+	display:none;
+
+	width:20px;
+	height:20px;
+	line-height:20px;
+
+	color:#ddd;
+	font-size:20px;
+	text-align:center;
+}
+
+.infamy-block:hover .infamy-remove-icon {
+	display:block;
+}
+
+.infamy-remove-icon:hover {
+	display:block;
+	color:#fff;
+}
+
+
+
+/**
+ * ================================================================
+ * = Icon
+ * ================================================================
+ */
+.infamy-icon {
+	width:128px;
+	height:128px;
+	margin:0 auto;
+	background-image:url('icon/infamy.png');
+	background-position-x:0;
+	background-position-y:0;
+}
+
+.unlocked .infamy-icon {
+	background-position-y:-128px;
+}
+
+.owned .infamy-icon {
+	background-position-y:-256px;
+}
+
+
+/**
+ * ================================================================
+ * = Text
+ * ================================================================
+ */
+.infamy-text-block {
+	overflow:hidden;
+	
+	height:14px;
+	line-height:14px;
+
+	font-size:14px;
+	text-align:center;
+}
+
+.infamy-text {
+	display:none;
+	height:14px;
+}
+
+.infamy-block:hover .text-locked {
+	display:block;
+}
+
+.unlocked:hover .text-unlocked {
+	display:block;
+}
+
+.owned:hover .text-owned {
+	display:block;
+}

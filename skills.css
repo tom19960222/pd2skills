@@ -1,45 +1,19 @@
-
-/**
- * ================================================================
- * = 變動
- * ================================================================
- */
-
-.main {
-	width:540px;
-}
-
-.tier-skills {
-	width:540px;
-}
-
-.tier {
-	width:600px;
-}
-
-.aside {
-	margin-left:600px;
-}
-
 /**
  * ================================================================
  * = 主要區塊
  * ================================================================
  */
-#skill-tree {
-	height:580px;
-}
 
-.main {
+.skills-main {
 	position:relative;
 	float:left;
-	width:540px;
+	/*width:100%;*/
 	height:100%;
 }
 
-.aside {
-	margin-left:600px;
-	padding-top:30px;
+.skills-border-contain {
+	position:absolute;
+	top:30px;
 }
 
 
@@ -49,61 +23,57 @@
  * ================================================================
  */
 
-.tabs {
-	width:100%;
+.skills-tabs {
+	/*width:100%;*/
 	height:506px;
 }
 
-.tabs::before {
-	content:'';
-	box-sizing:border-box;
-	position:absolute;
-	top:30px;
-	
-	width:540px;
-	height:408px;
-	border:10px solid transparent;
-	border-image:url('icon/border-tree.gif') 10 10 repeat;
-}
-
-.tab {
+.skills-tab {
 	float:left;
 }
 
-.tab-nav {
+.skills-tab-nav {
 	box-sizing:border-box;
 	display:inline-block;
 	z-index:200;
-	cursor:pointer;
 	
 	height:30px;
 	line-height:30px;
 	margin-right:2px;
 	padding:0 10px;
 	
-	color:#3aa5e6;;
+	color:#156fa5;
 	font-size:14px;
+	font-weight:bold;
+	
+	cursor:pointer;
 }
 
-.tab-main {
+.skills-tab-nav:hover {
+	color:#3aa5e6;
+}
+
+.skills-tab > input[type=radio] {
+	display:none;
+}
+
+.skills-tab > input[type=radio]:checked + label {
+	background:#eee;
+	color:#667584;
+}
+
+.skills-tab-main {
 	display:none;
 	position:absolute;
 	top:30px;
 	left:0;
 	
+	/*width:100%;*/
 	height:476px;
+	padding-right:60px;
 }
 
-.tab > input[type=radio] {
-	display:none;
-}
-
-.tab > input[type=radio]:checked + label {
-	background:#eee;
-	color:#333;
-}
-
-.tab > input[type=radio]:checked ~ .tab-main {
+.skills-tab > input[type=radio]:checked ~ .skills-tab-main {
 	display:block;
 }
 
@@ -114,37 +84,50 @@
  * ================================================================
  */
 
-.tier {
+.skills-tier {
 	position:relative;
-	width:600px;
+	width:100%;
 	height:68px;
+	padding-right:60px;
 }
 
-.tier-skills {
-	width:540px;
+.skills-tier-contain {
+	width:100%;
 }
 
-.tier-progress {
+.skills-tier-progress {
 	position:absolute;
 	right:12px;
 	bottom:0;
 	color:#667584;
 }
 
-.unlock .tier-progress {
+.unlock .skills-tier-progress {
 	color:#fff;
 }
 
-.tier0 .tier-progress {
+.skills-tier-single .skills-tier-progress {
 	display:none;
 }
 
-.tier-progress > span{
+.skills-tier-progress > span{
 	display:inline-block;
 	width:24px;
 	margin:0;
-	text-align:right;
 	font-size:13px;
+	font-weight:bold;
+	text-align:right;
+}
+
+.infamy .skills-tier-progress:before{
+	content:'';
+
+	position:absolute;
+	top:11px;
+	right:7px;
+	z-index:-200;
+	box-shadow:0 0 18px 7px rgba(58, 165, 230, 0.8);
+	/*box-shadow:0 0 16px 6px rgba(21, 111, 165, 1);*/
 }
 
 
@@ -154,7 +137,7 @@
  * ================================================================
  */
 
-.progress-bar-container {
+.progress-bar-contain {
 	position:absolute;
 	top:66px;
 	right:32px;
@@ -180,18 +163,19 @@
 	box-sizing:border-box;
 	position:relative;
 	float:left;
-	cursor:pointer;
+	
 	width:180px;
 	height:68px;
 	border:2px solid transparent;
-	color:#ddd;
+	
+	cursor:pointer;
 }
 
 .skill:hover {
-	border:2px solid #eee;
+	border-color:#fff;
 }
 
-.tier0 .skill {
+.skills-tier-single .skill {
 	float:none;
 	margin:0 auto;
 }
@@ -213,11 +197,11 @@
 }
 
 .skill:hover .skill-remove-icon {
-	display:inline-block;
+	display:block;
 }
 
-.skill:hover .skill-remove-icon:hover {
-	display:inline-block;
+.skill-remove-icon:hover {
+	display:block;
 	color:#fff;
 }
 
@@ -234,21 +218,18 @@
 	width:64px;
 	height:64px;
 	line-height:64px;
-	#background:#373b44;
 	background-image:url('icon/skill-dark.png');
 }
 
 .unlock .skill-icon{
-	#background:#5e7d91;
 	background-image:url('icon/skill-halflight.png');
 }
 
 .basic .skill-icon{
-	#background:#fcfcfc;
 	background-image:url('icon/skill-light.png');
 }
 
-.ace .skill-icon::before{
+.ace .skill-icon:before{
 	content:'';
 	
 	display:block;
@@ -263,7 +244,6 @@
 }
 
 .alert .skill-icon{
-	#background:#bf3247;
 	background-image:url('icon/skill-alert.png');
 }
 
@@ -285,7 +265,7 @@
 	height:40px;
 }
 
-.skill-text > p{
+.skill-text > p {
 	height:14px;
 	line-height:1.1;
 	font-size:14px;
@@ -299,7 +279,11 @@
 	display:block;
 }
 
-.unlock .skill:hover .text-basic-hover, .basic:hover .text-ace-hover {
+.unlock .skill:hover .text-basic-hover {
+	display:block;
+}
+
+.basic:hover .text-ace-hover {
 	display:block;
 }
 
@@ -328,7 +312,7 @@
 	font-size:14px;
 }
 
-.ctrl-level::before, .ctrl-spent::before {
+.ctrl-level:before, .ctrl-spent:before {
 	content:'';
 	display:block;
 	float:left;
@@ -340,7 +324,7 @@
 	background-position: 0 0;
 }
 
-.ctrl-spent::before {
+.ctrl-spent:before {
 	background-position: 0 -16px;
 }
 
@@ -364,10 +348,11 @@
 }
 
 .ctrl-respec {
-	cursor:pointer;
 	color:#156fa5;
 	font-size:15px;
 	font-weight:bold;
+	
+	cursor:pointer;
 }
 
 .ctrl-respec:hover {
@@ -377,46 +362,4 @@
 
 .ctrl-right > .small {
 	font-size:12px;
-}
-
-
-/**
- * ================================================================
- * = Info
- * ================================================================
- */
-
-.info {
-	box-sizing:border-box;
-	
-	height:408px;
-	border:10px solid transparent;
-	border-image:url('icon/border.gif') 10 10 repeat;
-}
-
-.info-title {
-
-}
-
-.info-title > .title1 {
-	font-size:18px;
-	font-weight:bold;
-}
-
-.info-title > .title2 {
-	font-size:12px;
-}
-
-.info-block {
-	margin:10px 0;
-}
-
-.info-block p {
-	margin:5px 0;
-}
-
-.info-strong, .info-block strong {
-	margin:0 2px;
-	color:#3aa5e6;
-	font-weight:bold;
 }

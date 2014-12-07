@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 	<head>
-		<title>Pd2 Skill - Beta</title>
+		<title>Payday2 技能模擬器 (beta 0.2)</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=0">
 		
+		<link rel="stylesheet" href="aside.css">
+		<link rel="stylesheet" href="skills.css">
+		<link rel="stylesheet" href="perks.css">
+		<link rel="stylesheet" href="infamy.css">
 		<link rel="stylesheet" href="style.css">
-		<link rel="stylesheet" href="skillTree.css">
 		
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+		<!-- <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Fjalla+One'> -->
+		
+		<script src="angular.min.js"></script>
 		
 	</head>
 	
 	<body ng-app="myApp">
-		<div id="contain">
+		<div class="wrapper">
 			
-			<div id="header">
-				<img class="header-logo" src="icon/logo.png" alt="logo"></img>
+			<div class="header">
+				<div class="header-logo-block">
+					<img class="header-logo" src="icon/logo.png" alt="logo">
+				</div>
+				
+				<ul class="nav cant_select" ng-init="tab=1">
+					<li><span ng-click="tab=1" ng-class="{checked:tab==1}">Skills</span></li>
+					<li><span ng-click="tab=2" ng-class="{checked:tab==2}">Perks</span></li>
+					<li><span ng-click="tab=3" ng-class="{checked:tab==3}">Infamy</span></li>
+				</ul>
 			</div>
 			
-			<skill-tree id="main"></skill-tree>
-			
-			<footer>
-				<div id="footar">
-					<p><small>建議使用 Internet Explorer 9 以上, Firefox 或 Chrome 以獲得最好瀏覽效果</small></p>
-					<p><small>技能翻譯取自於原作者 <strong>Charlie13</strong> 的<a href="http://forum.gamer.com.tw/C.php?bsn=20328&snA=2536&tnum=12" style="color:#fff">文章</a></small></p>
-					<p><small>(c) 2014 By Shisha</small></p>
+			<div class="contain" ng-controller="mainController">
+				<div class="main cant_select">
+					<div ng-if="tab==1" class="skills"></div>
+					<div ng-if="tab==2" class="perks"></div>
+					<div ng-if="tab==3" class="infamys"></div>
 				</div>
-			</footer>
+				
+				<div class="aside" skill-aside>
+					
+				</div>
+			</div>
 			
-		</div><!-- contain -->
+			<div class="footar">
+				<p><small>建議使用 Internet Explorer 9 以上, Firefox 或 Chrome 以獲得最好瀏覽效果</small></p>
+				<p><small>技能翻譯取自於原作者 <strong>Charlie13</strong> 的<a href="http://forum.gamer.com.tw/C.php?bsn=20328&snA=2536&tnum=12" style="color:#fff">文章</a></small></p>
+				<p><small>© 2014 By Shisha</small></p>
+			</div>
+			
+		</div>
+		
+		<script src="Skill.class.js"></script>
+		<script src="Tier.class.js"></script>
+		<script src="Tree.class.js"></script>
+		<script src="SkillsCalculator.class.js"></script>
+		
+		<script src="SkillsHashStorage.class.js"></script>
+		<script src="SkillsInfamyStorage.class.js"></script>
+		
 		<script src="main.js"></script>
-		<script src="skillTreeController.js"></script>
+		<script src="mainController.js"></script>
+		<script src="skillsController.js"></script>
+		<script src="perksController.js"></script>
 		<script src="infamyController.js"></script>
 		<script src="filter.js"></script>
 	</body>

@@ -1,0 +1,42 @@
+<div class="infamy-contain">
+	
+	<div class="infamy-main set-tab-width set-tab-height">
+		
+		<div class="border"></div>
+		
+		<ul ng-repeat="infamyStatus in infamys">
+
+			<li
+				class="infamy-block"
+				ng-class="{
+					unlocked : true,
+					owned    : infamyStatus.infamy
+				}"
+				ng-click="infamyClick(infamyStatus)"
+			>
+				<div
+					class="infamy-icon"
+					ng-style="style"
+					ng-init="style=infamyIconStyle($index)"
+				></div>
+
+				<div class="infamy-text-block">
+					<p class="infamy-text text-owned">擁有</p>
+					<p class="infamy-text text-unlocked">解鎖</p>
+					<p class="infamy-text text-locked">未解鎖</p>
+				</div>
+
+				<a
+					class="infamy-remove"
+					ng-show="infamyStatus.infamy"
+					ng-click="infamyRemove(infamyStatus); $event.stopPropagation()"
+				>
+					<span class="infamy-remove-icon">×</span>
+				</a>
+			</li>
+
+		</ul>
+
+	</div>
+
+</div><!-- main -->

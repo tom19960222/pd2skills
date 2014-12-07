@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<title> Angular Test </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=0">
+		
+		<link rel="stylesheet" href="style.css">
+		
+		<script src="angular.min.js"></script>
+		
+	</head>
+	
+	<body ng-app="myApp">
+		
+		
+		<div ng-controller="c1">
+			<input type="button" ng-click="truch()">
+		</div>
+		
+		<div ng-controller="c2">
+			<input type="button" ng-click="truch()">
+		</div>
+
+		<script>
+			var app = angular.module('myApp', []);
+			app.factory('f1', ['$location', function ($location) {
+				var arr = [];
+
+				return function(path) {
+					arr.push(path);
+					$location.path(arr.join('/'));
+				}
+			}]);
+
+			app.controller('c1', ['$scope', 'f1', function($scope, f1) {
+				var name = "c1";
+				$scope.truch = function() {
+					f1(name);
+				}
+			}]);
+			
+			app.controller('c2', ['$scope', 'f1', function($scope, f1) {
+				var name = "c2";
+				$scope.truch = function() {
+					f1(name);
+				}
+			}]);
+		</script>
+	</body>
+</html>
