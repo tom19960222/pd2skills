@@ -4,15 +4,15 @@
 		
 		<div class="border"></div>
 		
-		<ul ng-repeat="tree in trees">
+		<ul ng-repeat="infamyStatus in infamys">
 
 			<li
-				class="infamy-block {{ ::tree.name }}"
+				class="infamy-block"
 				ng-class="{
 					unlocked : true,
-					owned    : tree.infamy
+					owned    : infamyStatus.infamy
 				}"
-				ng-click="infamyClick(tree)"
+				ng-click="infamyClick(infamyStatus)"
 			>
 				<div
 					class="infamy-icon"
@@ -28,8 +28,8 @@
 
 				<a
 					class="infamy-remove"
-					ng-show="tree.infamy"
-					ng-click="infamyRemove(tree); $event.stopPropagation()"
+					ng-show="infamyStatus.infamy"
+					ng-click="infamyRemove(infamyStatus); $event.stopPropagation()"
 				>
 					<span class="infamy-remove-icon">×</span>
 				</a>

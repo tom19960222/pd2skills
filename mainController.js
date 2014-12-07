@@ -1,11 +1,10 @@
-app.controller(
-	'mainController',
-	[
-		'$scope',
-		'$http',
-		'HashStorage',
+app.controller('mainController', [
+	'$scope',
+	'$http',
+	'HashStorage',
+	'InfamyStorage',
 
-function($scope, $http, HashStorage) {
+function($scope, $http, HashStorage, InfamyStorage) {
 	
 	// ================================================================
 	// = 載入技能樹設定檔
@@ -39,9 +38,13 @@ function($scope, $http, HashStorage) {
 			
 			// 載入指標
 			loadSkillPointers(skillsCalculator.trees);
+
+			// 載入惡名
+			HashStorage.updateInfamy(InfamyStorage.infamyStatus);
+			InfamyStorage.update(skillsCalculator);
 			
 			// 載入Hash技能資料
-			trees.forEach(function(tree) {
+			skillsCalculator.trees.forEach(function(tree) {
 				HashStorage.updateTreeData(tree);
 			});
 			
@@ -113,14 +116,10 @@ function($scope, $http, HashStorage) {
 	
 
 	// ================================================================
-	// = 顯示相關
+	// = 命名空間
 	// ================================================================
 	
 	// 初始
 	$scope.display = {};
 	
-	
-	
-	
-
 }]);

@@ -1,15 +1,30 @@
-app.controller('infamyController', function($scope) {
-	
+app.controller('infamyController', [
+	'$scope',
+	'HashStorage',
+	'InfamyStorage',
+
+function($scope, HashStorage, InfamyStorage) {
+
+	$scope.infamys = InfamyStorage.infamyStatus;
+
 	// ================================================================
 	// = Event
 	// ================================================================
 
-	$scope.infamyClick = function(tree) {
-		if (tree.infamy !== true) tree.infamy = true;
+	$scope.infamyClick = function(infamy) {
+		infamy.infamy = true;
+		updateInfamyStatue();
 	}
 
-	$scope.infamyRemove = function (tree) {
-		if (tree.infamy !== false) tree.infamy = false;
+	$scope.infamyRemove = function (infamy) {
+		infamy.infamy = false;
+		updateInfamyStatue();
+	}
+
+	function updateInfamyStatue() {
+		InfamyStorage.update($scope.skillsCalculator);
+		HashStorage.setInfamy(InfamyStorage.infamyStatus);
+		HashStorage.updateUrl();
 	}
 
 
@@ -24,8 +39,8 @@ app.controller('infamyController', function($scope) {
 	function getInfamyIconStyle(index) {
 		var space = 128;
 		
-		var x = 0 - (index * space);
+		var x = 0 - (128 + index * space);
 		return {'backgroundPositionX': x +'px'};
 	}
 	
-});
+}]);

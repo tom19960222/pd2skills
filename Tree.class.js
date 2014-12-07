@@ -3,7 +3,7 @@
  */
 function Tree(parentTrees) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof Tree) return new Tree();
+	if ( ! this instanceof Tree) return new Tree(parentTrees);
 
 	this._parentTrees = parentTrees;
 
@@ -39,6 +39,12 @@ Tree.fn.initTiers = function(tiers) {
 	});
 }
 
+/**
+ * 呼叫上層更新
+ */
+Tree.fn.callParentUpdate = function() {
+	this._parentTrees.callParentUpdate();
+}
 
 /**
  * 更新階層並計算使用點數
@@ -69,5 +75,11 @@ Tree.fn.updateSkillStatus = function(leftPoint) {
  */
 Tree.fn.unset = function(tree) {
 	this.tiers[0].skills[0].unset();
-	updateTreeUsedPoint(tree);
+	this.callParentUpdate();
+}
+
+Tree.fn.setInfamy = function(bool) {
+	if (typeof bool !== "boolean") return false;
+	this.infamy = bool;
+	this.callParentUpdate();
 }

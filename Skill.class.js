@@ -39,12 +39,19 @@ Skill.fn.init = function(arg) {
 };
 
 /**
+ * 呼叫上層更新
+ */
+Skill.fn.callParentUpdate = function() {
+	this._parentTier.callParentUpdate();
+}
+
+/**
  * 更新技能解鎖狀態
  */
 Skill.fn.updateUnlockStatus = function(leftPoint) {
 	
 	// 判斷前置技能是否解鎖
-	if (this.require instanceof Skill) {
+	if (this.require !== false) {
 		this.unlockRequire = (this.require.skill.ownBasic === true);
 	} else {
 		this.unlockRequire = true;
@@ -97,6 +104,7 @@ Skill.fn.unlock = function() {
 		
 	}
 	
+	this.callParentUpdate();
 }
 
 /**
@@ -105,4 +113,6 @@ Skill.fn.unlock = function() {
 Skill.fn.unset = function() {
 	this.ownBasic = false;
 	this.ownAce   = false;
+
+	this.callParentUpdate();
 }

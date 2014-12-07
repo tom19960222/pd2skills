@@ -114,8 +114,20 @@
 	display:inline-block;
 	width:24px;
 	margin:0;
-	text-align:right;
 	font-size:13px;
+	font-weight:bold;
+	text-align:right;
+}
+
+.infamy .skills-tier-progress:before{
+	content:'';
+
+	position:absolute;
+	top:11px;
+	right:7px;
+	z-index:-200;
+	box-shadow:0 0 18px 7px rgba(58, 165, 230, 0.8);
+	/*box-shadow:0 0 16px 6px rgba(21, 111, 165, 1);*/
 }
 
 

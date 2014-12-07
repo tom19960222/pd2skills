@@ -46,7 +46,11 @@ SkillsHashStorage.fn.updateUrl = function() {
 	// 資料轉字串
 	var datas = [];
 	for (var header in this.datas) {
-		datas.push(header + this.datas[header].join(''));
+		var data = this.datas[header];
+		
+		if (data.length == 0) continue;
+
+		datas.push(header + data.join(''));
 	}
 
 	var hash = 'skill/' + datas.join(':');
@@ -63,6 +67,7 @@ SkillsHashStorage.fn.setData = function(name, value) {
 SkillsHashStorage.fn.unsetData = function() {
 	this.datas = {};
 }
+
 
 /**
  * 設定技能樹資料
@@ -129,4 +134,37 @@ SkillsHashStorage.fn.updateTreeData = function(tree) {
 		});
 		
 	}); // end forEach tiers
+}
+
+
+/**
+ * 設定技能樹資料
+ */
+SkillsHashStorage.fn.setInfamy = function(infamysStatus) {
+	// 宣告計數器
+	var counter = 0;
+	var data = [];
+	
+	infamysStatus.forEach(function(infamy) {
+		if (infamy.infamy == true) data.push(infamy.header);
+	})
+	
+	// 取技能樹的標頭
+	var header = 'i';
+	this.setData(header, data);
+}
+
+/**
+ * 更新技能樹資料
+ */
+SkillsHashStorage.fn.updateInfamy = function(infamysStatus) {
+	var header = 'i';
+	if (typeof this.datas[header] === "undefined") return;
+	
+	var counter = 0;
+	var data = this.datas[header];
+
+	infamysStatus.forEach(function(infamy) {
+		if (data.indexOf(infamy.header) >= 0) infamy.infamy = true;
+	})
 }

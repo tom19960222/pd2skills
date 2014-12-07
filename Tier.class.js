@@ -19,6 +19,7 @@ function Tier(parentTree) {
 	this.skillUnlockCostBasic	= 0;
 	this.skillUnlockCostAce		= 0;
 	
+	this.unlockPoint	= 0;
 	this.unlockRequire	= 0;
 	this.unlockStatus	= false;
 }
@@ -52,19 +53,25 @@ Tier.fn.initSkills = function(skills) {
 	});
 }
 
+/**
+ * 呼叫上層更新
+ */
+Tier.fn.callParentUpdate = function() {
+	this._parentTree.callParentUpdate();
+}
+
 
 /**
  * 更新並計算消耗技能點
  */
 Tier.fn.updateStatus = function(countUsedPoint) {
-
 	var self = this;
-	var unlockPoint = (this._parentTree.infamy)
+	
+	// 更新解鎖狀態
+	this.unlockPoint = (this._parentTree.infamy)
 		? this.tierUnlockPointImfamy
 		: this.tierUnlockPoint;
-
-	// 更新解鎖狀態
-	this.unlockRequire = unlockPoint - countUsedPoint;
+	this.unlockRequire = this.unlockPoint - countUsedPoint;
 	this.unlockStatus = (this.unlockRequire <= 0);
 	
 	if (this.unlockStatus === true) {

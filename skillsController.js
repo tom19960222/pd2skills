@@ -18,7 +18,7 @@ function($scope, HashStorage) {
 
 	$scope.resetTree = function(tree) {
 		tree.unset();
-		HashStorage.updateTreeData(tree);
+		HashStorage.setTreeData(tree);
 		HashStorage.updateUrl();
 	}
 	
@@ -26,9 +26,9 @@ function($scope, HashStorage) {
 
 		trees.forEach(function(tree) {
 			tree.unset();
+			HashStorage.setTreeData(tree);
 		});
-
-		HashStorage.unsetData();
+		
 		HashStorage.updateUrl();
 	}
 	
@@ -51,7 +51,6 @@ function($scope, HashStorage) {
 	
 	$scope.skillClick = function(skill, tier, tree) {
 		skill.unlock();
-		$scope.skillsCalculator.updateStatus();
 		
 		HashStorage.setTreeData(tree);
 		HashStorage.updateUrl();
@@ -59,7 +58,6 @@ function($scope, HashStorage) {
 	
 	$scope.skillRemove = function(skill, tier, tree) {
 		skill.unset();
-		$scope.skillsCalculator.updateStatus();
 		
 		HashStorage.setTreeData(tree);
 		HashStorage.updateUrl();
@@ -150,7 +148,7 @@ function($scope, HashStorage) {
 			
 			if (tier.unlockStatus == false) {
 				if (i == 1) return 0;
-				var basic = tree.tiers[i - 1].tierUnlockPoint;
+				var basic = tree.tiers[i - 1].unlockPoint;
 				
 				var range = tier.tierUnlockPoint - basic;
 				var tierUsed = tree.used - basic;

@@ -23,8 +23,12 @@
 				<span>({{ updateTreeStatus(tree) }})</span>
 			</label>
 			
-			<div class="skills-tab-main set-tab-width">
-				
+			<div
+				class="skills-tab-main set-tab-width"
+				ng-class="{
+					'infamy' : tree.infamy
+				}"
+			>
 				<div
 					class="skills-tier"
 					ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index" 
@@ -41,6 +45,8 @@
 							ng-mouseleave="skillLeave(skill, tier)"
 							ng-click="skillClick(skill, tier, tree)"
 							ng-class="{
+								'infamy' : tree.infamy,
+								'unlock' : tier.unlockStatus,
 								'basic'  : skill.ownBasic,
 								'ace'    : skill.ownAce,
 								'alert'  : skill.alert
@@ -73,9 +79,6 @@
 								
 							</div>	
 							
-							
-							<div class="hide" ng-switch="skillUpdate(skill, tier)"></div>
-
 							<a
 								class="skill-remove"
 								ng-show="skill.ownBasic || skill.ownAce"
@@ -90,7 +93,7 @@
 					
 					<div class="skills-tier-progress">
 						<span>{{ ::tier.tier }}</span>
-						<span>{{ tier.tierUnlockPoint | padLeft:2 }}</span>
+						<span>{{ tier.unlockPoint | padLeft:2 }}</span>
 					</div>
 					
 				</div><!-- tier-->
