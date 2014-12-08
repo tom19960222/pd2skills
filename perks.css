@@ -5,24 +5,23 @@
  * ================================================================
  */
 
+.perks-contain {
+	height:100%;
+	padding: 30px 60px 0 0;
+}
+
 .perks-main {
-	margin-top:30px;
 	position:relative;
-	height:560px;
+	float:left;
+	height:100%;
+	background-image:url('icon/perks.png');
 }
 
 .perks-main p {
-	height:24px;
-	line-height:24px;
+	height: 24px;
+	line-height: 24px;
 	margin:20px 0;
 	font-size:18px;
-	text-align:center;	
+	text-align:center;
 }
 
-.perks-bk {
-	position:absolute;
-	z-index:-200;
-	height:553px;
-	width:536px;
-	background-image:url('icon/perks.png');
-}

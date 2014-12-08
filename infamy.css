@@ -28,30 +28,36 @@
 }
 
 
+/**
+ * ================================================================
+ * = Skill-Remove
+ * ================================================================
+ */
 .infamy-remove {
+	display:none;
 	position:absolute;
 	top:0;
 	right:0;
 }
 
-.infamy-remove-icon {
-	display:none;
+.owned:hover .infamy-remove {
+	display:block;
+}
 
-	width:20px;
-	height:20px;
-	line-height:20px;
+.infamy-remove:before {
+	content:'×';
+	display:block;
 
-	color:#ddd;
-	font-size:20px;
+	width:24px;
+	height:24px;
+	line-height:24px;
+	
+	color:#156fa5;
+	font-size:24px;
 	text-align:center;
 }
 
-.infamy-block:hover .infamy-remove-icon {
-	display:block;
-}
-
-.infamy-remove-icon:hover {
-	display:block;
+.infamy-remove:hover:before {
 	color:#fff;
 }
 
