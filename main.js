@@ -14,30 +14,30 @@ app.factory("InfamyStorage", [function() {
 app.directive("skillAside", function() {
 	return {
 		restrict : 'A',
-		templateUrl : 'skills-aside.html'
+		templateUrl : 'template/skills-aside.html'
 	};	
 });
 
 app.directive("skills", function() {
 	return {
 		restrict : 'C',
-		templateUrl : 'skills.html',
+		templateUrl : 'template/skills.html',
 		controller  : 'skillsController',
-	};	
-});
-
-app.directive("infamys", function() {
-	return {
-		restrict : 'C',
-		templateUrl : 'infamy.html',
-		controller  : 'infamyController',
 	};	
 });
 
 app.directive("perks", function() {
 	return {
 		restrict : 'C',
-		templateUrl : 'perks.html',
+		templateUrl : 'template/perks.html',
 		controller  : 'perksController',
+	};	
+});
+
+app.directive("infamys", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/infamy.html',
+		controller  : 'infamyController',
 	};	
 });

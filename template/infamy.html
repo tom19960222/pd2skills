@@ -15,9 +15,7 @@
 				ng-click="infamyClick(infamyStatus)"
 			>
 				<div
-					class="infamy-icon"
-					ng-style="style"
-					ng-init="style=infamyIconStyle($index)"
+					class="infamy-icon infamy{{ ::$index + 1 }}"
 				></div>
 
 				<div class="infamy-text-block">
@@ -28,11 +26,8 @@
 
 				<a
 					class="infamy-remove"
-					ng-show="infamyStatus.infamy"
 					ng-click="infamyRemove(infamyStatus); $event.stopPropagation()"
-				>
-					<span class="infamy-remove-icon">×</span>
-				</a>
+				></a>
 			</li>
 
 		</ul>

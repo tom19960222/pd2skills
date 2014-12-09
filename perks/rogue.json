@@ -1,0 +1,53 @@
+{
+	"name"	: "Rogue",
+	"title"	: "流氓",
+	"decks"	:
+	[
+		{
+			"deck"	: 1,
+			"name"	: "Subtle",
+			"title"	: "隱蔽",
+			"text"	:
+			[
+				"閃躲機率[+10%]"
+			]
+		},
+		{
+			"deck"	: 3,
+			"name"	: "Elusive",
+			"title"	: "神出鬼沒",
+			"text"	:
+			[
+				"當你靠近隊友時，你成為目標的機率[-15%]"
+			]
+		},
+		{
+			"deck"	: 5,
+			"name"	: "Evasive",
+			"title"	: "避重就輕",
+			"text"	:
+			[
+				"閃躲機率[+10%]"
+			]
+		},
+		{
+			"deck"	: 7,
+			"name"	: "Shadow Warrior",
+			"title"	: "影武者",
+			"text"	:
+			[
+				"閃躲機率[+10%]"
+			]
+		},
+		{
+			"deck"	: 9,
+			"name"	: "Killer Instinct",
+			"title"	: "殺手本能",
+			"text"	:
+			[
+				"你的所有武器有[25%]的機率射穿敵人護甲",
+				"你更換武器時間[-80%]"
+			]
+		}
+	]
+}

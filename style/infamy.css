@@ -28,30 +28,36 @@
 }
 
 
+/**
+ * ================================================================
+ * = Skill-Remove
+ * ================================================================
+ */
 .infamy-remove {
+	display:none;
 	position:absolute;
 	top:0;
 	right:0;
 }
 
-.infamy-remove-icon {
-	display:none;
+.owned:hover .infamy-remove {
+	display:block;
+}
 
-	width:20px;
-	height:20px;
-	line-height:20px;
+.infamy-remove:before {
+	content:'×';
+	display:block;
 
-	color:#ddd;
-	font-size:20px;
+	width:24px;
+	height:24px;
+	line-height:24px;
+	
+	color:#156fa5;
+	font-size:24px;
 	text-align:center;
 }
 
-.infamy-block:hover .infamy-remove-icon {
-	display:block;
-}
-
-.infamy-remove-icon:hover {
-	display:block;
+.infamy-remove:hover:before {
 	color:#fff;
 }
 
@@ -110,4 +116,62 @@
 
 .owned:hover .text-owned {
 	display:block;
+}
+
+
+/**
+ * ================================================================
+ * = Sprite
+ * ================================================================
+ */
+
+.infamy1 {
+	background-position: -128px -0px;
+}
+
+.unlocked .infamy1 {
+	background-position: -128px -128px;
+}
+
+.owned .infamy1 {
+	background-position: -128px -256px;
+}
+
+
+.infamy2 {
+	background-position: -256px -0px;
+}
+
+.unlocked .infamy2 {
+	background-position: -256px -128px;
+}
+
+.owned .infamy2 {
+	background-position: -256px -256px;
+}
+
+
+.infamy3 {
+	background-position: -384px -0px;
+}
+
+.unlocked .infamy3 {
+	background-position: -384px -128px;
+}
+
+.owned .infamy3 {
+	background-position: -384px -256px;
+}
+
+
+.infamy4 {
+	background-position: -512px -0px;
+}
+
+.unlocked .infamy4 {
+	background-position: -512px -128px;
+}
+
+.owned .infamy4 {
+	background-position: -512px -256px;
 }

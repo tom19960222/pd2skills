@@ -180,28 +180,37 @@
 	margin:0 auto;
 }
 
+
+/**
+ * ================================================================
+ * = Skill-Remove
+ * ================================================================
+ */
 .skill-remove {
+	display:none;
 	position:absolute;
 	top:0;
 	right:0;
 }
 
-.skill-remove-icon {
-	display:none;
-	width:20px;
-	height:20px;
-	line-height:20px;
-	color:#ddd;
+.basic:hover .skill-remove, .ace:hover .skill-remove {
+	display:block;
+}
+
+.skill-remove:before {
+	content:'×';
+	display:block;
+
+	width:24px;
+	height:24px;
+	line-height:24px;
+	
+	color:#156fa5;
+	font-size:24px;
 	text-align:center;
-	font-size:20px;
 }
 
-.skill:hover .skill-remove-icon {
-	display:block;
-}
-
-.skill-remove-icon:hover {
-	display:block;
+.skill-remove:hover:before {
 	color:#fff;
 }
 
