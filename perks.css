@@ -14,7 +14,7 @@
 	position:relative;
 	float:left;
 	height:100%;
-	background-image:url('icon/perks.png');
+	/*background-image:url('icon/perks.png');*/
 }
 
 .perks-main p {

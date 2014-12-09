@@ -117,3 +117,61 @@
 .owned:hover .text-owned {
 	display:block;
 }
+
+
+/**
+ * ================================================================
+ * = Sprite
+ * ================================================================
+ */
+
+.infamy1 {
+	background-position: -128px -0px;
+}
+
+.unlocked .infamy1 {
+	background-position: -128px -128px;
+}
+
+.owned .infamy1 {
+	background-position: -128px -256px;
+}
+
+
+.infamy2 {
+	background-position: -256px -0px;
+}
+
+.unlocked .infamy2 {
+	background-position: -256px -128px;
+}
+
+.owned .infamy2 {
+	background-position: -256px -256px;
+}
+
+
+.infamy3 {
+	background-position: -384px -0px;
+}
+
+.unlocked .infamy3 {
+	background-position: -384px -128px;
+}
+
+.owned .infamy3 {
+	background-position: -384px -256px;
+}
+
+
+.infamy4 {
+	background-position: -512px -0px;
+}
+
+.unlocked .infamy4 {
+	background-position: -512px -128px;
+}
+
+.owned .infamy4 {
+	background-position: -512px -256px;
+}
