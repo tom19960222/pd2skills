@@ -10,6 +10,11 @@ function SkillsHashStorage(location) {
 
 SkillsHashStorage.fn = SkillsHashStorage.prototype;
 
+
+// ================================================================
+// = Hash Control
+// ================================================================
+
 /**
  * 載入網址
  */
@@ -57,6 +62,11 @@ SkillsHashStorage.fn.updateUrl = function() {
 	this.location.path(hash);
 }
 
+
+// ================================================================
+// = Data Control
+// ================================================================
+
 /**
  * 設定值
  */
@@ -68,6 +78,10 @@ SkillsHashStorage.fn.unsetData = function() {
 	this.datas = {};
 }
 
+
+// ================================================================
+// = SkillsCalculator Control
+// ================================================================
 
 /**
  * 設定技能樹資料
@@ -102,7 +116,7 @@ SkillsHashStorage.fn.setTreeData = function(tree) {
 /**
  * 更新技能樹資料
  */
-SkillsHashStorage.fn.updateTreeData = function(tree) {
+SkillsHashStorage.fn.setupSkillTree = function(tree) {
 	var header = tree.name.charAt(0).toLowerCase();
 	if (typeof this.datas[header] === "undefined") return;
 	
@@ -136,6 +150,26 @@ SkillsHashStorage.fn.updateTreeData = function(tree) {
 	}); // end forEach tiers
 }
 
+SkillsHashStorage.fn.setupSkillsCalculator = function(skillsCalculator) {
+	var self = this;
+
+	skillsCalculator.trees.forEach(function (tree) {
+		self.setupSkillTree(tree);
+	});
+}
+
+
+// ================================================================
+// = PerkDeckCalculator Control
+// ================================================================
+
+SkillsHashStorage.fn.setupPerkDeckCalculator = function (perkDeckCalculator) {
+	
+}
+
+// ================================================================
+// = Infamy
+// ================================================================
 
 /**
  * 設定技能樹資料

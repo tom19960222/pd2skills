@@ -1,0 +1,52 @@
+{
+	"name"	: "Crook",
+	"title"	: "騙徒",
+	"decks"	:
+	[
+		{
+			"deck"	: 1,
+			"name"	: "Subtle",
+			"title"	: "巧妙身法",
+			"text"	:
+			[
+				"閃躲機率增加[10%]"
+			]
+		},
+		{
+			"deck"	: 3,
+			"name"	: "Basic Composure",
+			"title"	: "淡定",
+			"text"	:
+			[
+				"防彈背心的閃躲機率增加[10%]"
+			]
+		},
+		{
+			"deck"	: 5,
+			"name"	: "Advanced Composure",
+			"title"	: "很淡定",
+			"text"	:
+			[
+				"防彈背心的閃躲機率再加[10%]"
+			]
+		},
+		{
+			"deck"	: 7,
+			"name"	: "Expert Composure",
+			"title"	: "超級淡定",
+			"text"	:
+			[
+				"防彈背心的閃躲機率再加[15%]"
+			]
+		},
+		{
+			"deck"	: 9,
+			"name"	: "Master Recovery",
+			"title"	: "大師級恢復",
+			"text"	:
+			[
+				"你的護甲回復速度快[10%]"
+			]
+		}
+	]
+}

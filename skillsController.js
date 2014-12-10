@@ -1,8 +1,6 @@
-app.controller(
-	'skillsController',
-	[
-		'$scope',
-		'HashStorage',
+app.controller('skillsController', [
+	'$scope',
+	'HashStorage',
 
 function($scope, HashStorage) {
 	// ================================================================
