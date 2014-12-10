@@ -27,7 +27,7 @@ Deck.fn.init = function(arg) {
 	this.text	= (typeof arg.text !== "undefined")? this.initText(arg.text) : [];
 }
 
-Decks.fn.initText = function(text) {
+Deck.fn.initText = function(text) {
 	if ( ! (text instanceof Array)) return [];
 	
 	return text.map(function(part) {

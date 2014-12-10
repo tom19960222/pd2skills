@@ -16,9 +16,9 @@ function($scope, $http, HashStorage) {
 	// = 載入設定檔
 	// ================================================================
 	
-	var config = 'perks/config.json';
-	$http.get(config).success(function loadTrees(config) {
-		
+	var file = 'perks/config.json';
+	$http.get(file).success(function(config) {
+
 		var files	= config.files;
 		
 		// 複製陣列
@@ -30,16 +30,19 @@ function($scope, $http, HashStorage) {
 				temp[index] = data;
 				
 				counter--;
-				if (counter == 0) init(temp);
+				if (counter == 0) init(temp, config);
 			});
 		});
 
-		function init (perks) {
+		function init (perks, config) {
+			
 			setupPerksConfig(perks, config);
 			var perkDecksCalculator = new PerkDecksCalculator(perks);
 			HashStorage.setupPerkDeckCalculator(perkDecksCalculator);
 
 			$scope.perkDecksCalculator = perkDecksCalculator;
+
+			console.log($scope.perkDecksCalculator);
 		}
 
 		function setupPerksConfig (perks, config) {

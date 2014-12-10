@@ -26,7 +26,7 @@
 					<img class="header-logo" src="image/logo.png" alt="logo">
 				</div>
 				
-				<ul class="nav cant_select" ng-init="tab=1">
+				<ul class="nav cant_select" ng-init="tab=2">
 					<li><span ng-click="tab=1" ng-class="{checked:tab==1}">Skills</span></li>
 					<li><span ng-click="tab=2" ng-class="{checked:tab==2}">Perks</span></li>
 					<li><span ng-click="tab=3" ng-class="{checked:tab==3}">Infamy</span></li>
@@ -35,9 +35,9 @@
 			
 			<div class="contain" ng-controller="mainController">
 				<div class="main cant_select">
-					<div ng-if="tab==1" class="skills"></div>
-					<div ng-if="tab==2" class="perks"></div>
-					<div ng-if="tab==3" class="infamys"></div>
+					<div ng-if="tab==1" class="block-skills"></div>
+					<div ng-if="tab==2" class="block-perks"></div>
+					<div ng-if="tab==3" class="block-infamys"></div>
 				</div>
 				
 				<div class="aside" skill-aside>

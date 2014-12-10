@@ -20,8 +20,8 @@ function($scope, $http, HashStorage, InfamyStorage) {
 	// = 載入設定檔
 	// ================================================================
 
-	var config = 'skills/config.json';
-	$http.get(config).success(function loadTrees(config) {
+	var file = 'skills/config.json';
+	$http.get(file).success(function(config) {
 		
 		var files	= config.files;
 		
@@ -38,7 +38,7 @@ function($scope, $http, HashStorage, InfamyStorage) {
 			});
 		});
 		
-		function init(trees) {
+		function init(trees, config) {
 			// 初始階級設定資料
 			initTierConfig(trees, config);
 
@@ -53,6 +53,7 @@ function($scope, $http, HashStorage, InfamyStorage) {
 			HashStorage.setupSkillsCalculator(skillsCalculator);
 			skillsCalculator.updateStatus();
 
+			// 存入命名空間
 			$scope.skillsCalculator = skillsCalculator;
 			$scope.trees = skillsCalculator.trees;
 		}

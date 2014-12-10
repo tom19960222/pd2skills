@@ -12,7 +12,7 @@
 
 .perks-main {
 	position:relative;
-	float:left;
+	width: 580px;
 	height:100%;
 	/*background-image:url('icon/perks.png');*/
 }
@@ -34,7 +34,14 @@
  * ================================================================
  */
 
+.decks {
+	display: block;
+	overflow: auto;
+	width: 100%;
+}
+
 .deck {
+	float: left;
 	width: 64px;
 	height: 64px;
 	background-color: #333;

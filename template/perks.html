@@ -1,10 +1,10 @@
 <div class="perks-contain">
 	
-	<div class="perks-main set-tab-width border">
+	<div class="perks-main border">
 		
 		<ul class="perks">
 			
-			<li class="perk" ng-repeat="perk in perkDecksCalculator.perks">
+			<li class="perk" ng-repeat="perk in perkDecksCalculator.perks track by $index">
 
 				<div class="perk-title">{{ ::perk.title }}</div>
 			

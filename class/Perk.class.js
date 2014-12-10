@@ -1,11 +1,11 @@
 /**
  * 牌組類別
  */
-function Perk(parentDecks) {
+function Perk(parentPerks) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof PerkDecks) return new PerkDecks(parentDecks);
+	if ( ! this instanceof Perk) return new Perk(parentDecks);
 
-	this._parentDecks = parentDecks;
+	this._parentPerks = parentPerks;
 
 	this.deck	= -1;
 	this.name	= "";
@@ -13,21 +13,21 @@ function Perk(parentDecks) {
 	this.decks	= [];
 }
 
-PerkDecks.fn = PerkDecks.prototype;
+Perk.fn = Perk.prototype;
 
 
 // ================================================================
 // = 初始化
 // ================================================================
 
-PerkDecks.fn.init = function(arg) {
+Perk.fn.init = function(arg) {
 	this.deck	= (typeof arg.deck  === "number")? arg.deck		: -1;
 	this.name	= (typeof arg.name  === "string")? arg.name		: "[undefined]";
 	this.title	= (typeof arg.title === "string")? arg.title	: "[undefined]";
 	this.decks	= (typeof arg.decks !== "undefined")? this.initDecks(arg.decks) : [];
 }
 
-PerkDecks.fn.initDecks = function(decks) {
+Perk.fn.initDecks = function(decks) {
 	if ( ! (decks instanceof Array)) return [];
 	
 	var self = this;

@@ -18,7 +18,7 @@ app.directive("skillAside", function() {
 	};	
 });
 
-app.directive("skills", function() {
+app.directive("blockSkills", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/skills.html',
@@ -26,7 +26,7 @@ app.directive("skills", function() {
 	};	
 });
 
-app.directive("perks", function() {
+app.directive("blockPerks", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/perks.html',
@@ -34,7 +34,7 @@ app.directive("perks", function() {
 	};	
 });
 
-app.directive("infamys", function() {
+app.directive("blockInfamys", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/infamy.html',
