@@ -230,6 +230,10 @@
 	background-image:url('icon/skill-dark.png');
 }
 
+.skill:hover .skill-icon {
+	background-image:url('icon/skill-light.png');
+}
+
 .unlock .skill-icon{
 	background-image:url('icon/skill-halflight.png');
 }

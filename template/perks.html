@@ -1,15 +1,28 @@
 <div class="perks-contain">
 	
-	<div class="perks-main border">
+	<div class="perks-main">
 		
 		<ul class="perks">
 			
-			<li class="perk" ng-repeat="perk in perkDecksCalculator.perks track by $index">
+			<li
+				class="perk"
+				ng-repeat="perk in perkDecksCalculator.perks track by $index"
+				ng-class="{equipped : perk.equipped}"
+			>
 
-				<div class="perk-title">{{ ::perk.title }}</div>
+				<div class="perk-title">
+					<span>{{ ::perk.name }}</span>
+					<span>{{ ::perk.title }}</span>
+				</div>
 			
-				<ul class="decks">
-					<li class="deck" ng-repeat="deck in perk.decks"></li>
+				<ul class="decks" ng-class="{border : perk.equipped}">
+					<li
+						class="deck {{ ::deck.name | deckClassName }}"
+						ng-repeat="deck in perk.decks"
+						ng-click="deckClick(deck)"
+						ng-class="{owned : deck.owned}"
+					>
+					</li>
 				</ul>
 
 			</li>

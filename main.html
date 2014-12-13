@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="style/aside.css">
 		<link rel="stylesheet" href="style/skills.css">
 		<link rel="stylesheet" href="style/perks.css">
+		<link rel="stylesheet" href="style/decks.css">
 		<link rel="stylesheet" href="style/infamy.css">
 		<link rel="stylesheet" href="style/style.css">
 		
@@ -35,13 +36,15 @@
 			
 			<div class="contain" ng-controller="mainController">
 				<div class="main cant_select">
-					<div ng-if="tab==1" class="block-skills"></div>
-					<div ng-if="tab==2" class="block-perks"></div>
-					<div ng-if="tab==3" class="block-infamys"></div>
+					<div ng-if="tab==1" class="main-skills"></div>
+					<div ng-if="tab==2" class="main-perks"></div>
+					<div ng-if="tab==3" class="main-infamy"></div>
 				</div>
 				
-				<div class="aside" skill-aside>
-					
+				<div class="aside">
+					<div ng-if="tab==1" class="aside-skills"></div>
+					<div ng-if="tab==2" class="aside-perks"></div>
+					<div ng-if="tab==3" class="aside-infamy"></div>
 				</div>
 			</div>
 			
@@ -66,10 +69,12 @@
 		<script src="class/SkillsInfamyStorage.class.js"></script>
 		
 		<script src="main.js"></script>
+		<script src="filter.js"></script>
+		
 		<script src="mainController.js"></script>
 		<script src="skillsController.js"></script>
 		<script src="perksController.js"></script>
 		<script src="infamyController.js"></script>
-		<script src="filter.js"></script>
+		
 	</body>
 </html>

@@ -6,6 +6,7 @@ app.controller('infamyController', [
 function($scope, HashStorage, InfamyStorage) {
 
 	$scope.infamys = InfamyStorage.infamyStatus;
+	
 
 	// ================================================================
 	// = Event

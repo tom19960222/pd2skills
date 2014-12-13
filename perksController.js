@@ -6,46 +6,56 @@ app.controller('perksController', [
 function($scope, $http, HashStorage) {
 
 	// ================================================================
-	// = 命名空間
+	// = Onload
 	// ================================================================
 
-	$scope.perkDecksCalculator = new PerkDecksCalculator();
+	if ( ! ($scope.perkDecksCalculator instanceof PerkDecksCalculator)) {
+		$scope.perkDecksCalculator = new PerkDecksCalculator;
+		init();
+	}
 
 
 	// ================================================================
-	// = 載入設定檔
+	// = Init
 	// ================================================================
-	
-	var file = 'perks/config.json';
-	$http.get(file).success(function(config) {
 
-		var files	= config.files;
+	function init() {
 		
-		// 複製陣列
-		var temp	= files.slice(0);
-		var counter	= files.length;
-		
-		files.forEach(function(file, index) {
-			$http.get(file).success(function(data) {
-				temp[index] = data;
+		loadFiles('perks/config.json');
+
+		function loadFiles(file) {
+
+			$http.get(file).success(function(config) {
+
+				var files	= config.files;
 				
-				counter--;
-				if (counter == 0) init(temp, config);
-			});
-		});
+				// 複製陣列
+				var temp	= files.slice(0);
+				var counter	= files.length;
+				
+				files.forEach(function(file, index) {
+					$http.get(file).success(function(data) {
+						temp[index] = data;
+						
+						counter--;
+						if (counter == 0) afterLoad(temp, config);
+					});
+				});
 
-		function init (perks, config) {
-			
-			setupPerksConfig(perks, config);
-			var perkDecksCalculator = new PerkDecksCalculator(perks);
-			HashStorage.setupPerkDeckCalculator(perkDecksCalculator);
+			}); // end $http end
 
-			$scope.perkDecksCalculator = perkDecksCalculator;
-
-			console.log($scope.perkDecksCalculator);
 		}
 
-		function setupPerksConfig (perks, config) {
+		function afterLoad(perks, config) {
+			
+			setupPerksConfig(perks, config);
+			var newInstance = new PerkDecksCalculator(perks);
+			HashStorage.setupPerkDeckCalculator(newInstance);
+
+			$scope.perkDecksCalculator = newInstance;
+		}
+
+		function setupPerksConfig(perks, config) {
 			perks.forEach(function (perk) {
 				perk.decks = [
 					perk.decks[0],
@@ -60,7 +70,15 @@ function($scope, $http, HashStorage) {
 				];
 			});
 		}
+	}
 
-	}); // end $http end
+
+	// ================================================================
+	// = Events
+	// ================================================================
+
+	$scope.deckClick = function(deck) {
+		deck.callSet();
+	}
 
 }]);

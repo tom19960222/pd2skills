@@ -10,23 +10,20 @@ app.factory("InfamyStorage", [function() {
 }]);
 
 
+// ================================================================
+// = Main Block
+// ================================================================
 
-app.directive("skillAside", function() {
+app.directive("mainSkills", function() {
 	return {
-		restrict : 'A',
-		templateUrl : 'template/skills-aside.html'
-	};	
-});
-
-app.directive("blockSkills", function() {
-	return {
-		restrict : 'C',
+		restrict	: 'C',
+		scope		: false,
 		templateUrl : 'template/skills.html',
 		controller  : 'skillsController',
 	};	
 });
 
-app.directive("blockPerks", function() {
+app.directive("mainPerks", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/perks.html',
@@ -34,10 +31,36 @@ app.directive("blockPerks", function() {
 	};	
 });
 
-app.directive("blockInfamys", function() {
+app.directive("mainInfamy", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/infamy.html',
 		controller  : 'infamyController',
+	};	
+});
+
+
+// ================================================================
+// = Aside Block
+// ================================================================
+
+app.directive("asideSkills", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/skills-aside.html',
+	};	
+});
+
+app.directive("asidePerks", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/perks-aside.html',
+	};
+});
+
+app.directive("asideInfamy", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/infamy-aside.html',
 	};	
 });

@@ -1,0 +1,53 @@
+{
+	"name"	: "Muscle",
+	"title"	: "打手",
+	"decks"	:
+	[
+		{
+			"deck"	: 1,
+			"name"	: "Brute Strengh",
+			"title"	: "蠻力",
+			"text"	:
+			[
+				"你的生命值增加[10%]"
+			]
+		},
+		{
+			"deck"	: 3,
+			"name"	: "Meat Shield",
+			"title"	: "肉盾",
+			"text"	:
+			[
+				"靠近隊友時，你成為目標的機率增加[15%]",
+				"你的生命值再增加[10%]"
+			]
+		},
+		{
+			"deck"	: 5,
+			"name"	: "Giant Strength",
+			"title"	: "巨人之力",
+			"text"	:
+			[
+				"你的生命值再增加[30%]"
+			]
+		},
+		{
+			"deck"	: 7,
+			"name"	: "Disturbing the Peace",
+			"title"	: "擾亂治安",
+			"text"	:
+			[
+				"你用衝鋒槍、輕機槍和狙擊槍射擊時敵人會陷入恐慌並逃竄"
+			]
+		},
+		{
+			"deck"	: 9,
+			"name"	: "800-pound Gorilla",
+			"title"	: "八百磅猩猩",
+			"text"	:
+			[
+				"你的生命值再增加[40%]"
+			]
+		}
+	]
+}

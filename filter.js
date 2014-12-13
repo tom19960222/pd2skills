@@ -33,3 +33,15 @@ app.filter('padLeft', function() {
 		}
 	}
 });
+
+app.filter('deckClassName', [function() {
+	return function(text) {
+		text = text || '';
+
+		text = text.toLowerCase();
+		text = text.replace(/\s/g, '_');
+		text = 'deck-'+ text;
+
+		return text;
+	}
+}]);

@@ -1,0 +1,61 @@
+<div class="info border">
+	
+	<div class="info-contain info-skill" ng-if="display">
+
+		<div class="info-title">
+			<h1 class="title1">{{ display.skill.title }}</h1>
+			<h2 class="title2">{{ display.skill.name }}</h2>
+		</div>
+		
+		<div class="info-block alert">
+			<p ng-show="display.tier.unlockStatus === false">
+				你必須再花費 <span>{{ display.tier.unlockRequire }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
+			</p>
+			<p ng-show="display.skill.unlockRequire === false">
+				必須要擁有前置技能 : <span>{{ display.skill.require.skill.title }}</span> (<span>{{ display.skill.require.skill.name }}</span>)
+			</p>
+		</div>
+		
+		<div class="info-block" ng-show="display.tier.skillUnlockPointBasic > 0">
+			<p>
+				<span>基本: </span>
+				
+				<span
+					class="info-strong"
+					ng-class="{alert : ! display.skill.unlockBasic}"
+					ng-hide="display.skill.ownBasic"
+				>
+					<span>{{ display.tier.skillUnlockPointBasic }} 點</span>
+					<span> / $</span> 
+					<span>{{ display.tier.skillUnlockCostBasic | number}}</span>
+				</span>
+				
+				<span class="info-strong" ng-show="display.skill.ownBasic">擁有</span>
+			</p>
+			<p ng-bind-html="display.skill.basic | skillInfo"></p>
+		</div>
+		
+		<div class="info-block" ng-show="display.tier.skillUnlockPointAce > 0">
+			<p>
+				<span>王牌: </span>
+				
+				<span
+					class="info-strong"
+					ng-class="{alert : ! display.skill.unlockAce}"
+					ng-hide="display.skill.ownAce"
+				>
+					<span>{{ display.tier.skillUnlockPointAce }} 點</span>
+					<span> / $</span> 
+					<span>{{ display.tier.skillUnlockCostAce | number}}</span>
+				</span>
+				
+				<span class="info-strong" ng-show="display.skill.ownAce">擁有</span>
+			</p>
+			<p ng-bind-html="display.skill.ace | skillInfo"></p>
+		</div>
+		
+		<div class="info-block" ng-bind-html="display.skill.text | skillInfo"></div>
+	
+	</div><!-- info-skill -->
+	
+</div><!-- info -->

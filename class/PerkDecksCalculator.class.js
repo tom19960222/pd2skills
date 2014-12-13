@@ -8,6 +8,8 @@ function PerkDecksCalculator(arg) {
 
 	this.perks = [];
 	this.init(arg);
+
+	this.equipped = -1;
 }
 
 PerkDecksCalculator.fn = PerkDecksCalculator.prototype;
@@ -33,3 +35,44 @@ PerkDecksCalculator.fn.initPecks = function(perks) {
 		return perkObject;
 	});
 }
+
+
+// ================================================================
+// = 存取
+// ================================================================
+
+PerkDecksCalculator.fn.updateStatus = function() {
+
+	var perkIndex = -1;
+	for (var i = 0; i < this.perks.length; i++) {
+		if (this.perks[i].isset() === true) {
+			perkIndex = i;
+			break;
+		}
+	}
+
+	this.equipped = perkIndex;
+}
+
+PerkDecksCalculator.fn.clear = function() {
+	this.perks.forEach(function(perk) {
+		perk.clear();
+		perk.unset();
+	});
+}
+
+
+// ================================================================
+// = 呼叫上層相關
+// ================================================================
+
+PerkDecksCalculator.fn.callParentSet = function(targetPerk) {
+	this.clear();
+	targetPerk.set();
+}
+
+
+// ================================================================
+// = 呼叫下層相關
+// ================================================================
+
