@@ -11,7 +11,7 @@ function Perk(parentPerks) {
 	this.title	= "";
 	this.decks	= [];
 
-	this.owned	= -1;
+	this.rank	= -1;
 }
 
 Perk.fn = Perk.prototype;
@@ -45,7 +45,7 @@ Perk.fn.initDecks = function(decks) {
 
 
 // ================================================================
-// = 存取
+// = Equip
 // ================================================================
 
 Perk.fn.set = function() {
@@ -60,6 +60,23 @@ Perk.fn.isset = function() {
 	return this.equipped;
 }
 
+// ================================================================
+// = Rank
+// ================================================================
+
+Perk.fn.setRank = function(rank) {
+	this.rank = rank;
+	this.updateDeckStatus();
+}
+
+Perk.fn.getRank = function() {
+	return this.rank;
+}
+
+// ================================================================
+// = Update
+// ================================================================
+
 Perk.fn.updateStatus = function() {
 
 	var deckIndex = -1;
@@ -70,7 +87,6 @@ Perk.fn.updateStatus = function() {
 		} else {
 			this.decks[i].set();
 		}
-
 	}
 
 	this.rank = deckIndex;
@@ -99,3 +115,15 @@ Perk.fn.callParentSet = function(targetDeck) {
 // = 呼叫下層相關
 // ================================================================
 
+Perk.fn.updateDeckStatus = function() {
+
+	var deckIndex = this.rank;
+
+	for (var i = 0; i < this.decks.length; i++) {
+		if (i > deckIndex) {
+			this.decks[i].unset();
+		} else {
+			this.decks[i].set();
+		}
+	}
+}

@@ -1,6 +1,6 @@
-<div class="info border">
+<div class="info-contain border">
 	
-	<div class="info-contain info-skill" ng-if="display">
+	<div class="info-main" ng-if="display.skill">
 
 		<div class="info-title">
 			<h1 class="title1">{{ display.skill.title }}</h1>
@@ -54,8 +54,8 @@
 			<p ng-bind-html="display.skill.ace | skillInfo"></p>
 		</div>
 		
-		<div class="info-block" ng-bind-html="display.skill.text | skillInfo"></div>
+		<div class="info-block-contain" ng-bind-html="display.skill.text | skillInfo"></div>
 	
-	</div><!-- info-skill -->
+	</div><!-- info-main -->
 	
-</div><!-- info -->
+</div><!-- info-contain -->

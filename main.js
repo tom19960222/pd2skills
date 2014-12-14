@@ -1,12 +1,12 @@
 var app = angular.module('myApp', []);
 
 
-app.factory("HashStorage", ["$location", function($location) {
-	return new SkillsHashStorage($location);
+app.factory("hashStorage", ["$location", function($location) {
+	return new HashStorage($location);
 }]);
 
-app.factory("InfamyStorage", [function() {
-	return new SkillsInfamyStorage();
+app.factory("infamyStorage", [function() {
+	return new InfamyStorage();
 }]);
 
 
@@ -17,7 +17,6 @@ app.factory("InfamyStorage", [function() {
 app.directive("mainSkills", function() {
 	return {
 		restrict	: 'C',
-		scope		: false,
 		templateUrl : 'template/skills.html',
 		controller  : 'skillsController',
 	};	

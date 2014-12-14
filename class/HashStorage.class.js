@@ -1,14 +1,14 @@
 /**
  * Hash資料存取類別
  */
-function SkillsHashStorage(location) {
+function HashStorage(location) {
 	this.location = location;
 	this.datas = {};
 
 	this.loadUrl();
 }
 
-SkillsHashStorage.fn = SkillsHashStorage.prototype;
+HashStorage.fn = HashStorage.prototype;
 
 
 // ================================================================
@@ -18,7 +18,7 @@ SkillsHashStorage.fn = SkillsHashStorage.prototype;
 /**
  * 載入網址
  */
-SkillsHashStorage.fn.loadUrl = function() {
+HashStorage.fn.loadUrl = function() {
 	
 	var datas = {};
 	var hash = this.location.path().replace('/skill/', '');
@@ -31,7 +31,7 @@ SkillsHashStorage.fn.loadUrl = function() {
 		if (part == '') return;
 		
 		// 分割字元
-		data = part.split('');
+		data = part.match(/([a-zA-Z]\d*)/g);
 
 		// 取標頭
 		var header = data.shift();
@@ -46,7 +46,7 @@ SkillsHashStorage.fn.loadUrl = function() {
 /**
  * 更新網址狀態
  */
-SkillsHashStorage.fn.updateUrl = function() {
+HashStorage.fn.updateUrl = function() {
 
 	// 資料轉字串
 	var datas = [];
@@ -70,11 +70,11 @@ SkillsHashStorage.fn.updateUrl = function() {
 /**
  * 設定值
  */
-SkillsHashStorage.fn.setData = function(name, value) {
+HashStorage.fn.setData = function(name, value) {
 	this.datas[name] = value;
 }
 
-SkillsHashStorage.fn.unsetData = function() {
+HashStorage.fn.unsetData = function() {
 	this.datas = {};
 }
 
@@ -84,9 +84,9 @@ SkillsHashStorage.fn.unsetData = function() {
 // ================================================================
 
 /**
- * 設定技能樹資料
+ * 更新技能樹資料
  */
-SkillsHashStorage.fn.setTreeData = function(tree) {
+HashStorage.fn.setTreeData = function(tree) {
 	// 宣告計數器
 	var counter = 0;
 	var data = [];
@@ -114,9 +114,9 @@ SkillsHashStorage.fn.setTreeData = function(tree) {
 }
 
 /**
- * 更新技能樹資料
+ * 設定技能樹資料
  */
-SkillsHashStorage.fn.setupSkillTree = function(tree) {
+HashStorage.fn.setupSkillTree = function(tree) {
 	var header = tree.name.charAt(0).toLowerCase();
 	if (typeof this.datas[header] === "undefined") return;
 	
@@ -150,7 +150,10 @@ SkillsHashStorage.fn.setupSkillTree = function(tree) {
 	}); // end forEach tiers
 }
 
-SkillsHashStorage.fn.setupSkillsCalculator = function(skillsCalculator) {
+/**
+ * 設定技能模擬器資料
+ */
+HashStorage.fn.setupSkillsCalculator = function(skillsCalculator) {
 	var self = this;
 
 	skillsCalculator.trees.forEach(function (tree) {
@@ -163,18 +166,77 @@ SkillsHashStorage.fn.setupSkillsCalculator = function(skillsCalculator) {
 // = PerkDeckCalculator Control
 // ================================================================
 
-SkillsHashStorage.fn.setupPerkDeckCalculator = function (perkDeckCalculator) {
-	
+HashStorage.fn.setPerkDeckCalculatorData = function (perkDeckCalculator) {
+	var perk = perkDeckCalculator.getEquippedPerk();
+	if (perk == null) return;
+
+	var data = [];
+	var headerDict = {
+		'crew chief'	: 'C',
+		'muscle' 		: 'M',
+		'armorer'		: 'A',
+		'rogue'			: 'R',
+		'crook'			: 'O'
+	};
+	var perkHeader, perkRank;
+
+	perkHeader = perk.name.toLowerCase();
+	perkHeader = headerDict[perkHeader];
+	if (typeof perkHeader === "undefined") return;
+
+	var perkRank = perk.getRank();
+	data.push(perkHeader + perkRank);
+
+	var header = 'p';
+	this.setData(header, data);
 }
+
+HashStorage.fn.setupPerkDeckCalculator = function (perkDeckCalculator) {
+	var header = 'p';
+	if (typeof this.datas[header] === "undefined") return;
+
+	var datas = this.datas[header];
+	var headerDict = {
+		'C' : 'crew chief',
+		'M' : 'muscle',
+		'A' : 'armorer',
+		'R' : 'rogue',
+		'O' : 'crook'
+	};
+
+	var dataIndexList = {};
+	datas.forEach(function(data) {
+		var dataHeader, dataValue;
+		dataHeader = data.charAt(0);
+		dataHeader = headerDict[dataHeader];
+		if (typeof dataHeader === "undefined") return;
+
+		dataValue = data.slice(1);
+
+		dataIndexList[dataHeader] = dataValue;
+	});
+
+	perkDeckCalculator.perks.forEach(function(perk) {
+		var perkHeader = perk.name.toLowerCase();
+		if (typeof dataIndexList[perkHeader] === "undefined") return;
+
+		var data = dataIndexList[perkHeader];
+
+		perk.set();
+		perk.setRank(data);
+		perkDeckCalculator.updateStatus();
+	})
+}
+
 
 // ================================================================
 // = Infamy
 // ================================================================
 
 /**
- * 設定技能樹資料
+ * 更新惡名資料
  */
-SkillsHashStorage.fn.setInfamy = function(infamysStatus) {
+HashStorage.fn.setInfamy = function(infamysStatus) {
 	// 宣告計數器
 	var counter = 0;
 	var data = [];
@@ -189,9 +251,9 @@ SkillsHashStorage.fn.setInfamy = function(infamysStatus) {
 }
 
 /**
- * 更新技能樹資料
+ * 設定惡名資料
  */
-SkillsHashStorage.fn.updateInfamy = function(infamysStatus) {
+HashStorage.fn.setupInfamy = function(infamysStatus) {
 	var header = 'i';
 	if (typeof this.datas[header] === "undefined") return;
 	

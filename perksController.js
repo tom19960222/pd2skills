@@ -1,17 +1,18 @@
 app.controller('perksController', [
 	'$scope',
 	'$http',
-	'HashStorage',
+	'hashStorage',
 
-function($scope, $http, HashStorage) {
+function($scope, $http, hashStorage) {
 
 	// ================================================================
 	// = Onload
 	// ================================================================
 
+	$scope.set('display', {});
+
 	if ( ! ($scope.perkDecksCalculator instanceof PerkDecksCalculator)) {
-		$scope.perkDecksCalculator = new PerkDecksCalculator;
-		init();
+		init('perks/config.json');
 	}
 
 
@@ -19,9 +20,10 @@ function($scope, $http, HashStorage) {
 	// = Init
 	// ================================================================
 
-	function init() {
-		
-		loadFiles('perks/config.json');
+	function init(file) {
+
+		$scope.set('perkDecksCalculator', new PerkDecksCalculator);
+		loadFiles(file);
 
 		function loadFiles(file) {
 
@@ -50,9 +52,9 @@ function($scope, $http, HashStorage) {
 			
 			setupPerksConfig(perks, config);
 			var newInstance = new PerkDecksCalculator(perks);
-			HashStorage.setupPerkDeckCalculator(newInstance);
+			hashStorage.setupPerkDeckCalculator(newInstance);
 
-			$scope.perkDecksCalculator = newInstance;
+			$scope.set('perkDecksCalculator', newInstance);
 		}
 
 		function setupPerksConfig(perks, config) {
@@ -79,6 +81,21 @@ function($scope, $http, HashStorage) {
 
 	$scope.deckClick = function(deck) {
 		deck.callSet();
+		hashStorage.setPerkDeckCalculatorData($scope.perkDecksCalculator);
+		hashStorage.updateUrl();
+	}
+
+	$scope.deckHover = function(deck) {
+		setDisplayDeck(deck);
+	}
+
+	// ================================================================
+	// = 顯示相關
+	// ================================================================
+	
+	// 設定顯示
+	function setDisplayDeck(deck) {
+		$scope.display.deck = deck;
 	}
 
 }]);

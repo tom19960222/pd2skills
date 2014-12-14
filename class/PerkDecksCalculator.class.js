@@ -54,6 +54,13 @@ PerkDecksCalculator.fn.updateStatus = function() {
 	this.equipped = perkIndex;
 }
 
+PerkDecksCalculator.fn.getEquippedPerk = function() {
+	if (this.equipped == -1) return null;
+	if (typeof this.perks[this.equipped] === "undefined") return null;
+	
+	return this.perks[this.equipped];
+}
+
 PerkDecksCalculator.fn.clear = function() {
 	this.perks.forEach(function(perk) {
 		perk.clear();
@@ -69,6 +76,7 @@ PerkDecksCalculator.fn.clear = function() {
 PerkDecksCalculator.fn.callParentSet = function(targetPerk) {
 	this.clear();
 	targetPerk.set();
+	this.updateStatus();
 }
 
 

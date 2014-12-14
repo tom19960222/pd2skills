@@ -4,12 +4,22 @@ app.controller('mainController', [
 function($scope) {
 	
 	// ================================================================
-	// = 命名空間
+	// = Space
 	// ================================================================
 	
 	$scope.display = {};
 
-	$scope.skillsCalculator = {};
-	$scope.perkDecksCalculator = {};
+	$scope.skillsCalculator = null;
+
+	$scope.perkDecksCalculator = null;
+	
+
+	// ================================================================
+	// = Method
+	// ================================================================
+
+	$scope.set = function(name, value) {
+		return $scope[name] = value;
+	}
 	
 }]);

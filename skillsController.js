@@ -1,18 +1,19 @@
 app.controller('skillsController', [
 	'$scope',
 	'$http',
-	'HashStorage',
-	'InfamyStorage',
+	'hashStorage',
+	'infamyStorage',
 
-function($scope, $http, HashStorage, InfamyStorage) {
+function($scope, $http, hashStorage, infamyStorage) {
 
 	// ================================================================
 	// = Onload
 	// ================================================================
 
+	$scope.set('display', {});
+
 	if ( ! ($scope.skillsCalculator instanceof SkillsCalculator)) {
-		$scope.skillsCalculator = new SkillsCalculator;
-		init();
+		init('skills/config.json');
 	}
 
 
@@ -20,9 +21,10 @@ function($scope, $http, HashStorage, InfamyStorage) {
 	// = Init
 	// ================================================================
 	
-	function init() {
+	function init(file) {
 
-		loadFiles('skills/config.json');
+		$scope.set('skillsCalculator', new SkillsCalculator);
+		loadFiles(file);
 
 		function loadFiles(file) {
 			
@@ -55,15 +57,15 @@ function($scope, $http, HashStorage, InfamyStorage) {
 			var newInstance = new SkillsCalculator(trees);
 			
 			// 載入惡名
-			HashStorage.updateInfamy(InfamyStorage.infamyStatus);
-			InfamyStorage.update(newInstance);
+			hashStorage.setupInfamy(infamyStorage.infamyStatus);
+			infamyStorage.update(newInstance);
 			
 			// 載入Hash技能資料
-			HashStorage.setupSkillsCalculator(newInstance);
+			hashStorage.setupSkillsCalculator(newInstance);
 			newInstance.updateStatus();
 
 			// 存入命名空間
-			$scope.skillsCalculator = newInstance;
+			$scope.set('skillsCalculator', newInstance);
 		}
 
 		/**
@@ -96,18 +98,18 @@ function($scope, $http, HashStorage, InfamyStorage) {
 
 	$scope.resetTree = function(tree) {
 		tree.unset();
-		HashStorage.setTreeData(tree);
-		HashStorage.updateUrl();
+		hashStorage.setTreeData(tree);
+		hashStorage.updateUrl();
 	}
 	
 	$scope.resetAll = function() {
 
 		$scope.skillsCalculator.trees.forEach(function(tree) {
 			tree.unset();
-			HashStorage.setTreeData(tree);
+			hashStorage.setTreeData(tree);
 		});
 		
-		HashStorage.updateUrl();
+		hashStorage.updateUrl();
 	}
 	
 	// ================================================================
@@ -130,15 +132,15 @@ function($scope, $http, HashStorage, InfamyStorage) {
 	$scope.skillClick = function(skill, tier, tree) {
 		skill.unlock();
 		
-		HashStorage.setTreeData(tree);
-		HashStorage.updateUrl();
+		hashStorage.setTreeData(tree);
+		hashStorage.updateUrl();
 	}
 	
 	$scope.skillRemove = function(skill, tier, tree) {
 		skill.unset();
 		
-		HashStorage.setTreeData(tree);
-		HashStorage.updateUrl();
+		hashStorage.setTreeData(tree);
+		hashStorage.updateUrl();
 	}
 	
 	$scope.skillUpdate = function(skill, tier, tree) {

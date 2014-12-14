@@ -19,6 +19,7 @@
 					<li
 						class="deck {{ ::deck.name | deckClassName }}"
 						ng-repeat="deck in perk.decks"
+						ng-mouseover="deckHover(deck)"
 						ng-click="deckClick(deck)"
 						ng-class="{owned : deck.owned}"
 					>
