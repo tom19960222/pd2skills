@@ -1,32 +1,28 @@
 var app = angular.module('myApp', []);
 
 
-app.factory("HashStorage", ["$location", function($location) {
-	return new SkillsHashStorage($location);
+app.factory("hashStorage", ["$location", function($location) {
+	return new HashStorage($location);
 }]);
 
-app.factory("InfamyStorage", [function() {
-	return new SkillsInfamyStorage();
+app.factory("infamyStorage", [function() {
+	return new InfamyStorage();
 }]);
 
 
+// ================================================================
+// = Main Block
+// ================================================================
 
-app.directive("skillAside", function() {
+app.directive("mainSkills", function() {
 	return {
-		restrict : 'A',
-		templateUrl : 'template/skills-aside.html'
-	};	
-});
-
-app.directive("skills", function() {
-	return {
-		restrict : 'C',
+		restrict	: 'C',
 		templateUrl : 'template/skills.html',
 		controller  : 'skillsController',
 	};	
 });
 
-app.directive("perks", function() {
+app.directive("mainPerks", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/perks.html',
@@ -34,10 +30,36 @@ app.directive("perks", function() {
 	};	
 });
 
-app.directive("infamys", function() {
+app.directive("mainInfamy", function() {
 	return {
 		restrict : 'C',
 		templateUrl : 'template/infamy.html',
 		controller  : 'infamyController',
+	};	
+});
+
+
+// ================================================================
+// = Aside Block
+// ================================================================
+
+app.directive("asideSkills", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/skills-aside.html',
+	};	
+});
+
+app.directive("asidePerks", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/perks-aside.html',
+	};
+});
+
+app.directive("asideInfamy", function() {
+	return {
+		restrict : 'C',
+		templateUrl : 'template/infamy-aside.html',
 	};	
 });

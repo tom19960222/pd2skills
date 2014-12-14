@@ -1,0 +1,53 @@
+{
+	"name"	: "Armorer",
+	"title"	: "軍械士",
+	"decks"	:
+	[
+		{
+			"deck"	: 1,
+			"name"	: "Type I Armor",
+			"title"	: "一級裝甲",
+			"text"	:
+			[
+				"你的裝甲值增加[5%]。"
+			]
+		},
+		{
+			"deck"	: 3,
+			"name"	: "Type II Armor",
+			"title"	: "二級裝甲",
+			"text"	:
+			[
+				"你的裝甲值再增加[5%]。"
+			]
+		},
+		{
+			"deck"	: 5,
+			"name"	: "Type III Armor",
+			"title"	: "三級裝甲",
+			"text"	:
+			[
+				"你的裝甲值再增加[5%]。"
+			]
+		},
+		{
+			"deck"	: 7,
+			"name"	: "Reinforced Armor",
+			"title"	: "強化裝甲",
+			"text"	:
+			[
+				"你的護甲回復速度快[10%]。"
+			]
+		},
+		{
+			"deck"	: 9,
+			"name"	: "Liquid Armor",
+			"title"	: "液態裝甲",
+			"text"	:
+			[
+				"你的裝甲值再增加[5%]。",
+				"你和隊友的防彈衣的回復間隔時間快[10%]。"
+			]
+		}
+	]
+}

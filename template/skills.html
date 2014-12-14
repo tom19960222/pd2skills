@@ -5,7 +5,7 @@
 	
 	<ul class="skills-tabs">
 		
-		<li class="skills-tab" ng-repeat="(treeIndex, tree) in trees track by $index">
+		<li class="skills-tab" ng-repeat="(treeIndex, tree) in skillsCalculator.trees track by $index">
 			
 			<input
 				type="radio"
@@ -110,9 +110,9 @@
 	</div>
 	
 	<div class="ctrl-right">
-		<p class="ctrl-availavle"><span>{{ getUsed(trees) }}</span> 點技能點數可用</p>
+		<p class="ctrl-availavle"><span>{{ getAvailable() }}</span> 點技能點數可用</p>
 		<p class="ctrl-respec" ng-click="resetTree(display.tree)">重置這個技能樹</p>
-		<p class="ctrl-respec small" ng-click="resetAll(trees)">重置所有技能樹</p>
+		<p class="ctrl-respec small" ng-click="resetAll()">重置所有技能樹</p>
 	</div>
 
 </div><!-- main -->

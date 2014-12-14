@@ -1,27 +1,35 @@
 <div class="perks-contain">
 	
-	<div class="perks-main set-tab-width border">
+	<div class="perks-main">
 		
-		<p></p>
+		<ul class="perks">
+			
+			<li
+				class="perk"
+				ng-repeat="perk in perkDecksCalculator.perks track by $index"
+				ng-class="{equipped : perk.equipped}"
+			>
 
-		<p></p>
+				<div class="perk-title">
+					<span>{{ ::perk.name }}</span>
+					<span>{{ ::perk.title }}</span>
+				</div>
+			
+				<ul class="decks" ng-class="{border : perk.equipped}">
+					<li
+						class="deck {{ ::deck.name | deckClassName }}"
+						ng-repeat="deck in perk.decks"
+						ng-mouseover="deckHover(deck)"
+						ng-click="deckClick(deck)"
+						ng-class="{owned : deck.owned}"
+					>
+					</li>
+				</ul>
 
-		<p>噢，這裡似乎有些問題</p>
+			</li>
 
-		<p>這個頁面正在建構中</p>
-
-		<p>我會盡快讓這塞點東西</p>
+		</ul>
 		
-		<p></p>
-
-		<p>喜歡這網頁嗎?</p>
-
-		<p>贊助我一塊麵包吧 :3</p>
-
-		<p></p>
-
-		<p><small>12/7, Shisha</small></p>
-
 	</div>
 
 </div><!-- main -->

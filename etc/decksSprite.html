@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<title>Payday2 技能模擬器 (beta 0.2)</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=0">
+		
+		<script src="angular.min.js"></script>
+		
+	</head>
+	
+	<body ng-app="myApp">
+		<div class="contain" ng-controller="MainCtrl">
+
+			<div class="perks">
+						
+				<div class="perk" ng-repeat="(perkIndex, perk) in decks track by $index">
+
+					<div class="decks">
+<pre class="deck" ng-repeat="(deckIndex, deck) in perk"><!-- Heredoc -->
+{{ deck.name | deckClassName}} {
+	background-position: {{ getStyle(perkIndex, deckIndex) }};
+}
+</pre><!-- Heredoc -->
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('MainCtrl', function($scope, $http) {
+
+				$scope.decks = [];
+
+				var file = 'perks/config.json';
+				$http.get(file).success(function(config) {
+
+					$scope.config = config;
+
+					var files	= config.files;
+					
+					// 複製陣列
+					var temp	= files.slice(0);
+					var counter	= files.length;
+					
+					files.forEach(function(file, index) {
+						$http.get(file).success(function(data) {
+							temp[index] = data;
+							
+							counter--;
+							if (counter == 0) init(temp, config);
+						});
+					});
+
+					function init (perks, config) {
+						var re = [];
+
+						re.push(config.decksInfo);
+
+						for (var i in perks) {
+							var peck = perks[i];
+
+							re.push(peck.decks);
+						}
+
+						$scope.decks = re;
+						console.log(re);
+					}
+
+				}); // end $http end
+
+				$scope.getStyle = function(perkIndex, deckIndex) {
+					var x = 64;
+					var y = 64;
+
+					x = 0 - (deckIndex * x);
+					y = 0 - (perkIndex * y);
+
+					return x +'px '+ y +'px';
+				};
+			});
+			
+			app.filter('deckClassName', [function() {
+				return function(text) {
+					text = text || '';
+
+					text = text.toLowerCase();
+					text = text.replace(/\s/g, '_');
+					text = '.deck-'+ text;
+
+					return text;
+				}
+			}]);
+		</script>
+	</body>
+</html>

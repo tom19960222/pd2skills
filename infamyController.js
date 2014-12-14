@@ -1,11 +1,12 @@
 app.controller('infamyController', [
 	'$scope',
-	'HashStorage',
-	'InfamyStorage',
+	'hashStorage',
+	'infamyStorage',
 
-function($scope, HashStorage, InfamyStorage) {
+function($scope, hashStorage, infamyStorage) {
 
-	$scope.infamys = InfamyStorage.infamyStatus;
+	$scope.infamys = infamyStorage.infamyStatus;
+	
 
 	// ================================================================
 	// = Event
@@ -22,9 +23,9 @@ function($scope, HashStorage, InfamyStorage) {
 	}
 
 	function updateInfamyStatue() {
-		InfamyStorage.update($scope.skillsCalculator);
-		HashStorage.setInfamy(InfamyStorage.infamyStatus);
-		HashStorage.updateUrl();
+		infamyStorage.update($scope.skillsCalculator);
+		hashStorage.setInfamy(infamyStorage.infamyStatus);
+		hashStorage.updateUrl();
 	}
 
 

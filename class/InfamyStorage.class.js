@@ -1,7 +1,7 @@
 /**
  * Infamy 資料存取類別
  */
-function SkillsInfamyStorage() {
+function InfamyStorage() {
 	this.infamyStatus = [
 		{
 			header	: 'b',
@@ -22,9 +22,9 @@ function SkillsInfamyStorage() {
 	];
 }
 
-SkillsInfamyStorage.fn = SkillsInfamyStorage.prototype;
+InfamyStorage.fn = InfamyStorage.prototype;
 
-SkillsInfamyStorage.fn.update = function(skillsCalculator) {
+InfamyStorage.fn.update = function(skillsCalculator) {
 	var infamyStatus = this.infamyStatus;
 
 	var infamys = [];

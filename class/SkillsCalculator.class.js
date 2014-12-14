@@ -4,6 +4,7 @@
 function SkillsCalculator(arg) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof SkillsCalculator) return new SkillsCalculator(arg);
+	arg = arg || {};
 
 	this.total	= 120;
 	this.used	= 0;

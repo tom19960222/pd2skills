@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 	<head>
-		<title>Payday2 技能模擬器 (beta 0.2)</title>
+		<title>Payday2 技能模擬器 (beta 0.4)</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=0">
 		
-		<link rel="stylesheet" href="style/aside.css">
+		<link rel="stylesheet" href="style/style.css">
+
 		<link rel="stylesheet" href="style/skills.css">
 		<link rel="stylesheet" href="style/perks.css">
 		<link rel="stylesheet" href="style/infamy.css">
-		<link rel="stylesheet" href="style/style.css">
+
+		<link rel="stylesheet" href="style/aside.css">
+		<link rel="stylesheet" href="style/decks.css">
 		
 		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Fjalla+One'>
 		
@@ -35,13 +38,15 @@
 			
 			<div class="contain" ng-controller="mainController">
 				<div class="main cant_select">
-					<div ng-if="tab==1" class="skills"></div>
-					<div ng-if="tab==2" class="perks"></div>
-					<div ng-if="tab==3" class="infamys"></div>
+					<div ng-if="tab==1" class="main-skills"></div>
+					<div ng-if="tab==2" class="main-perks"></div>
+					<div ng-if="tab==3" class="main-infamy"></div>
 				</div>
 				
-				<div class="aside" skill-aside>
-					
+				<div class="aside">
+					<div ng-if="tab==1" class="aside-skills"></div>
+					<div ng-if="tab==2" class="aside-perks"></div>
+					<div ng-if="tab==3" class="aside-infamy"></div>
 				</div>
 			</div>
 			
@@ -57,15 +62,21 @@
 		<script src="class/Tier.class.js"></script>
 		<script src="class/Tree.class.js"></script>
 		<script src="class/SkillsCalculator.class.js"></script>
+
+		<script src="class/Deck.class.js"></script>
+		<script src="class/Perk.class.js"></script>
+		<script src="class/PerkDecksCalculator.class.js"></script>
 		
-		<script src="class/SkillsHashStorage.class.js"></script>
-		<script src="class/SkillsInfamyStorage.class.js"></script>
+		<script src="class/HashStorage.class.js"></script>
+		<script src="class/InfamyStorage.class.js"></script>
 		
 		<script src="main.js"></script>
+		<script src="filter.js"></script>
+		
 		<script src="mainController.js"></script>
 		<script src="skillsController.js"></script>
 		<script src="perksController.js"></script>
 		<script src="infamyController.js"></script>
-		<script src="filter.js"></script>
+		
 	</body>
 </html>
