@@ -5,6 +5,11 @@ app.controller('infamyController', [
 
 function($scope, hashStorage, infamyStorage) {
 
+	// ================================================================
+	// = Onload
+	// ================================================================
+
+	$scope.set('display', {});
 	$scope.infamys = infamyStorage.infamyStatus;
 	
 
