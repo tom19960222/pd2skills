@@ -60,8 +60,38 @@ Skill.fn.initRequire = function(requireSkillName) {
  * 更新技能狀態
  */
 Skill.fn.updateStatus = function(leftPoint) {
+	var needParentUpdate = this.updateRequireStatus();
 	this.updateUnlockStatus(leftPoint);
 	this.updateOwnStatus();
+
+	if (needParentUpdate) this.callParentUpdate();
+}
+
+/**
+ * 更新技能前置解鎖狀態
+ */
+Skill.fn.updateRequireStatus = function() {
+	
+	// 判斷前置技能是否解鎖
+	if (this.require === false) {
+		this.unlockRequire = true;
+		return false;
+	}
+
+
+	var newStatus = (this.require.skill.ownBasic === true);
+	var needUpdate = false;
+	
+	if (newStatus === false) {
+		this.unlockBasic	= false;
+		this.unlockAce		= false;	
+		
+		// 若狀態由 true 轉為 false, 則需要更新此技能樹
+		if (this.unlockRequire == true) needUpdate = true;
+	}
+
+	this.unlockRequire = newStatus;
+	return needUpdate;
 }
 
 /**
@@ -69,15 +99,11 @@ Skill.fn.updateStatus = function(leftPoint) {
  */
 Skill.fn.updateUnlockStatus = function(leftPoint) {
 	
-	// 判斷前置技能是否解鎖
-	if (this.require !== false) {
-		this.unlockRequire = (this.require.skill.ownBasic === true);
-	} else {
-		this.unlockRequire = true;
-	}
-	
+	// 若前置未解鎖則回傳
+	if (this.unlockRequire === false) return;
+
 	// 判斷階層是否解鎖
-	if (this._parentTier.unlockStatus === true && this.unlockRequire === true) {
+	if (this._parentTier.unlockStatus === true) {
 		this.unlockBasic = (leftPoint >= this._parentTier.skillUnlockPointBasic || this.ownBasic);
 		this.unlockAce   = (this._parentTier.skillUnlockPointAce > 0)
 			? (this.ownBasic)
