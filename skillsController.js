@@ -111,6 +111,19 @@ function($scope, $http, hashStorage, infamyStorage) {
 		
 		hashStorage.updateUrl();
 	}
+
+	// ================================================================
+	// = getPlayerLevel
+	// ================================================================
+
+	$scope.getLevel = function () {
+		var sp		= $scope.skillsCalculator.used;
+		
+		var base	= Math.floor(sp / 12);
+		var d		= Math.min((sp - base * 12), 10);
+
+		return base * 10 + d;
+	}
 	
 	// ================================================================
 	// = 技能相關事件
@@ -146,7 +159,37 @@ function($scope, $http, hashStorage, infamyStorage) {
 	$scope.skillUpdate = function(skill, tier, tree) {
 	}
 
+
+	// ================================================================
+	// = Icon
+	// ================================================================
 	
+	/**
+	 * 取得技能圖示樣式
+	 */
+	function getSkillIconStyle(skillIndex, tierIndex, treeIndex) {
+		var x = 11;
+		var y = 41;
+		
+		var skillMargin = 64 + 9;
+		var tierMargin = 64 + 7;
+		var treeMargin = skillMargin * 3 + 7;
+		
+		if (tierIndex == 6) {
+			skillIndex += 1;
+		}
+		
+		x = 0 - (x + treeMargin * treeIndex + skillMargin * skillIndex);
+		y = 0 - (y + tierMargin * tierIndex);
+		
+		return {'backgroundPosition': x +"px "+ y +"px"};
+	}
+	
+	$scope.skillStyle = function(skillIndex, tierIndex, treeIndex) {
+		return getSkillIconStyle(skillIndex, tierIndex, treeIndex);
+	}
+	
+
 	// ================================================================
 	// = 顯示相關
 	// ================================================================
@@ -184,35 +227,6 @@ function($scope, $http, hashStorage, infamyStorage) {
 		clearDisplaySkill();
 	}
 	
-	
-	// ================================================================
-	// = Icon
-	// ================================================================
-	
-	/**
-	 * 取得技能圖示樣式
-	 */
-	function getSkillIconStyle(skillIndex, tierIndex, treeIndex) {
-		var x = 11;
-		var y = 41;
-		
-		var skillMargin = 64 + 9;
-		var tierMargin = 64 + 7;
-		var treeMargin = skillMargin * 3 + 7;
-		
-		if (tierIndex == 6) {
-			skillIndex += 1;
-		}
-		
-		x = 0 - (x + treeMargin * treeIndex + skillMargin * skillIndex);
-		y = 0 - (y + tierMargin * tierIndex);
-		
-		return {'backgroundPosition': x +"px "+ y +"px"};
-	}
-	
-	$scope.skillStyle = function(skillIndex, tierIndex, treeIndex) {
-		return getSkillIconStyle(skillIndex, tierIndex, treeIndex);
-	}
 
 	// ================================================================
 	// = Progress Bar
@@ -245,5 +259,6 @@ function($scope, $http, hashStorage, infamyStorage) {
 	$scope.getProgressBarStyle = function(tree) {
 		return {height : getProgressPercent(tree) + '%'};
 	}
+
 
 }]);
