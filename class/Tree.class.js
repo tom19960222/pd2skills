@@ -70,7 +70,6 @@ Tree.fn.updateStatus = function() {
  */
 Tree.fn.unset = function(tree) {
 	this.tiers[0].skills[0].unset();
-	this.callParentUpdate();
 }
 
 /**
