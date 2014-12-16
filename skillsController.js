@@ -116,13 +116,15 @@ function($scope, $http, hashStorage, infamyStorage) {
 	// = getPlayerLevel
 	// ================================================================
 
-	$scope.getLevel = function () {
-		var sp		= $scope.skillsCalculator.used;
-		
+	function getLevel(sp) {
 		var base	= Math.floor(sp / 12);
 		var d		= Math.min((sp - base * 12), 10);
 
-		return base * 10 + d;
+		return Math.max(base * 10 + d, 1);
+	}
+
+	$scope.getLevel = function () {
+		return getLevel($scope.skillsCalculator.used);		
 	}
 	
 	// ================================================================

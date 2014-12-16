@@ -318,11 +318,14 @@
 }
 
 .ctrl-line {
-	float:left;
+	margin: 3px 0;
 	height:16px;
-	margin-bottom:2px;
 	line-height:16px;
 	font-size:14px;
+}
+
+.ctrl-line > span {
+	float:left;
 }
 
 .ctrl-level:before, .ctrl-spent:before {
@@ -332,7 +335,7 @@
 	
 	width:16px;
 	height:16px;
-	margin-right:2px;
+	margin-right:4px;
 	background-image:url('icon/icon.png');
 	background-position: 0 0;
 }
