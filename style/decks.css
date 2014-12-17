@@ -1,24 +1,18 @@
-/**
- * ================================================================
- * = Sprite
- * ================================================================
- */
-
 
 .deck-helmet_popping {
-	background-position: 0px 0px;
-}
-
-.deck-blending_in {
 	background-position: -64px 0px;
 }
 
-.deck-walk-in_closet {
+.deck-blending_in {
 	background-position: -128px 0px;
 }
 
-.deck-fast_and_furious {
+.deck-walk-in_closet {
 	background-position: -192px 0px;
+}
+
+.deck-fast_and_furious {
+	background-position: -256px 0px;
 }
 
 .deck-brute_strength {
@@ -41,7 +35,7 @@
 	background-position: -256px -64px;
 }
 
-.deck-brute_strengh {
+.deck-brute_strength {
 	background-position: 0px -128px;
 }
 
@@ -139,4 +133,24 @@
 
 .deck-master_recovery {
 	background-position: -256px -384px;
+}
+
+.deck-subtle {
+	background-position: 0px -448px;
+}
+
+.deck-bag_of_tricks {
+	background-position: -64px -448px;
+}
+
+.deck-luck_of_the_irish {
+	background-position: -128px -448px;
+}
+
+.deck-dutch_courage {
+	background-position: -192px -448px;
+}
+
+.deck-breath_of_fresh_air {
+	background-position: -256px -448px;
 }

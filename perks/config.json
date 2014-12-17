@@ -1,12 +1,13 @@
 {
-	"gameverson" : "46.1",
+	"gameverson" : "49",
 	"files" : [
 		"perks/crew chief.json",
 		"perks/muscle.json",
 		"perks/armorer.json",
 		"perks/rogue.json",
 		"perks/hitman.json",
-		"perks/crook.json"
+		"perks/crook.json",
+		"perks/burglar.json"
 	],
 	"decksInfo" : [
 		{

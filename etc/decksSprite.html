@@ -18,7 +18,7 @@
 
 					<div class="decks">
 <pre class="deck" ng-repeat="(deckIndex, deck) in perk"><!-- Heredoc -->
-{{ deck.name | deckClassName}} {
+{{ deck.name | deckClassName }} {
 	background-position: {{ getStyle(perkIndex, deckIndex) }};
 }
 </pre><!-- Heredoc -->
@@ -76,6 +76,8 @@
 				$scope.getStyle = function(perkIndex, deckIndex) {
 					var x = 64;
 					var y = 64;
+
+					deckIndex += (perkIndex == 0)? 1 : 0;
 
 					x = 0 - (deckIndex * x);
 					y = 0 - (perkIndex * y);

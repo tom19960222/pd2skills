@@ -68,8 +68,8 @@
 	width: 100%;
 }
 
-.equipped .decks {
-	background-color: rgba(32, 32, 32, 0.5);
+.equipped .border:before {
+	background-color: rgba(32, 32, 32, 0.3);
 }
 
 .deck {
