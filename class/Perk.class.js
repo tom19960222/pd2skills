@@ -7,6 +7,7 @@ function Perk(parentPerks) {
 
 	this._parentPerks = parentPerks;
 
+	this.code	= "";
 	this.name	= "";
 	this.title	= "";
 	this.decks	= [];
@@ -22,6 +23,7 @@ Perk.fn = Perk.prototype;
 // ================================================================
 
 Perk.fn.init = function(arg) {
+	this.code	= (typeof arg.code  === "string")? arg.code		: "[undefined]";
 	this.name	= (typeof arg.name  === "string")? arg.name		: "[undefined]";
 	this.title	= (typeof arg.title === "string")? arg.title	: "[undefined]";
 	this.decks	= (typeof arg.decks !== "undefined")? this.initDecks(arg.decks) : [];

@@ -171,21 +171,10 @@ HashStorage.fn.setPerkDeckCalculatorData = function (perkDeckCalculator) {
 	if (perk == null) return;
 
 	var data = [];
-	var headerDict = {
-		'crew chief'	: 'C',
-		'muscle' 		: 'M',
-		'armorer'		: 'A',
-		'rogue'			: 'R',
-		'crook'			: 'O'
-	};
-	var perkHeader, perkRank;
-
-	perkHeader = perk.name.toLowerCase();
-	perkHeader = headerDict[perkHeader];
-	if (typeof perkHeader === "undefined") return;
-
+	var perkCode = perk.code.toUpperCase();
 	var perkRank = perk.getRank();
-	data.push(perkHeader + perkRank);
+
+	data.push(perkCode + perkRank);
 
 	var header = 'p';
 	this.setData(header, data);
@@ -196,31 +185,20 @@ HashStorage.fn.setupPerkDeckCalculator = function (perkDeckCalculator) {
 	if (typeof this.datas[header] === "undefined") return;
 
 	var datas = this.datas[header];
-	var headerDict = {
-		'C' : 'crew chief',
-		'M' : 'muscle',
-		'A' : 'armorer',
-		'R' : 'rogue',
-		'O' : 'crook'
-	};
 
 	var dataIndexList = {};
 	datas.forEach(function(data) {
-		var dataHeader, dataValue;
-		dataHeader = data.charAt(0);
-		dataHeader = headerDict[dataHeader];
-		if (typeof dataHeader === "undefined") return;
-
-		dataValue = data.slice(1);
+		var dataHeader = data.charAt(0);
+		var dataValue = data.slice(1);
 
 		dataIndexList[dataHeader] = dataValue;
 	});
 
 	perkDeckCalculator.perks.forEach(function(perk) {
-		var perkHeader = perk.name.toLowerCase();
-		if (typeof dataIndexList[perkHeader] === "undefined") return;
+		var perkCode = perk.code.toUpperCase();
+		if (typeof dataIndexList[perkCode] === "undefined") return;
 
-		var data = dataIndexList[perkHeader];
+		var data = dataIndexList[perkCode];
 
 		perk.set();
 		perk.setRank(data);
