@@ -117,10 +117,10 @@ function($scope, $http, hashStorage, infamyStorage) {
 	// ================================================================
 
 	function getLevel(sp) {
-		var base	= Math.floor(sp / 12);
-		var d		= Math.min((sp - base * 12), 10);
+		var b	= Math.floor(sp / 12);
+		var d	= Math.min((sp - b * 12), 10);
 
-		return Math.max(base * 10 + d, 1);
+		return (b * 10 + d);
 	}
 
 	$scope.getLevel = function () {
