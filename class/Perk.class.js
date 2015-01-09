@@ -1,20 +1,22 @@
 /**
  * 牌組類別
  */
-function Perk(parentPerks) {
+function Perk(parent) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof Perk) return new Perk(parentPerks);
+	if ( ! this instanceof Perk) return new Perk(parent);
 
-	this._parentPerks = parentPerks;
+	this._parent = parent;
+	this.childList = [];
 
-	this.code	= "";
-	this.name	= "";
-	this.title	= "";
-	this.decks	= [];
+	this.code	= "[undefined]";
+	this.name	= "[undefined]";
+	this.title	= "[undefined]";
 
 	this.rank	= -1;
+	this.equipped = false;
 }
 
+Perk.prototype = Object.create(PerkDecksPrototype.prototype);
 Perk.fn = Perk.prototype;
 
 
@@ -23,26 +25,17 @@ Perk.fn = Perk.prototype;
 // ================================================================
 
 Perk.fn.init = function(arg) {
-	this.code	= (typeof arg.code  === "string")? arg.code		: "[undefined]";
-	this.name	= (typeof arg.name  === "string")? arg.name		: "[undefined]";
-	this.title	= (typeof arg.title === "string")? arg.title	: "[undefined]";
-	this.decks	= (typeof arg.decks !== "undefined")? this.initDecks(arg.decks) : [];
-
-	this.rank	= -1;
-	this.equipped = false;
+	this.code	= (typeof arg.code  === "string")? arg.code		: this.code;
+	this.name	= (typeof arg.name  === "string")? arg.name		: this.name;
+	this.title	= (typeof arg.title === "string")? arg.title	: this.title;
+	if (typeof arg.decks !== "undefined") this.addChilds(arg.decks);
 }
 
-Perk.fn.initDecks = function(decks) {
-	if ( ! (decks instanceof Array)) return [];
-	
-	var self = this;
+Perk.fn.initChild = function(arg) {
+	var newInstance = new Deck(this);
+	newInstance.init(arg);
 
-	return decks.map(function(deck) {
-		var deckObject = new Deck(self);
-		deckObject.init(deck);
-
-		return deckObject;
-	});
+	return newInstance;
 }
 
 
@@ -83,11 +76,11 @@ Perk.fn.updateStatus = function() {
 
 	var deckIndex = -1;
 	// 找到 deck.owned == true, 並將之前的 deck 的 owned 設為 true
-	for (var i = this.decks.length - 1; i >= 0; i--) {
+	for (var i = this.childList.length - 1; i >= 0; i--) {
 		if (deckIndex < 0) {
-			if (this.decks[i].isset() === true) deckIndex = i;
+			if (this.childList[i].isset() === true) deckIndex = i;
 		} else {
-			this.decks[i].set();
+			this.childList[i].set();
 		}
 	}
 
@@ -95,7 +88,7 @@ Perk.fn.updateStatus = function() {
 }
 
 Perk.fn.clear = function() {
-	this.decks.forEach(function(deck) {
+	this.loopChild(function(deck) {
 		deck.unset();
 	});
 }
@@ -106,7 +99,7 @@ Perk.fn.clear = function() {
 // ================================================================
 
 Perk.fn.callParentSet = function(targetDeck) {
-	this._parentPerks.callParentSet(this);
+	this._parent.callParentSet(this);
 	
 	targetDeck.set();
 	this.updateStatus();	
@@ -120,12 +113,11 @@ Perk.fn.callParentSet = function(targetDeck) {
 Perk.fn.updateDeckStatus = function() {
 
 	var deckIndex = this.rank;
-
-	for (var i = 0; i < this.decks.length; i++) {
+	for (var i = 0; i < this.childList.length; i++) {
 		if (i > deckIndex) {
-			this.decks[i].unset();
+			this.childList[i].unset();
 		} else {
-			this.decks[i].set();
+			this.childList[i].set();
 		}
 	}
 }

@@ -15,7 +15,7 @@ function($scope) {
 	// ================================================================
 
 	$scope.updateTreeStatus = function(tree) {
-		return tree.used;
+		return tree.usedPoint;
 	}
 	
 	$scope.getAvailable = function() {
@@ -30,11 +30,8 @@ function($scope) {
 	
 	$scope.resetAll = function() {
 
-		$scope.skillsCalculator.trees.forEach(function(tree) {
-			tree.unset();
-			$scope.hashStorage.setTreeData(tree);
-		});
-		
+		$scope.skillsCalculator.unset();
+	
 		$scope.hashStorage.updateUrl();
 	}
 
@@ -50,7 +47,7 @@ function($scope) {
 	}
 
 	$scope.getLevel = function () {
-		return getLevel($scope.skillsCalculator.used);		
+		return getLevel($scope.skillsCalculator.usedPoint);		
 	}
 	
 	// ================================================================
@@ -58,15 +55,14 @@ function($scope) {
 	// ================================================================
 	
 	$scope.skillHover = function(skill, tier) {
-		
-		if (skill.unlockRequire === false) skill.require.skill.alert = true;
+		if (skill.unlockRequire === false) skill.require.getTarget().alert = true;
 		
 		setDisplaySkill(skill, tier);
-	};
+	}
 	
 	$scope.skillLeave = function(skill, tier) {
 		
-		if (skill.unlockRequire === false) skill.require.skill.alert = false;
+		if (skill.unlockRequire === false) skill.require.getTarget().alert = false;
 		
 	}
 	
@@ -165,15 +161,15 @@ function($scope) {
 	 */
 	function getProgressPercent(tree) {
 		
-		for (var i = 1; i < tree.tiers.length; i++) {
-			var tier = tree.tiers[i];
+		for (var i = 1; i < tree.childList.length; i++) {
+			var tier = tree.getChild(i);
 			
 			if (tier.unlockStatus == false) {
 				if (i == 1) return 0;
-				var basic = tree.tiers[i - 1].unlockPoint;
+				var basic = tree.getChild(i - 1).unlockPoint;
 				
-				var range = tier.tierUnlockPoint - basic;
-				var tierUsed = tree.used - basic;
+				var range = tier.unlockPoint - basic;
+				var tierUsed = tree.usedPoint - basic;
 				var tierProgress = Math.floor(tierUsed / range * 100 * 0.2);
 				var progress = (i - 2) * 20;
 				

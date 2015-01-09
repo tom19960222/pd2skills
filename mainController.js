@@ -18,6 +18,8 @@ function($scope, $q, $http, hashStorage, infamyStorage) {
 	$scope.skillsCalculator = new SkillsCalculator;
 
 	$scope.perkDecksCalculator = new PerkDecksCalculator;
+
+	$scope.infamyCalculator = new InfamyCalculator;
 	
 
 	// ================================================================
@@ -26,52 +28,60 @@ function($scope, $q, $http, hashStorage, infamyStorage) {
 
 	var promises = [];
 	
-	promises[promises.length] = getConfigFiles(
-		"skills/config.json",
+	promises.push(getConfigFiles("skills/config.json",
 		
 		function(files, config) {
-			$scope.skillsCalculator = new SkillsCalculator
-			((function setupTierConfig(trees, treeConfig) {
-				trees.forEach(function(tree) {
-					tree.tiers.forEach(function(tier) {
-						var info = treeConfig.tierinfo[tier.tier];
-						for (var attr in info) {
-							tier[attr] = info[attr];
-						}
+
+			$scope.skillsCalculator = new SkillsCalculator(
+				(function setupTierConfig(trees, treeConfig) {
+					trees.forEach(function(tree) {
+						tree.tiers.forEach(function(tier) {
+							var info = treeConfig.tierinfo[tier.tier];
+							for (var attr in info) {
+								tier[attr] = info[attr];
+							}
+						});
 					});
-				});
 
-				return trees;
-			})(files, config));
+					return trees;
+				})(files, config)
+			);
 		}
-	);
+	));
 
-	promises[promises.length] = getConfigFiles(
-		"perks/config.json",
-
+	promises.push(getConfigFiles("perks/config.json",
 		function(files, config) {
-			$scope.perkDecksCalculator = new PerkDecksCalculator
-			((function setupPerksConfig(perks, config) {
-				perks.forEach(function (perk) {
-					perk.decks = [
-						perk.decks[0],
-						config.decksInfo[0],
-						perk.decks[1],
-						config.decksInfo[1],
-						perk.decks[2],
-						config.decksInfo[2],
-						perk.decks[3],
-						config.decksInfo[3],
-						perk.decks[4]
-					];
-				});
 
-				return perks;
-			})(files, config));
+			$scope.perkDecksCalculator = new PerkDecksCalculator(
+				(function setupPerksConfig(perks, config) {
+					perks.forEach(function (perk) {
+						perk.decks = [
+							perk.decks[0],
+							config.decksInfo[0],
+							perk.decks[1],
+							config.decksInfo[1],
+							perk.decks[2],
+							config.decksInfo[2],
+							perk.decks[3],
+							config.decksInfo[3],
+							perk.decks[4]
+						];
+					});
+
+					return perks;
+				})(files, config)
+			);
 		}
-	);
+	));
+
+	promises.push(getFile("infamy/infamy.json").then(
+		function(file) {
+			$scope.infamyCalculator = new InfamyCalculator(file);
+		}
+	));
 
 	$q.all(promises).then(function(data) {
+		if (0) {
 		// Load Skills
 		hashStorage.setupSkillsCalculator($scope.skillsCalculator);
 		
@@ -83,7 +93,11 @@ function($scope, $q, $http, hashStorage, infamyStorage) {
 
 		// Renew Skills
 		infamyStorage.update($scope.skillsCalculator);
+		}
 		$scope.skillsCalculator.updateStatus();
+		$scope.infamyCalculator.updateStatus();
+
+		console.log($scope.skillsCalculator);
 	});
 
 
@@ -117,18 +131,18 @@ function($scope, $q, $http, hashStorage, infamyStorage) {
 			});
 		});
 		
-		function getFile(file) {
-			return $q(function(resolve, reject) {
-				$http.get(file)
-					.success(function(data) {
-						resolve(data);
-					})
-					.error(function(data) {
-						reject(data);
-					});
-			});
-		}
 	}
-	
+
+	function getFile(file) {
+		return $q(function(resolve, reject) {
+			$http.get(file)
+				.success(function(data) {
+					resolve(data);
+				})
+				.error(function(data) {
+					reject(data);
+				});
+		});
+	}	
 
 }]);

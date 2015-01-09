@@ -4,33 +4,47 @@
 		
 		<div class="border"></div>
 		
-		<ul ng-repeat="infamyStatus in infamys track by $index">
+		<div
+			class="infamy-tier"
+			ng-repeat="(tierIndex, tier) in infamyCalculator.childList | desc track by $index"
+			ng-class="{
+				'unlock' : tier.unlockStatus,
+				'tier-single' : tier.tier == 0
+			}"
+		>
 
-			<li
-				class="infamy-block"
-				ng-class="{
-					unlocked : true,
-					owned    : infamyStatus.infamy
-				}"
-				ng-click="infamyClick(infamyStatus)"
-			>
-				<div
-					class="infamy-icon infamy{{ ::$index + 1 }}"
-				></div>
+			<ul>
 
-				<div class="infamy-text-block">
-					<p class="infamy-text text-owned">擁有</p>
-					<p class="infamy-text text-unlocked">解鎖</p>
-					<p class="infamy-text text-locked">未解鎖</p>
-				</div>
+				<li
+					class="infamy-talent"
+					ng-repeat="(talentIndex, talent) in tier.childList track by $index"
+					ng-mouseover="infamyHover(talent)"
+					ng-mouseleave="infamyLeave(talent)"
+					ng-click="infamyClick(talent)"
+					ng-class="{
+						'unlocked' : talent.unlock,
+						'owned'    : talent.owned
+					}"
+				>
+					<div
+						class="infamy-icon infamy{{ ::$index + 1 }}"
+					></div>
 
-				<a
-					class="infamy-remove"
-					ng-click="infamyRemove(infamyStatus); $event.stopPropagation()"
-				></a>
-			</li>
+					<div class="infamy-text-block">
+						<p class="infamy-text text-owned">擁有</p>
+						<p class="infamy-text text-unlocked">解鎖</p>
+						<p class="infamy-text text-locked">未解鎖</p>
+					</div>
 
-		</ul>
+					<a
+						class="infamy-remove"
+						ng-click="infamyRemove(talent); $event.stopPropagation()"
+					></a>
+				</li>
+
+			</ul>
+
+		</div>
 
 	</div>
 

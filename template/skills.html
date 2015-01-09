@@ -5,7 +5,7 @@
 	
 	<ul class="skills-tabs">
 		
-		<li class="skills-tab" ng-repeat="(treeIndex, tree) in skillsCalculator.trees track by $index">
+		<li class="skills-tab" ng-repeat="(treeIndex, tree) in skillsCalculator.childList track by $index">
 			
 			<input
 				type="radio"
@@ -30,7 +30,7 @@
 			>
 				<div
 					class="skills-tier"
-					ng-repeat="(tierIndex, tier) in tree.tiers | desc track by $index" 
+					ng-repeat="(tierIndex, tier) in tree.childList | desc track by $index" 
 					ng-class="{
 						'unlock' : tier.unlockStatus,
 						'skills-tier-single' : tier.tier == 0
@@ -39,7 +39,7 @@
 					<ul	class="skills-tier-contain">
 						<li	
 							class="skill"
-							ng-repeat="(skillIndex, skill) in tier.skills track by $index"
+							ng-repeat="(skillIndex, skill) in tier.childList track by $index"
 							ng-mouseover="skillHover(skill, tier)"
 							ng-mouseleave="skillLeave(skill, tier)"
 							ng-click="skillClick(skill, tier, tree)"

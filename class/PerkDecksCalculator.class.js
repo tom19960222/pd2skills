@@ -4,14 +4,14 @@
 function PerkDecksCalculator(arg) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof PerkDecksCalculator) return new PerkDecksCalculator(arg);
-	arg = arg || {}
 
-	this.perks = [];
+	this.childList = [];
+
 	this.init(arg);
-
 	this.equipped = -1;
 }
 
+PerkDecksCalculator.prototype = Object.create(PerkDecksPrototype.prototype);
 PerkDecksCalculator.fn = PerkDecksCalculator.prototype;
 
 
@@ -20,20 +20,16 @@ PerkDecksCalculator.fn = PerkDecksCalculator.prototype;
 // ================================================================
 
 PerkDecksCalculator.fn.init = function(arg) {
-	this.perks = this.initPecks(arg);
+	if (typeof arg === "undefined") return;
+
+	this.addChilds(arg);
 }
 
-PerkDecksCalculator.fn.initPecks = function(perks) {
-	if ( ! (perks instanceof Array)) return [];
-	
-	var self = this;
+PerkDecksCalculator.fn.initChild = function(arg) {
+	var newInstance = new Perk(this);
+	newInstance.init(arg);
 
-	return perks.map(function(decks) {
-		var perkObject = new Perk(self);
-		perkObject.init(decks);
-
-		return perkObject;
-	});
+	return newInstance;
 }
 
 
@@ -42,27 +38,20 @@ PerkDecksCalculator.fn.initPecks = function(perks) {
 // ================================================================
 
 PerkDecksCalculator.fn.updateStatus = function() {
-
-	var perkIndex = -1;
-	for (var i = 0; i < this.perks.length; i++) {
-		if (this.perks[i].isset() === true) {
-			perkIndex = i;
-			break;
-		}
-	}
-
-	this.equipped = perkIndex;
+	this.loopChild(function(perk, index) {
+		if (perk.isset()) this.equipped = index;
+	}, this);
 }
 
 PerkDecksCalculator.fn.getEquippedPerk = function() {
 	if (this.equipped == -1) return null;
-	if (typeof this.perks[this.equipped] === "undefined") return null;
+	if (typeof this.childList[this.equipped] === "undefined") return null;
 	
-	return this.perks[this.equipped];
+	return this.childList[this.equipped];
 }
 
 PerkDecksCalculator.fn.clear = function() {
-	this.perks.forEach(function(perk) {
+	this.loopChild(function(perk) {
 		perk.clear();
 		perk.unset();
 	});
@@ -75,6 +64,7 @@ PerkDecksCalculator.fn.clear = function() {
 
 PerkDecksCalculator.fn.callParentSet = function(targetPerk) {
 	this.clear();
+
 	targetPerk.set();
 	this.updateStatus();
 }

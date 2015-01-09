@@ -91,9 +91,9 @@ HashStorage.fn.setTreeData = function(tree) {
 	var counter = 0;
 	var data = [];
 	
-	tree.tiers.forEach(function(tier) {
+	tree.loopChild(function(tier) {
 		
-		tier.skills.forEach(function(skill) {
+		tier.loopChild(function(skill) {
 			
 			if (skill.ownBasic) {
 				var code = counter + 97;

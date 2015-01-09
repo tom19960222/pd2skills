@@ -9,8 +9,7 @@ function($scope, hashStorage, infamyStorage) {
 	// = Onload
 	// ================================================================
 
-	$scope.set('display', {});
-	$scope.infamys = infamyStorage.infamyStatus;
+	//$scope.set('display', {});
 	
 
 	// ================================================================
@@ -33,6 +32,39 @@ function($scope, hashStorage, infamyStorage) {
 		hashStorage.updateUrl();
 	}
 
+	// ================================================================
+	// = Event
+	// ================================================================
+	
+	$scope.infamyHover = function(talent, tier) {
+		setDisplayinfamy(talent, tier);
+	}
+	
+	$scope.infamyLeave = function(talent) {
+	}
+	
+	$scope.infamyClick = function(talent) {
+		talent.set(true);
+	}
+	
+	$scope.infamyRemove = function(talent) {
+		talent.set(false);
+	}
+
+
+	// ================================================================
+	// = Display
+	// ================================================================
+	
+	// 設定顯示
+	function setDisplayinfamy(talent) {
+		$scope.display.talent = talent;
+	}
+	
+	// 清除顯示
+	function clearDisplayinfamy() {
+		$scope.display.talent = false;
+	}
 
 	// ================================================================
 	// = Icon

@@ -1,16 +1,16 @@
 /**
  * 技能類別
  */
-function Skill(parentTier) {
+function Skill(parent) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof Skill) return new Skill(parentTier);
 
-	this._parentTier = parentTier;
+	this._parent = parent;
 
-	this.name	= "";
-	this.title	= "";
-	this.basic	= "";
-	this.ace	= "";
+	this.name	= "[undefined]";
+	this.title	= "[undefined]";
+	this.basic	= "[undefined]";
+	this.ace	= "[undefined]";
 	this.text	= "";
 	
 	this.ownBasic	= false;
@@ -23,10 +23,9 @@ function Skill(parentTier) {
 	this.unlockRequire	= false;
 	
 	this.alert	= false;
-
-	
 }
 
+Skill.prototype = Object.create(SkillTreePrototype.prototype);
 Skill.fn = Skill.prototype;
 
 
@@ -35,20 +34,19 @@ Skill.fn = Skill.prototype;
 // ================================================================
 
 Skill.fn.init = function(arg) {
-	this.name		= (typeof arg.name  === "string")? arg.name		: "[undefined]";
-	this.title		= (typeof arg.title === "string")? arg.title	: "[undefined]";
-	this.basic		= (typeof arg.basic === "string")? arg.basic	: "[undefined]";
-	this.ace		= (typeof arg.ace   === "string")? arg.ace		: "[undefined]";
-	this.text		= (typeof arg.text  === "string")? arg.text		: "";
-	this.require	= (typeof arg.require !== "undefined")
-		? this.initRequire(arg.require)
-		: false;
+	this.name		= (typeof arg.name  === "string")? arg.name		: this.name;
+	this.title		= (typeof arg.title === "string")? arg.title	: this.title;
+	this.basic		= (typeof arg.basic === "string")? arg.basic	: this.basic;
+	this.ace		= (typeof arg.ace   === "string")? arg.ace		: this.ace;
+	this.text		= (typeof arg.text  === "string")? arg.text		: this.text;
+
+	if (typeof arg.require !== "undefined") this.initRequire(arg.require);
 }
 
 Skill.fn.initRequire = function(requireSkillName) {
-	if (typeof requireSkillName !== "string") return false;
+	if (typeof requireSkillName !== "string") return;
 
-	return this.callParentSetPointer(requireSkillName);
+	this.require = this.callParentInitPointer(requireSkillName);
 }
 
 
@@ -72,26 +70,28 @@ Skill.fn.updateStatus = function(leftPoint) {
  */
 Skill.fn.updateRequireStatus = function() {
 	
-	// 判斷前置技能是否解鎖
-	if (this.require === false) {
+	if ( ! (this.require instanceof Pointer)) {
 		this.unlockRequire = true;
 		return false;
 	}
 
+	var pointer = this.require.getTarget();
+	if ( ! (pointer instanceof Skill)) throw "目標為空";
 
-	var newStatus = (this.require.skill.ownBasic === true);
-	var needUpdate = false;
+	// 判斷前置技能是否解鎖
+	var newStatus = (pointer.ownBasic === true);
+	var isNeedUpdate = false;
 	
-	if (newStatus === false) {
+	if ( ! newStatus) {
 		this.unlockBasic	= false;
 		this.unlockAce		= false;	
 		
 		// 若狀態由 true 轉為 false, 則需要更新此技能樹
-		if (this.unlockRequire == true) needUpdate = true;
+		if (this.unlockRequire == true) isNeedUpdate = true;
 	}
 
 	this.unlockRequire = newStatus;
-	return needUpdate;
+	return isNeedUpdate;
 }
 
 /**
@@ -103,12 +103,12 @@ Skill.fn.updateUnlockStatus = function(leftPoint) {
 	if (this.unlockRequire === false) return;
 
 	// 判斷階層是否解鎖
-	if (this._parentTier.unlockStatus === true) {
-		this.unlockBasic = (leftPoint >= this._parentTier.skillUnlockPointBasic || this.ownBasic);
-		this.unlockAce   = (this._parentTier.skillUnlockPointAce > 0)
+	if (this._parent.unlockStatus === true) {
+		this.unlockBasic = (leftPoint >= this._parent.skillUnlockPointBasic || this.ownBasic);
+		this.unlockAce   = (this._parent.skillUnlockPointAce > 0)
 			? (this.ownBasic)
-				? (leftPoint >= this._parentTier.skillUnlockPointAce || this.ownAce)
-				: (leftPoint >= this._parentTier.skillUnlockPointBasic + this._parentTier.skillUnlockPointAce)
+				? (leftPoint >= this._parent.skillUnlockPointAce || this.ownAce)
+				: (leftPoint >= this._parent.skillUnlockPointBasic + this._parent.skillUnlockPointAce)
 			: false;
 	} else {
 		this.unlockBasic = false;
@@ -158,51 +158,31 @@ Skill.fn.unset = function() {
 }
 
 
+
 // ================================================================
-// = 呼叫上層相關
+// = 責任鍊 > 更新狀態
 // ================================================================
 
 /**
- * 呼叫上層更新
+ * 向下呼叫 更新技能
  */
-Skill.fn.callParentUpdate = function() {
-	this._parentTier.callParentUpdate();
-}
-
-/**
- * 向上呼叫設定技能指標
- */
-Skill.fn.callParentSetPointer = function(pointerName) {
-	return this._parentTier.callParentSetPointer(pointerName);
-}
-
-/**
- * 向上呼叫設定技能指標清單
- */
-Skill.fn.callParentSetPointerList = function(pointerName, skill) {
-	this._parentTier.callParentSetPointerList(pointerName, skill);
+Skill.fn.callChildUpdateSkill = function (availablePoint) {
+	this.updateStatus(availablePoint);
 }
 
 
 // ================================================================
-// = 呼叫下層相關
+// = 責任鍊 > 指標
 // ================================================================
 
 /**
- * 更新技能狀態
+ * 向下呼叫 建立指標清單
  */
-Skill.fn.updateSkillStatus = function(leftPoint) {
-	this.updateStatus(leftPoint);
-}
-
-/**
- * 向下呼叫建立指標清單
- */
-Skill.fn.bulidPointerList = function(skillNameList) {
+Skill.fn.callChildsbulidPointerList = function(skillNameList) {
 	var skillName = this.name;
 
 	// 若在清單內, 則向上傳遞設定指標清單
 	if (skillNameList.indexOf(skillName) >= 0) {
-		this.callParentSetPointerList(skillName, this);
+		this.callParentSetPointer(skillName, this);
 	};
 }
