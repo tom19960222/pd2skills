@@ -1,0 +1,65 @@
+/**
+ * ================================================================
+ * = Sprite
+ * ================================================================
+ */
+
+.icon_0-0 {
+	background-position: 0px 0px;
+}
+
+.unlocked .icon_0-0 {
+	background-position: 0px -128px;
+}
+
+.owned .icon_0-0 {
+	background-position: 0px -256px;
+}
+
+.icon_1-0 {
+	background-position: -128px 0px;
+}
+
+.unlocked .icon_1-0 {
+	background-position: -128px -128px;
+}
+
+.owned .icon_1-0 {
+	background-position: -128px -256px;
+}
+
+.icon_1-1 {
+	background-position: -256px 0px;
+}
+
+.unlocked .icon_1-1 {
+	background-position: -256px -128px;
+}
+
+.owned .icon_1-1 {
+	background-position: -256px -256px;
+}
+
+.icon_1-2 {
+	background-position: -384px 0px;
+}
+
+.unlocked .icon_1-2 {
+	background-position: -384px -128px;
+}
+
+.owned .icon_1-2 {
+	background-position: -384px -256px;
+}
+
+.icon_1-3 {
+	background-position: -512px 0px;
+}
+
+.unlocked .icon_1-3 {
+	background-position: -512px -128px;
+}
+
+.owned .icon_1-3 {
+	background-position: -512px -256px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<title>Payday2 技能模擬器 (beta 0.2)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=0">
+	
+	<script src="angular.min.js"></script>
+	
+</head>
+
+<body ng-app="myApp">
+	<div class="contain" ng-controller="MainCtrl">
+		<div ng-repeat="e in arr track by $index">
+
+<pre><!-- Heredoc -->
+.icon_{{ getName(e) }} {
+	background-position: {{ getStyle(e) }};
+}
+
+.unlocked .icon_{{ getName(e) }} {
+	background-position: {{ getStyle(e, 1) }};
+}
+
+.owned .icon_{{ getName(e) }} {
+	background-position: {{ getStyle(e, 2) }};
+}
+</pre><!-- Heredoc -->
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('MainCtrl', function($scope, $http) {
+
+			var N = 5;
+			$scope.arr = Array.apply(null, {length: N}).map(Number.call, Number);
+
+
+			$scope.getStyle = function(e, s) {
+				s = s || 0;
+
+				var x = 0;
+				var y = 0;
+
+				var spaX = 128;
+				var spaY = 128;
+
+				x += e * spaX;
+				y += s * spaY;
+
+				x = 0 - x;
+				y = 0 - y;
+
+				return x +'px '+ y +'px';
+			};
+
+			$scope.getName = function (e) {
+				var row = getRow(e);
+				var col = getCol(e);
+				return row + "-" + col;
+			}
+
+			var rowCount = 4;
+			function getRow(e) {
+				if (e == 0) return 0;
+				return Math.floor((e - 1) / rowCount) + 1;
+			}
+
+			function getCol(e) {
+				if (e == 0) return 0;
+				return Math.floor((e - 1) % rowCount);
+			}
+		});
+		
+	</script>
+</body>
+</html>

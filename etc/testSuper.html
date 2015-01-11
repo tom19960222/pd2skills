@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<title> Test Super </title>
+<meta charset="utf-8">
+
+<script type="text/javascript">
+
+//=============================================================
+
+function BaseClass (argument) {
+	this.name = "BaseClass";
+}
+
+BaseClass.prototype.say = function () {
+	console.log("theres BaseClass, my name is " + this.name);
+}
+
+//=============================================================
+
+function SubClass (argument) {
+	this.name = "SubClass";
+}
+
+SubClass.prototype = Object.create(BaseClass.prototype);
+SubClass.prototype.constructor = BaseClass;
+
+SubClass.prototype.say = function () {
+	console.log("theres SubClass, my name is " + this.name);
+	this.constructor.say.call(this);
+}
+
+//=============================================================
+
+var a = new BaseClass;
+var b = new SubClass;
+
+a.say();
+b.say();
+
+</script>
+</head>
+<body>
+	
+</body>
+</html>

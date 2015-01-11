@@ -1,15 +1,14 @@
 app.controller('infamyController', [
 	'$scope',
 	'hashStorage',
-	'infamyStorage',
 
-function($scope, hashStorage, infamyStorage) {
+function($scope, hashStorage) {
 
 	// ================================================================
 	// = Onload
 	// ================================================================
 
-	//$scope.set('display', {});
+	$scope.set('display', {});
 	
 
 	// ================================================================
@@ -17,17 +16,17 @@ function($scope, hashStorage, infamyStorage) {
 	// ================================================================
 
 	$scope.infamyClick = function(infamy) {
-		infamy.infamy = true;
+		infamy.set(true);
 		updateInfamyStatue();
 	}
 
 	$scope.infamyRemove = function (infamy) {
-		infamy.infamy = false;
+		infamy.set(false);
 		updateInfamyStatue();
 	}
 
 	function updateInfamyStatue() {
-		infamyStorage.update($scope.skillsCalculator);
+		$scope.infamyCalculator.update($scope.skillsCalculator);
 		hashStorage.setInfamy(infamyStorage.infamyStatus);
 		hashStorage.updateUrl();
 	}

@@ -102,6 +102,19 @@ SkillsCalculator.fn.unset = function() {
 }
 
 
+// ================================================================
+// = Infamy
+// ================================================================
+
+/**
+ * 設定惡名
+ */
+SkillsCalculator.fn.setInfamy = function(infamyStatus) {
+	this.loopChild(function(tree, index) {
+		tree.setInfamy(infamyStatus[index] || false);
+	});
+}
+
 
 // ================================================================
 // = Pointer
@@ -144,35 +157,24 @@ SkillsCalculator.fn.bulidPointerList = function() {
 
 
 // ================================================================
-// = Hash
+// = Storage
 // ================================================================
 
-SkillsCalculator.fn.encode = function() {
-	this.loopChild(function(tree) {
-		tree.encode();
+SkillsCalculator.fn.setStorage = function(storage) {
+	this._storage = storage;
+}
+
+SkillsCalculator.fn.save = function(storage) {
+	this.loopChild(function(child) {
+		child.save(storage);
 	});
 }
 
-SkillsCalculator.fn.decode = function(storage) {
-	this.loopChild(function(tree) {
-		tree.decode(storage);
+SkillsCalculator.fn.load = function(storage) {
+	this.loopChild(function(child) {
+		child.load(storage);
 	});
 }
-
-
-// ================================================================
-// = Infamy
-// ================================================================
-
-/**
- * 設定惡名
- */
-SkillsCalculator.fn.setInfamy = function() {
-	this.loopChild(function() {
-
-	});
-}
-
 
 // ================================================================
 // = 責任鍊 > 更新狀態

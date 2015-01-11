@@ -59,6 +59,11 @@ Tree.fn.unset = function(tree) {
 	this.getChild(0).getChild(0).unset();
 }
 
+
+// ================================================================
+// = 惡名
+// ================================================================
+
 /**
  * 設定惡名
  */
@@ -72,10 +77,10 @@ Tree.fn.setInfamy = function(bool) {
 
 
 // ================================================================
-// = Hash
+// = Storage
 // ================================================================
 
-Tree.fn.encode = function() {
+Tree.fn.save = function(storage) {
 
 	var data = [];
 
@@ -103,13 +108,11 @@ Tree.fn.encode = function() {
 	header = header.toLowerCase();
 
 	// 回傳
-	var re = {};
-	re[header] = data;
-
-	return re;
+	storage[header] = data;
+	return storage;
 }
 
-Tree.fn.decode = function(storage) {
+Tree.fn.load = function(storage) {
 
 	var header = tree.name.charAt(0).toLowerCase();
 	if (typeof storage[header] === "undefined") return;

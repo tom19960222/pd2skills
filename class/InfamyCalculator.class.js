@@ -5,8 +5,6 @@ function InfamyCalculator(arg) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof InfamyCalculator) return new InfamyCalculator(arg);
 
-	this._skillsCalculator = null;
-
 	this.childList = [];
 	
 	this.totalPoint	= 5;
@@ -37,11 +35,6 @@ InfamyCalculator.fn.initChild = function(arg) {
 }
 
 
-InfamyCalculator.fn.setSkillsCalculator = function(skillsCalculator) {
-	this._skillsCalculator = skillsCalculator;
-}
-
-
 // ================================================================
 // = Methods
 // ================================================================
@@ -62,19 +55,42 @@ InfamyCalculator.fn.getAvailablePoint = function() {
 
 
 // ================================================================
-// = Hash
+// = Methods
 // ================================================================
 
-InfamyCalculator.fn.encode = function() {
-	return;
+InfamyCalculator.fn.getInfamyStatus = function() {
+	
+	var tier1 = this.getChild(1);
+	var infamyStatus = tier1.loopChild(function(child) {
+		return child.owned;
+	});
+
+	var no5 = false;
+	infamyStatus.forEach(function(status) {
+		no5 = (no5 || status);
+	});
+
+	infamyStatus.push(no5);
+
+	return infamyStatus;
 }
 
-InfamyCalculator.fn.decode = function(hash) {
-
-}
 
 // ================================================================
-// = Chain of Responsibility
+// = Storage
+// ================================================================
+
+InfamyCalculator.fn.save = function(storage) {
+	return storage;
+}
+
+InfamyCalculator.fn.load = function(storage) {
+
+}
+
+
+// ================================================================
+// = Call
 // ================================================================
 
 InfamyCalculator.fn.callParentUpdate = function(calledByTier) {

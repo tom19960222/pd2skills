@@ -95,16 +95,6 @@
 	height:128px;
 	margin:0 auto;
 	background-image:url('icon/infamy.png');
-	background-position-x:0;
-	background-position-y:0;
-}
-
-.unlocked .infamy-icon {
-	background-position-y:-128px;
-}
-
-.owned .infamy-icon {
-	background-position-y:-256px;
 }
 
 
