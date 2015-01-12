@@ -32,7 +32,7 @@ HashStorage.fn.save = function() {
 
 	}, this);
 
-	var hash = 'skill/' + datas.join(':');
+	var hash = datas.join(':');
 	this._location.path(hash);
 }
 
@@ -42,7 +42,7 @@ HashStorage.fn.save = function() {
 HashStorage.fn.load = function() {
 	
 	this.clear();
-	var hash = this._location.path().replace('/skill/', '');
+	var hash = this._location.path().replace(/^(.)*\//g, '');
 
 	// 分割字串
 	var parts = hash.split(':');
