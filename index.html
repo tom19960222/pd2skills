@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="style/skills.css">
 		<link rel="stylesheet" href="style/perks.css">
 		<link rel="stylesheet" href="style/infamy.css">
+		<link rel="stylesheet" href="style/infamy_sprite.css">
 
 		<link rel="stylesheet" href="style/aside.css">
 		<link rel="stylesheet" href="style/decks.css">
@@ -27,7 +28,9 @@
 			
 			<div class="header">
 				<div class="header-logo-block">
-					<img class="header-logo" src="image/logo.png" alt="logo">
+					<a href=".">
+						<img class="header-logo" src="image/logo.png" alt="logo">
+					</a>
 				</div>
 				
 				<ul class="nav cant_select" ng-init="tab=1">
@@ -59,17 +62,27 @@
 			
 		</div>
 		
+		<script src="class/Pointer.class.js"></script>
+		<script src="class/Composite.class.js"></script>
+		<script src="class/Storage.class.js"></script>
+		
+		<script src="class/SkillTreePrototype.class.js"></script>
 		<script src="class/Skill.class.js"></script>
 		<script src="class/Tier.class.js"></script>
 		<script src="class/Tree.class.js"></script>
 		<script src="class/SkillsCalculator.class.js"></script>
 
+		<script src="class/PerkDecksPrototype.class.js"></script>
 		<script src="class/Deck.class.js"></script>
 		<script src="class/Perk.class.js"></script>
 		<script src="class/PerkDecksCalculator.class.js"></script>
 		
+		<script src="class/InfamyPrototype.class.js"></script>
+		<script src="class/Infamy.class.js"></script>
+		<script src="class/InfamyTier.class.js"></script>
+		<script src="class/InfamyCalculator.class.js"></script>
+		
 		<script src="class/HashStorage.class.js"></script>
-		<script src="class/InfamyStorage.class.js"></script>
 		
 		<script src="main.js"></script>
 		<script src="filter.js"></script>

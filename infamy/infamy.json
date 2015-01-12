@@ -1,0 +1,71 @@
+{
+	"name"   : "Infamy",
+	"title"  : "惡名",
+	"text"   : "__TEXT__",
+	"tiers"  :
+	[
+		{
+			"tier" : 0,
+			"unlockRequire" : 0,
+			"talents" : [
+				{
+					"name"    : "Unlocking the Infamy Tree",
+					"title"   : "解鎖惡名樹",
+					"text"    : "As a new arrival to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.",
+					"bonuses" :
+					[
+						"稀有物品掉落機率由[0.7%]增加至[1.4%]。",
+						"獲得的經驗值增加[5%]。",
+						"學習技能所需花費減少[25%]。"
+					]
+				}
+			]
+		},
+		{
+			"tier" : 1,
+			"unlockRequire" : 1,
+			"talents" : [
+				{
+					"name"    : "Set of the Corrupted",
+					"title"   : "Tier 01: Set of the Corrupted",
+					"text"    : "Known to cause moral chaos and sway even the most devoted lawman.",
+					"bonuses" :
+					[
+						"黑手(Mastermind) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
+						"獲得的經驗值增加[5%]。"
+					]
+				},
+				{
+					"name"    : "The Slaughterhouse set",
+					"title"   : "Tier 01: The Slaughterhouse set",
+					"text"    : "Used in crimes that requires the Enforcer to get his hands dirty.",
+					"bonuses" :
+					[
+						"暴徒(Enforcer) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
+						"獲得的經驗值增加[5%]。"
+					]
+				},
+				{
+					"name"    : "Set of the Ingenious",
+					"title"   : "Tier 01: Set of the Ingenious",
+					"text"    : "Cold, calculating and a master of foced disappearances, dead or alive.",
+					"bonuses" :
+					[
+						"技師(Technician) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
+						"獲得的經驗值增加[5%]。"
+					]
+				},
+				{
+					"name"    : "The Assassin set",
+					"title"   : "Tier 01: The Assassin set",
+					"text"    : "Modern assassin that carries out death sentences - for the right price.",
+					"bonuses" :
+					[
+						"幽靈(Ghost) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
+						"獲得的經驗值增加[5%]。"
+					]
+				}
+			]
+		}
+	]
+}

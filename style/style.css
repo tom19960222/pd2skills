@@ -57,9 +57,14 @@ ul, li {
 
 .contain {
 	display:block;
-	overflow: auto;
 	width:100%;
 	min-height:600px;
+}
+
+.contain:after {
+	content: '';
+	display: block;
+	clear: both;
 }
 
 .main {

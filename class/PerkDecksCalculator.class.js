@@ -4,14 +4,14 @@
 function PerkDecksCalculator(arg) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof PerkDecksCalculator) return new PerkDecksCalculator(arg);
-	arg = arg || {}
 
-	this.perks = [];
+	this.childList = [];
+
 	this.init(arg);
-
 	this.equipped = -1;
 }
 
+PerkDecksCalculator.prototype = Object.create(PerkDecksPrototype.prototype);
 PerkDecksCalculator.fn = PerkDecksCalculator.prototype;
 
 
@@ -20,20 +20,16 @@ PerkDecksCalculator.fn = PerkDecksCalculator.prototype;
 // ================================================================
 
 PerkDecksCalculator.fn.init = function(arg) {
-	this.perks = this.initPecks(arg);
+	if (typeof arg === "undefined") return;
+
+	this.addChilds(arg);
 }
 
-PerkDecksCalculator.fn.initPecks = function(perks) {
-	if ( ! (perks instanceof Array)) return [];
-	
-	var self = this;
+PerkDecksCalculator.fn.initChild = function(arg) {
+	var newInstance = new Perk(this);
+	newInstance.init(arg);
 
-	return perks.map(function(decks) {
-		var perkObject = new Perk(self);
-		perkObject.init(decks);
-
-		return perkObject;
-	});
+	return newInstance;
 }
 
 
@@ -42,27 +38,20 @@ PerkDecksCalculator.fn.initPecks = function(perks) {
 // ================================================================
 
 PerkDecksCalculator.fn.updateStatus = function() {
-
-	var perkIndex = -1;
-	for (var i = 0; i < this.perks.length; i++) {
-		if (this.perks[i].isset() === true) {
-			perkIndex = i;
-			break;
-		}
-	}
-
-	this.equipped = perkIndex;
+	this.loopChild(function(perk, index) {
+		if (perk.isset()) this.equipped = index;
+	}, this);
 }
 
 PerkDecksCalculator.fn.getEquippedPerk = function() {
 	if (this.equipped == -1) return null;
-	if (typeof this.perks[this.equipped] === "undefined") return null;
+	if (typeof this.childList[this.equipped] === "undefined") return null;
 	
-	return this.perks[this.equipped];
+	return this.childList[this.equipped];
 }
 
 PerkDecksCalculator.fn.clear = function() {
-	this.perks.forEach(function(perk) {
+	this.loopChild(function(perk) {
 		perk.clear();
 		perk.unset();
 	});
@@ -70,11 +59,63 @@ PerkDecksCalculator.fn.clear = function() {
 
 
 // ================================================================
+// = Storage
+// ================================================================
+
+PerkDecksCalculator.fn.save = function(storage) {
+	
+	var header = 'p';
+	var string = '';
+
+	var perk = this.getEquippedPerk();
+
+	if (perk) {
+		var perkCode = perk.code.toUpperCase();
+		var perkRank = perk.getRank();
+
+		string = perkCode + perkRank;
+	}
+
+	storage.set(header, string);
+}
+
+PerkDecksCalculator.fn.load = function(storage) {
+
+	var header = 'p';
+	if (storage.isset(header)) {
+
+		var string = storage.get(header);
+		var datas = string.match(/([a-zA-Z]\d*)/g);
+
+		var dataIndexList = {};
+		datas.forEach(function(data) {
+			var code = data.charAt(0);
+			var value = data.slice(1);
+
+			dataIndexList[code] = value;
+		});
+
+		this.loopChild(function(perk) {
+			var perkCode = perk.code.toUpperCase();
+			if (typeof dataIndexList[perkCode] === "undefined") return;
+
+			var data = dataIndexList[perkCode];
+
+			perk.set();
+			perk.setRank(data);
+		});
+	}
+
+	this.updateStatus();
+}
+
+// ================================================================
 // = 呼叫上層相關
 // ================================================================
 
 PerkDecksCalculator.fn.callParentSet = function(targetPerk) {
 	this.clear();
+
 	targetPerk.set();
 	this.updateStatus();
 }

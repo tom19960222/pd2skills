@@ -1,0 +1,178 @@
+{
+	"name"   : "__NAME__",
+	"title"  : "__TITLE__",
+	"text"   :
+	[
+		"__TEXT__"
+	],
+	"tiers"  :
+	[
+		{
+			"tier" : 0,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"text"  : "__TEXT__"
+				}
+			]
+		},
+		{
+			"tier" : 1,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				}
+			]
+		},
+		{
+			"tier" : 2,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				}
+			]
+		},
+		{
+			"tier" : 3,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				}
+			]
+		},
+		{
+			"tier" : 4,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				}
+			]
+		},
+		{
+			"tier" : 5,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				}
+			]
+		},
+		{
+			"tier" : 6,
+			"skills" : [
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				},
+				{
+					"name"  : "__NAME__",
+					"title" : "__TITLE__",
+					"basic" : "__BASIC__",
+					"ace"   : "__ACE__",
+					"text"  : "__TEXT__"
+				}
+			]
+		}
+	]
+}

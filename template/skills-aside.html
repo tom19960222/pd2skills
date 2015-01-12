@@ -9,10 +9,10 @@
 		
 		<div class="info-block alert">
 			<p ng-show="display.tier.unlockStatus === false">
-				你必須再花費 <span>{{ display.tier.unlockRequire }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
+				你必須再花費 <span>{{ display.tier.toUnlock }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
 			</p>
 			<p ng-show="display.skill.unlockRequire === false">
-				必須要擁有前置技能 : <span>{{ display.skill.require.skill.title }}</span> (<span>{{ display.skill.require.skill.name }}</span>)
+				必須要擁有前置技能 : <span>{{ display.skill.require.getTarget().title }}</span> (<span>{{ display.skill.require.getTarget().name }}</span>)
 			</p>
 		</div>
 		

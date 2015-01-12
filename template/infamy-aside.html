@@ -1,8 +1,30 @@
 <div class="info-contain border">
 	
-	<div class="info-main" ng-if="display.infamy">
+	<div class="info-main" ng-if="display.talent">
 
+		<div class="info-title">
+			<h1 class="title1">{{ display.talent.title }}</h1>
+			<h2 class="title2">{{ display.talent.name }}</h2>
+		</div>
 		
+		<div class="info-block alert">
+			<p ng-show="display.talent._parent.unlockStatus === false">
+				你必須解鎖前一階層
+			</p>
+		</div>
+		
+		<div class="info-block">
+			<p ng-bind-html="display.talent.text | skillInfo"></p>
+		</div>
+		
+		<div class="info-block-contain">
+			<p>獎勵: </p>
+			<p 
+				ng-repeat="bonus in display.talent.bonuses"
+				ng-bind-html="bonus | skillInfo"
+			>
+			</p>
+		</div>
 	
 	</div><!-- info-main -->
 	

@@ -1,0 +1,55 @@
+{
+	"code"	: "__CODE__",
+	"name"	: "__NAME__",
+	"title"	: "__TITLE__",
+	"decks"	:
+	[
+		{
+			"deck"	: 1,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT1__",
+				"__TEXT2__",
+				"__TEXT3__"
+			]
+		},
+		{
+			"deck"	: 3,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT__"
+			]
+		},
+		{
+			"deck"	: 5,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT__"
+			]
+		},
+		{
+			"deck"	: 7,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT__"
+			]
+		},
+		{
+			"deck"	: 9,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT__"
+			]
+		}
+	]
+}

@@ -1,10 +1,7 @@
 app.controller('skillsController', [
 	'$scope',
-	'$http',
-	'hashStorage',
-	'infamyStorage',
 
-function($scope, $http, hashStorage, infamyStorage) {
+function($scope) {
 
 	// ================================================================
 	// = Onload
@@ -12,84 +9,13 @@ function($scope, $http, hashStorage, infamyStorage) {
 
 	$scope.set('display', {});
 
-	if ( ! ($scope.skillsCalculator instanceof SkillsCalculator)) {
-		init('skills/config.json');
-	}
-
-
-	// ================================================================
-	// = Init
-	// ================================================================
-	
-	function init(file) {
-
-		$scope.set('skillsCalculator', new SkillsCalculator);
-		loadFiles(file);
-
-		function loadFiles(file) {
-			
-			$http.get(file).success(function(config) {
-				
-				var files	= config.files;
-				
-				// 複製陣列
-				var temp	= files.slice(0);
-				var counter	= files.length;
-				
-				files.forEach(function(file, index) {
-					$http.get(file).success(function(data) {
-						temp[index] = data;
-						
-						counter--;
-						if (counter == 0) afterLoad(temp, config);
-					});
-				});
-
-			}); // end $http get
-		
-		}
-
-		function afterLoad(trees, config) {
-			// 初始階級設定資料
-			initTierConfig(trees, config);
-
-			// 建構計算機物件
-			var newInstance = new SkillsCalculator(trees);
-			
-			// 載入惡名
-			hashStorage.setupInfamy(infamyStorage.infamyStatus);
-			infamyStorage.update(newInstance);
-			
-			// 載入Hash技能資料
-			hashStorage.setupSkillsCalculator(newInstance);
-			newInstance.updateStatus();
-
-			// 存入命名空間
-			$scope.set('skillsCalculator', newInstance);
-		}
-
-		/**
-		 * 設定階層訊息
-		 */
-		function initTierConfig(trees, treeConfig) {
-			trees.forEach(function(tree) {
-				tree.tiers.forEach(function(tier) {
-					var info = treeConfig.tierinfo[tier.tier];
-					for (var attr in info) {
-						tier[attr] = info[attr];
-					}
-				});
-			});
-		}
-	}
-
 
 	// ================================================================
 	// = 計算點數相關技能相關
 	// ================================================================
 
 	$scope.updateTreeStatus = function(tree) {
-		return tree.used;
+		return tree.usedPoint;
 	}
 	
 	$scope.getAvailable = function() {
@@ -98,18 +24,12 @@ function($scope, $http, hashStorage, infamyStorage) {
 
 	$scope.resetTree = function(tree) {
 		tree.unset();
-		hashStorage.setTreeData(tree);
-		hashStorage.updateUrl();
+		tree.save($scope.hashStorage);
 	}
 	
 	$scope.resetAll = function() {
-
-		$scope.skillsCalculator.trees.forEach(function(tree) {
-			tree.unset();
-			hashStorage.setTreeData(tree);
-		});
-		
-		hashStorage.updateUrl();
+		$scope.skillsCalculator.unset();
+		$scope.skillsCalculator.save($scope.hashStorage);
 	}
 
 	// ================================================================
@@ -124,7 +44,7 @@ function($scope, $http, hashStorage, infamyStorage) {
 	}
 
 	$scope.getLevel = function () {
-		return getLevel($scope.skillsCalculator.used);		
+		return getLevel($scope.skillsCalculator.usedPoint);		
 	}
 	
 	// ================================================================
@@ -132,30 +52,25 @@ function($scope, $http, hashStorage, infamyStorage) {
 	// ================================================================
 	
 	$scope.skillHover = function(skill, tier) {
-		
-		if (skill.unlockRequire === false) skill.require.skill.alert = true;
+		if (skill.unlockRequire === false) skill.require.getTarget().alert = true;
 		
 		setDisplaySkill(skill, tier);
-	};
+	}
 	
 	$scope.skillLeave = function(skill, tier) {
 		
-		if (skill.unlockRequire === false) skill.require.skill.alert = false;
+		if (skill.unlockRequire === false) skill.require.getTarget().alert = false;
 		
 	}
 	
 	$scope.skillClick = function(skill, tier, tree) {
 		skill.unlock();
-		
-		hashStorage.setTreeData(tree);
-		hashStorage.updateUrl();
+		tree.save($scope.hashStorage);
 	}
 	
 	$scope.skillRemove = function(skill, tier, tree) {
 		skill.unset();
-		
-		hashStorage.setTreeData(tree);
-		hashStorage.updateUrl();
+		tree.save($scope.hashStorage);
 	}
 	
 	$scope.skillUpdate = function(skill, tier, tree) {
@@ -239,15 +154,15 @@ function($scope, $http, hashStorage, infamyStorage) {
 	 */
 	function getProgressPercent(tree) {
 		
-		for (var i = 1; i < tree.tiers.length; i++) {
-			var tier = tree.tiers[i];
+		for (var i = 1; i < tree.childList.length; i++) {
+			var tier = tree.getChild(i);
 			
 			if (tier.unlockStatus == false) {
 				if (i == 1) return 0;
-				var basic = tree.tiers[i - 1].unlockPoint;
+				var basic = tree.getChild(i - 1).unlockPoint;
 				
-				var range = tier.tierUnlockPoint - basic;
-				var tierUsed = tree.used - basic;
+				var range = tier.unlockPoint - basic;
+				var tierUsed = tree.usedPoint - basic;
 				var tierProgress = Math.floor(tierUsed / range * 100 * 0.2);
 				var progress = (i - 2) * 20;
 				

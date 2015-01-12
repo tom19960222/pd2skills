@@ -5,10 +5,6 @@ app.factory("hashStorage", ["$location", function($location) {
 	return new HashStorage($location);
 }]);
 
-app.factory("infamyStorage", [function() {
-	return new InfamyStorage();
-}]);
-
 
 // ================================================================
 // = Main Block

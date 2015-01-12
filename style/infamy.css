@@ -11,7 +11,24 @@
 }
 
 
-.infamy-block {
+/**
+ * ================================================================
+ * = Infamy-Tier
+ * ================================================================
+ */
+.infamy-tier {
+	overflow: auto;
+	position: relative;
+	width: 100%;
+}
+
+/**
+ * ================================================================
+ * = Infamy-Talent
+ * ================================================================
+ */
+
+.infamy-talent {
 	box-sizing:border-box;
 	position:relative;
 	float:left;
@@ -23,14 +40,19 @@
 	cursor:pointer;
 }
 
-.infamy-block:hover {
+.infamy-talent:hover {
 	border-color:#fff;
+}
+
+.tier-single .infamy-talent {
+	float:none;
+	margin:0 auto;
 }
 
 
 /**
  * ================================================================
- * = Skill-Remove
+ * = Infamy-Remove
  * ================================================================
  */
 .infamy-remove {
@@ -73,16 +95,6 @@
 	height:128px;
 	margin:0 auto;
 	background-image:url('icon/infamy.png');
-	background-position-x:0;
-	background-position-y:0;
-}
-
-.unlocked .infamy-icon {
-	background-position-y:-128px;
-}
-
-.owned .infamy-icon {
-	background-position-y:-256px;
 }
 
 
@@ -106,7 +118,7 @@
 	height:14px;
 }
 
-.infamy-block:hover .text-locked {
+.infamy-talent:hover .text-locked {
 	display:block;
 }
 
