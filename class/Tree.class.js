@@ -82,10 +82,10 @@ Tree.fn.setInfamy = function(bool) {
 
 Tree.fn.save = function(storage) {
 
-	var data = [];
+	var datas = [];
 
-	var timer = 0;		
-	tree.loopChild(function(tier) {
+	var timer = 0;
+	this.loopChild(function(tier) {
 		
 		tier.loopChild(function(skill) {
 			
@@ -93,37 +93,33 @@ Tree.fn.save = function(storage) {
 				var code = timer + 97;
 				if (skill.ownAce) code -= 32;
 				
-				data.push(String.fromCharCode(code));
+				datas.push(String.fromCharCode(code));
 			}
 			
-			// 計數器加一
-			timer++;
+			++timer;
 		});
-		
 	}); // end forEach tiers
 	
-	// 取標頭
-	var header = this.name;
-	header = header.charAt(0);
-	header = header.toLowerCase();
+	// 儲存
+	var header = this.name.charAt(0).toLowerCase();
+	var string = datas.join('');
 
-	// 回傳
-	storage[header] = data;
-	return storage;
+	storage.set(header, string);
 }
 
 Tree.fn.load = function(storage) {
 
-	var header = tree.name.charAt(0).toLowerCase();
-	if (typeof storage[header] === "undefined") return;
+	var header = this.name.charAt(0).toLowerCase();
+	if ( ! storage.isset(header)) return;
 	
-	var data = storage[header];		
+	var string = storage.get(header);
+	var datas = string.split('');
+
 	// 字元轉Ascii碼
-	data = data.map(function(code) {
+	datas = datas.map(function(code) {
 		return code.charCodeAt(0);
 	});
 	
-
 	var timer = 0;
 	this.loopChild(function(tier) {
 		
@@ -132,11 +128,11 @@ Tree.fn.load = function(storage) {
 			var codeAce = timer + 65;
 			var codeBasic = codeAce + 32;
 			
-			if (data.indexOf(codeAce) >= 0) {
+			if (datas.indexOf(codeAce) >= 0) {
 				// 擁有 Ace
 				skill.ownAce   = true;
 				skill.ownBasic = true;
-			} else if (data.indexOf(codeBasic) >= 0) {
+			} else if (datas.indexOf(codeBasic) >= 0) {
 				// 擁有 Basic
 				skill.ownBasic = true;
 			}

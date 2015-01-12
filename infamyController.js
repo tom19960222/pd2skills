@@ -1,8 +1,7 @@
 app.controller('infamyController', [
 	'$scope',
-	'hashStorage',
 
-function($scope, hashStorage) {
+function($scope) {
 
 	// ================================================================
 	// = Onload
@@ -15,21 +14,16 @@ function($scope, hashStorage) {
 	// = Event
 	// ================================================================
 
-	$scope.infamyClick = function(infamy) {
-		infamy.set(true);
-		updateInfamyStatue();
+	$scope.infamyClick = function(talent) {
+		talent.set(true);
+		$scope.infamyCalculator.save($scope.hashStorage);
 	}
 
-	$scope.infamyRemove = function (infamy) {
-		infamy.set(false);
-		updateInfamyStatue();
+	$scope.infamyRemove = function (talent) {
+		talent.set(false);
+		$scope.infamyCalculator.save($scope.hashStorage);
 	}
-
-	function updateInfamyStatue() {
-		$scope.infamyCalculator.update($scope.skillsCalculator);
-		hashStorage.setInfamy(infamyStorage.infamyStatus);
-		hashStorage.updateUrl();
-	}
+	
 
 	// ================================================================
 	// = Event
@@ -40,14 +34,6 @@ function($scope, hashStorage) {
 	}
 	
 	$scope.infamyLeave = function(talent) {
-	}
-	
-	$scope.infamyClick = function(talent) {
-		talent.set(true);
-	}
-	
-	$scope.infamyRemove = function(talent) {
-		talent.set(false);
 	}
 
 
@@ -65,19 +51,4 @@ function($scope, hashStorage) {
 		$scope.display.talent = false;
 	}
 
-	// ================================================================
-	// = Icon
-	// ================================================================
-
-	$scope.infamyIconStyle = function(index) {
-		return getInfamyIconStyle(index);
-	}
-
-	function getInfamyIconStyle(index) {
-		var space = 128;
-		
-		var x = 0 - (128 + index * space);
-		return {'backgroundPositionX': x +'px'};
-	}
-	
 }]);

@@ -2,8 +2,7 @@
  * Infamy
  */
 function Infamy(parent) {
-	// 防止未經 new 建構類別
-	if ( ! this instanceof Infamy) return new Infamy();
+	if ( ! this instanceof Infamy) return new Infamy(parent);
 
 	this._parent = parent;
 

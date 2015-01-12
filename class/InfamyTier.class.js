@@ -2,8 +2,8 @@
  * Infamy
  */
 function InfamyTier(parent) {
-	// 防止未經 new 建構類別
-	if ( ! this instanceof InfamyTier) return new InfamyTier();
+	if ( ! this instanceof InfamyTier) return new InfamyTier(parent);
+	InfamyPrototype.call(this);
 
 	this._parent = parent;
 	this.childList = [];

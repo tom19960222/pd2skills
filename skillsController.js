@@ -24,15 +24,12 @@ function($scope) {
 
 	$scope.resetTree = function(tree) {
 		tree.unset();
-		$scope.hashStorage.setTreeData(tree);
-		$scope.hashStorage.updateUrl();
+		tree.save($scope.hashStorage);
 	}
 	
 	$scope.resetAll = function() {
-
 		$scope.skillsCalculator.unset();
-	
-		$scope.hashStorage.updateUrl();
+		$scope.skillsCalculator.save($scope.hashStorage);
 	}
 
 	// ================================================================
@@ -68,16 +65,12 @@ function($scope) {
 	
 	$scope.skillClick = function(skill, tier, tree) {
 		skill.unlock();
-		
-		$scope.hashStorage.setTreeData(tree);
-		$scope.hashStorage.updateUrl();
+		tree.save($scope.hashStorage);
 	}
 	
 	$scope.skillRemove = function(skill, tier, tree) {
 		skill.unset();
-		
-		$scope.hashStorage.setTreeData(tree);
-		$scope.hashStorage.updateUrl();
+		tree.save($scope.hashStorage);
 	}
 	
 	$scope.skillUpdate = function(skill, tier, tree) {

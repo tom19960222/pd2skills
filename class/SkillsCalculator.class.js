@@ -174,7 +174,10 @@ SkillsCalculator.fn.load = function(storage) {
 	this.loopChild(function(child) {
 		child.load(storage);
 	});
+
+	this.updateStatus();
 }
+
 
 // ================================================================
 // = 責任鍊 > 更新狀態

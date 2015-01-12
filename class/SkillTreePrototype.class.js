@@ -1,8 +1,9 @@
 /**
- * Infamy
+ * SkillTree Prototype
  */
-function SkillTreePrototype(parent) {
-	throw Exception("此為抽象類別");
+function SkillTreePrototype() {
+	if ( ! this instanceof SkillTreePrototype) return new SkillTreePrototype;
+	Composite.call(this);
 }
 
 SkillTreePrototype.prototype = Object.create(Composite.prototype);

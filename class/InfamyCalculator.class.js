@@ -4,9 +4,10 @@
 function InfamyCalculator(arg) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof InfamyCalculator) return new InfamyCalculator(arg);
-
-	this.childList = [];
+	InfamyPrototype.call(this);
 	
+	this._skillsCalculator = null;
+
 	this.totalPoint	= 5;
 	this.usedPoint	= 0;
 
@@ -36,7 +37,7 @@ InfamyCalculator.fn.initChild = function(arg) {
 
 
 // ================================================================
-// = Methods
+// = Update
 // ================================================================
 
 InfamyCalculator.fn.updateStatus = function() {
@@ -44,6 +45,8 @@ InfamyCalculator.fn.updateStatus = function() {
 	this.usedPoint = this.callChildsUpdateUsedPoint();
 	// 更新技能狀態
 	this.callChildsUpdateStatus(this.getAvailablePoint());
+	// 更新技能計算機
+	this.updateSkillsCalculator();
 }
 
 /**
@@ -55,8 +58,20 @@ InfamyCalculator.fn.getAvailablePoint = function() {
 
 
 // ================================================================
-// = Methods
+// = SkillsCalculator
 // ================================================================
+
+InfamyCalculator.fn.setSkillsCalculator = function(skillsCalculator) {
+	if ( ! (skillsCalculator instanceof SkillsCalculator)) return;
+	this._skillsCalculator = skillsCalculator;
+}
+
+InfamyCalculator.fn.updateSkillsCalculator = function() {
+	if ( ! this._skillsCalculator) return;
+
+	var infamyStatus = this.getInfamyStatus();
+	this._skillsCalculator.setInfamy(infamyStatus);
+}
 
 InfamyCalculator.fn.getInfamyStatus = function() {
 	
@@ -81,11 +96,57 @@ InfamyCalculator.fn.getInfamyStatus = function() {
 // ================================================================
 
 InfamyCalculator.fn.save = function(storage) {
-	return storage;
+
+	var datas = [];
+	
+	var timer = 0;
+	this.loopChild(function(tier) {
+
+		tier.loopChild(function(infamy) {
+
+			if (infamy.owned === true) {
+				var code = timer + 97;
+				datas.push(String.fromCharCode(code));
+			}
+
+			++timer;
+		});
+	});
+	
+	// 儲存
+	var header = 'i';
+	var string = datas.join('');
+
+	storage.set(header, string);
 }
 
 InfamyCalculator.fn.load = function(storage) {
 
+	var header = 'i';
+	if (storage.isset(header)) {
+	
+		var string = storage.get(header);
+		var datas = string.split('');
+
+		// 字元轉Ascii碼
+		datas = datas.map(function(code) {
+			return code.charCodeAt(0);
+		});
+		
+		var timer = 0;
+		this.loopChild(function(tier) {
+
+			tier.loopChild(function(infamy) {
+
+				var code = timer + 97;
+				if (datas.indexOf(code) >= 0) infamy.owned = true;
+
+				++timer;
+			});
+		});
+	}
+
+	this.updateStatus();
 }
 
 

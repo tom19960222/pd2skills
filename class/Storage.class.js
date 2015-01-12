@@ -31,7 +31,7 @@ Storage.fn.count = function() {
 }
 
 Storage.fn.isset = function(key) {
-	return (typeof this._container[key] === "undefined");
+	return ( ! (typeof this._container[key] === "undefined"));
 }
 
 Storage.fn.unset = function(key) {

@@ -1,8 +1,9 @@
 /**
- * Infamy
+ * Infamy Prototype
  */
-function InfamyPrototype(parent) {
-	throw "此為抽象類別";
+function InfamyPrototype() {
+	if ( ! this instanceof InfamyPrototype) return new InfamyPrototype;
+	Composite.call(this);
 }
 
 InfamyPrototype.prototype = Object.create(Composite.prototype);

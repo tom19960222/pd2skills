@@ -2,7 +2,8 @@
  * Composite
  */
 function Composite() {
-	throw "此為抽象類別";
+	if ( ! this instanceof Composite) return new Composite;
+	this.childList = [];
 }
 
 Composite.fn = Composite.prototype;
@@ -10,8 +11,6 @@ Composite.fn = Composite.prototype;
 // ================================================================
 // = Methods
 // ================================================================
-
-Composite.fn.childList = [];
 
 Composite.fn.addChild = function(element) {
 	this.childList.push(element);

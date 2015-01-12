@@ -5,7 +5,7 @@ function HashStorage(location) {
 	if ( ! this instanceof HashStorage) return new HashStorage(location);
 	Storage.call(this);
 
-	this.location = location;
+	this._location = location;
 
 	this.load();
 }
@@ -25,19 +25,15 @@ HashStorage.fn.save = function() {
 
 	var datas = [];
 
-	Object.keys(this._container).forEach(function(key) {
+	Object.keys(this._container).forEach(function(header) {
 
-		var data = this.get(key);
-
-		if ( ! (data instanceof Array)) return;
-		if (data.length <= 0) return;
-
-		datas.push(data);	
+		var data = this.get(header);
+		if (data) datas.push(header + data);
 
 	}, this);
 
 	var hash = 'skill/' + datas.join(':');
-	this.location.path(hash);
+	this._location.path(hash);
 }
 
 /**
@@ -46,22 +42,32 @@ HashStorage.fn.save = function() {
 HashStorage.fn.load = function() {
 	
 	this.clear();
-
-	var hash = this.location.path().replace('/skill/', '');
+	var hash = this._location.path().replace('/skill/', '');
 
 	// 分割字串
 	var parts = hash.split(':');
-	
-	// 分析字串
 	parts.forEach(function(part) {
 		if (part == '') return;
 		
-		// 分割字元
-		data = part.match(/([a-zA-Z]\d*)/g);
+		var header = part.charAt(0);
+		var data = part.slice(1);
 
-		// 取標頭
-		var header = data.shift();
+		this.$set(header, data);
 
-		this.set(header, data);
-	});
+	}, this);
+}
+
+// ================================================================
+// = Set & Get
+// ================================================================
+
+HashStorage.fn.$set = HashStorage.fn.set;
+HashStorage.fn.set = function(key, value) {
+	this.$set(key, value);
+	this.save();
+}
+
+HashStorage.fn.$get = HashStorage.fn.get;
+HashStorage.fn.get = function(key) {
+	return this.$get(key);
 }

@@ -3,9 +3,8 @@ app.controller('mainController', [
 	'$q',
 	'$http',
 	'hashStorage',
-	'infamyStorage',
 
-function($scope, $q, $http, hashStorage, infamyStorage) {
+function($scope, $q, $http, hashStorage) {
 	
 	// ================================================================
 	// = Space
@@ -81,23 +80,15 @@ function($scope, $q, $http, hashStorage, infamyStorage) {
 	));
 
 	$q.all(promises).then(function(data) {
-		if (0) {
-		// Load Skills
-		hashStorage.setupSkillsCalculator($scope.skillsCalculator);
-		
-		// Load Perks
-		hashStorage.setupPerkDeckCalculator($scope.perkDecksCalculator);
+		$scope.infamyCalculator.setSkillsCalculator($scope.skillsCalculator);
 
-		// Load Infamys
-		hashStorage.setupInfamy(infamyStorage.infamyStatus);
+		$scope.skillsCalculator.load($scope.hashStorage);
+		$scope.perkDecksCalculator.load($scope.hashStorage);
+		$scope.infamyCalculator.load($scope.hashStorage);
 
-		// Renew Skills
-		infamyStorage.update($scope.skillsCalculator);
-		}
-		$scope.skillsCalculator.updateStatus();
-		$scope.infamyCalculator.updateStatus();
-
-		console.log($scope.skillsCalculator);
+		$scope.skillsCalculator.save($scope.hashStorage);
+		$scope.perkDecksCalculator.save($scope.hashStorage);
+		$scope.infamyCalculator.save($scope.hashStorage);
 	});
 
 

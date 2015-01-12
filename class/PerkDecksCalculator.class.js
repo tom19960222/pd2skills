@@ -59,6 +59,53 @@ PerkDecksCalculator.fn.clear = function() {
 
 
 // ================================================================
+// = Storage
+// ================================================================
+
+PerkDecksCalculator.fn.save = function(storage) {
+	var perk = this.getEquippedPerk();
+	if ( ! perk) return;
+
+	var perkCode = perk.code.toUpperCase();
+	var perkRank = perk.getRank();
+
+	var header = 'p';
+	var string = perkCode + perkRank;
+
+	storage.set(header, string);
+}
+
+PerkDecksCalculator.fn.load = function(storage) {
+
+	var header = 'p';
+	if (storage.isset(header)) {
+
+		var string = storage.get(header);
+		var datas = string.match(/([a-zA-Z]\d*)/g);
+
+		var dataIndexList = {};
+		datas.forEach(function(data) {
+			var code = data.charAt(0);
+			var value = data.slice(1);
+
+			dataIndexList[code] = value;
+		});
+
+		this.loopChild(function(perk) {
+			var perkCode = perk.code.toUpperCase();
+			if (typeof dataIndexList[perkCode] === "undefined") return;
+
+			var data = dataIndexList[perkCode];
+
+			perk.set();
+			perk.setRank(data);
+		});
+	}
+
+	this.updateStatus();
+}
+
+// ================================================================
 // = 呼叫上層相關
 // ================================================================
 

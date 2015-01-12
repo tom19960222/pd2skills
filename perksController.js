@@ -16,8 +16,7 @@ function($scope) {
 
 	$scope.deckClick = function(deck) {
 		deck.choice();
-		$scope.hashStorage.setPerkDeckCalculatorData($scope.perkDecksCalculator);
-		$scope.hashStorage.updateUrl();
+		$scope.perkDecksCalculator.save($scope.hashStorage);
 	}
 
 	$scope.deckHover = function(deck) {
