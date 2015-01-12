@@ -63,14 +63,18 @@ PerkDecksCalculator.fn.clear = function() {
 // ================================================================
 
 PerkDecksCalculator.fn.save = function(storage) {
-	var perk = this.getEquippedPerk();
-	if ( ! perk) return;
-
-	var perkCode = perk.code.toUpperCase();
-	var perkRank = perk.getRank();
-
+	
 	var header = 'p';
-	var string = perkCode + perkRank;
+	var string = '';
+
+	var perk = this.getEquippedPerk();
+
+	if (perk) {
+		var perkCode = perk.code.toUpperCase();
+		var perkRank = perk.getRank();
+
+		string = perkCode + perkRank;
+	}
 
 	storage.set(header, string);
 }

@@ -175,7 +175,7 @@ SkillsCalculator.fn.load = function(storage) {
 		child.load(storage);
 	});
 
-	this.updateStatus();
+	this.updateStatus(true);
 }
 
 
