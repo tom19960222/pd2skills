@@ -80,12 +80,14 @@ function($scope, $q, $http, hashStorage) {
 	));
 
 	$q.all(promises).then(function(data) {
+		
 		$scope.infamyCalculator.setSkillsCalculator($scope.skillsCalculator);
 		$scope.infamyCalculator.load($scope.hashStorage);
 		
 		$scope.skillsCalculator.load($scope.hashStorage);
 		$scope.perkDecksCalculator.load($scope.hashStorage);
 		
+		$scope.hashStorage.clear();
 
 		$scope.skillsCalculator.save($scope.hashStorage);
 		$scope.perkDecksCalculator.save($scope.hashStorage);

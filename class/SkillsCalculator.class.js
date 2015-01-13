@@ -248,8 +248,18 @@ SkillsCalculator.fn.load = function(storage) {
 /**
  * 向上呼叫 更新
  */
-SkillsCalculator.fn.callParentUpdate = function() {
-	this.updateStatus();
+SkillsCalculator.fn.callParentUpdate = function(caller) {
+
+	// 更新樹
+	caller.callChildsUpdateTree();
+	this.updateUsedPoint();
+
+	// 更新技能狀態
+	this.callChildUpdateSkill(this.getAvailablePoint());
+
+	// 更新技能花費
+	caller.callChildsUpdateCost();
+	this.updateCost();
 }
 
 /**

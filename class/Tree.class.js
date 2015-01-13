@@ -155,12 +155,7 @@ Tree.fn.load = function(storage) {
  * 向上呼叫 更新
  */
 Tree.fn.callParentUpdate = function() {
-	// 更新樹
-	this.callChildsUpdateTree();
-	this.callChildsUpdateCost();
-	
-	// 更新技能
-	this._parent.callParentUpdate();
+	this._parent.callParentUpdate(this);
 }
 
 /**

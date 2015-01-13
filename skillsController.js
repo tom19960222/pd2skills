@@ -36,6 +36,10 @@ function($scope) {
 	// = getPlayerLevel
 	// ================================================================
 
+	function getRank(infamyUsedPoint) {
+		return ['I', 'II', 'III', 'IV', 'V'][infamyUsedPoint - 1];
+	}
+
 	function getLevel(sp) {
 		var b	= Math.floor(sp / 12);
 		var d	= Math.min((sp - b * 12), 10);
@@ -44,7 +48,12 @@ function($scope) {
 	}
 
 	$scope.getLevel = function () {
-		return getLevel($scope.skillsCalculator.usedPoint);		
+		var rank = getRank($scope.infamyCalculator.usedPoint);
+		rank = (rank)? rank + '-' : '';
+
+		var level = getLevel($scope.skillsCalculator.usedPoint);
+
+		return rank + level;		
 	}
 
 
