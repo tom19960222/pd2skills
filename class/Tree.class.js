@@ -4,15 +4,17 @@
 function Tree(parent) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof Tree) return new Tree(parent);
-
+	SkillTreePrototype.call(this);
+	
 	this._parent = parent;
-	this.childList = [];
 
 	this.name	= "";
 	this.title	= "";
 	this.text	= "";
 
 	this.usedPoint	= 0;
+	this.cost = 0;
+
 	this.infamy = false;
 }
 
@@ -49,7 +51,7 @@ Tree.fn.initChild = function(arg) {
  * 更新階層並計算使用點數
  */
 Tree.fn.updateStatus = function() {
-	this.callChildsUpdateTree();
+	this.callParentUpdate();
 }
 
 /**
@@ -61,18 +63,18 @@ Tree.fn.unset = function(tree) {
 
 
 // ================================================================
-// = 惡名
+// = Infamy
 // ================================================================
 
 /**
  * 設定惡名
  */
 Tree.fn.setInfamy = function(bool) {
-	if (typeof bool !== "boolean") return false;
-	if (this.infamy !== bool) {
-		this.infamy = bool;
-		this.callParentUpdate();
-	};
+	if (typeof bool !== "boolean") return;
+	if (this.infamy === bool) return;
+
+	this.infamy = bool;
+	this.callParentUpdate();
 }
 
 
@@ -153,8 +155,7 @@ Tree.fn.load = function(storage) {
  * 向上呼叫 更新
  */
 Tree.fn.callParentUpdate = function() {
-	this.updateStatus();
-	this._parent.callParentUpdate();
+	this._parent.callParentUpdate(this);
 }
 
 /**
@@ -162,10 +163,21 @@ Tree.fn.callParentUpdate = function() {
  */
 Tree.fn.callChildsUpdateTree = function () {
 	var usedPoint = 0;
-	
 	this.loopChild(function(child) {
-		usedPoint += child.callChildsUpdateTree(usedPoint)
+		usedPoint += child.callChildsUpdateTree(usedPoint);
 	});
 
 	return this.usedPoint = usedPoint;
+}
+
+/**
+ * 向下呼叫 更新花費
+ */
+Tree.fn.callChildsUpdateCost = function () {
+	var cost = 0;
+	this.loopChild(function(child) {
+		cost += child.callChildsUpdateCost();
+	});
+
+	return this.cost = cost;
 }

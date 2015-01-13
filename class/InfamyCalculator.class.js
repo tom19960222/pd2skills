@@ -71,6 +71,7 @@ InfamyCalculator.fn.updateSkillsCalculator = function() {
 
 	var infamyStatus = this.getInfamyStatus();
 	this._skillsCalculator.setInfamy(infamyStatus);
+	this._skillsCalculator.costReduce(this.isCostReduce());
 }
 
 InfamyCalculator.fn.getInfamyStatus = function() {
@@ -90,6 +91,9 @@ InfamyCalculator.fn.getInfamyStatus = function() {
 	return infamyStatus;
 }
 
+InfamyCalculator.fn.isCostReduce = function() {
+	return this.getChild(0).getChild(0).owned;
+}
 
 // ================================================================
 // = Storage

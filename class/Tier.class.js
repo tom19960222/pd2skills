@@ -4,9 +4,9 @@
 function Tier(parent) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof Tier) return new Tier(parent);
-
+	SkillTreePrototype.call(this);
+	
 	this._parent = parent;
-	this.childList = [];
 
 	this.tier		= -1;
 	
@@ -83,6 +83,16 @@ Tier.fn.updateStatus = function(treeUsedPoint) {
 	return tierUsedPoint;
 }
 
+Tier.fn.getCost = function() {
+
+	var cost = 0;
+	this.loopChild(function(skill) {
+		if (skill.ownAce === true) cost += this.skillUnlockCostAce;
+		else if (skill.ownBasic === true) cost += this.skillUnlockCostBasic;
+	}, this);
+
+	return cost;
+}
 
 // ================================================================
 // = 責任鍊 > 更新狀態
@@ -93,4 +103,11 @@ Tier.fn.updateStatus = function(treeUsedPoint) {
  */
 Tier.fn.callChildsUpdateTree = function(treeUsedPoint) {
 	return this.updateStatus(treeUsedPoint);
+}
+
+/**
+ * 向下呼叫 更新花費
+ */
+Tier.fn.callChildsUpdateCost = function () {
+	return this.getCost();
 }
