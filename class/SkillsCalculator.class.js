@@ -4,12 +4,15 @@
 function SkillsCalculator(arg) {
 	// 防止未經 new 建構類別
 	if ( ! this instanceof SkillsCalculator) return new SkillsCalculator(arg);
+	SkillTreePrototype.call(this);
 
-	this.childList = [];
 	this.pointerList = {};
 
 	this.totalPoint	= 120;
 	this.usedPoint	= 0;
+
+	this.costReduced = true;
+	this.cost = 0;
 
 	this.init(arg);
 }
@@ -46,25 +49,38 @@ SkillsCalculator.fn.initChild = function(arg) {
 
 
 // ================================================================
-// = 更新狀態相關
+// = Skill Tree
 // ================================================================
 
 /**
  * 更新所有技能樹與技能
  */
 SkillsCalculator.fn.updateStatus = function(renew) {
-	// 判斷是否刷新
-	if (renew === true) {
-		// 更新所有技能樹
-		this.callChildsUpdateTree();
-	}
-	
-	// 更新已使用技能點
-	this.getUsedPoint(true);
-
+	// 更新狀態
+	this.updateUsedPoint(renew);
 	// 更新技能狀態
 	this.callChildUpdateSkill(this.getAvailablePoint());
+	// 更新技能花費
+	this.updateCost(renew);
 }
+
+/**
+ * 更新技能點
+ */
+SkillsCalculator.fn.updateUsedPoint = function(renew) {
+	// 判斷是否刷新
+	if (renew === true) {
+		this.callChildsUpdateTree();
+	}
+
+	var usedPoint = 0;
+	this.loopChild(function(tree) {
+		usedPoint += tree.usedPoint;
+	});
+
+	return this.usedPoint = usedPoint;
+}
+
 
 /**
  * 取得已使用技能點
@@ -73,13 +89,7 @@ SkillsCalculator.fn.getUsedPoint = function(renew) {
 
 	// 判斷是否刷新
 	if (renew === true) {
-		var countUsedPoint = 0;
-
-		this.loopChild(function(tree) {
-			countUsedPoint += tree.usedPoint;
-		});
-
-		this.usedPoint = countUsedPoint;	
+		this.updateUsedPoint();
 	}
 
 	return this.usedPoint;
@@ -100,6 +110,58 @@ SkillsCalculator.fn.unset = function() {
 		tree.unset();
 	});
 }
+
+
+// ================================================================
+// = Cost
+// ================================================================
+
+/**
+ * 更新花費
+ */
+SkillsCalculator.fn.updateCost = function(renew) {
+
+	// 判斷是否刷新
+	if (renew === true) {
+		this.callChildsUpdateCost();
+	}
+
+
+	var cost = 0;
+	this.loopChild(function(tree) {
+		cost += tree.cost;
+	});
+
+	cost = (this.costReduce())? Math.round(cost * 0.75) : cost; 
+
+	return this.cost = cost;
+}
+
+/**
+ * 取得花費
+ */
+SkillsCalculator.fn.getCost = function(renew) {
+
+	// 判斷是否刷新
+	if (renew === true) {
+		this.updateCost();
+	}
+
+	return this.cost;
+}
+
+/**
+ * 設定花費減免
+ */
+SkillsCalculator.fn.costReduce = function(status) {
+	if (typeof status === "boolean") {
+		this.costReduced = status;
+		this.updateCost(true);
+	}
+
+	return this.costReduced;
+}
+
 
 
 // ================================================================
@@ -196,6 +258,15 @@ SkillsCalculator.fn.callParentUpdate = function() {
 SkillsCalculator.fn.callChildsUpdateTree = function () {
 	this.loopChild(function(child) {
 		child.callChildsUpdateTree();
+	});
+}
+
+/**
+ * 向下呼叫 更新花費
+ */
+SkillsCalculator.fn.callChildsUpdateCost = function () {
+	this.loopChild(function(child) {
+		child.callChildsUpdateCost();
 	});
 }
 
