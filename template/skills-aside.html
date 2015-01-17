@@ -9,14 +9,14 @@
 		
 		<div class="info-block alert">
 			<p ng-show="display.tier.unlockStatus === false">
-				你必須再花費 <span>{{ display.tier.toUnlock }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
+				你必須再花費 <span>{{ display.tier.unlockNeeded }}</span> 點來解鎖第 <span>{{ display.tier.tier }}</span> 階技能
 			</p>
 			<p ng-show="display.skill.unlockRequire === false">
 				必須要擁有前置技能 : <span>{{ display.skill.require.getTarget().title }}</span> (<span>{{ display.skill.require.getTarget().name }}</span>)
 			</p>
 		</div>
 		
-		<div class="info-block" ng-show="display.tier.skillUnlockPointBasic > 0">
+		<div class="info-block" ng-show="display.tier.skillPointBasic > 0">
 			<p>
 				<span>基本: </span>
 				
@@ -25,17 +25,18 @@
 					ng-class="{alert : ! display.skill.unlockBasic}"
 					ng-hide="display.skill.ownBasic"
 				>
-					<span>{{ display.tier.skillUnlockPointBasic }} 點</span>
+					<span>{{ display.tier.skillPointBasic }} 點</span>
 					<span> / $</span> 
-					<span>{{ display.tier.skillUnlockCostBasic | number}}</span>
+					<span>{{ display.tier.skillCostBasic | number}}</span>
 				</span>
 				
 				<span class="info-strong" ng-show="display.skill.ownBasic">擁有</span>
 			</p>
-			<p ng-bind-html="display.skill.basic | skillInfo"></p>
+
+			<p ng-bind-html="display.skill.basic | asideText"></p>
 		</div>
 		
-		<div class="info-block" ng-show="display.tier.skillUnlockPointAce > 0">
+		<div class="info-block" ng-show="display.tier.skillPointAce > 0">
 			<p>
 				<span>王牌: </span>
 				
@@ -44,17 +45,23 @@
 					ng-class="{alert : ! display.skill.unlockAce}"
 					ng-hide="display.skill.ownAce"
 				>
-					<span>{{ display.tier.skillUnlockPointAce }} 點</span>
+					<span>{{ display.tier.skillPointAce }} 點</span>
 					<span> / $</span> 
-					<span>{{ display.tier.skillUnlockCostAce | number}}</span>
+					<span>{{ display.tier.skillCostAce | number}}</span>
 				</span>
 				
 				<span class="info-strong" ng-show="display.skill.ownAce">擁有</span>
 			</p>
-			<p ng-bind-html="display.skill.ace | skillInfo"></p>
+
+			<p ng-bind-html="display.skill.ace | asideText"></p>
 		</div>
 		
-		<div class="info-block-contain" ng-bind-html="display.skill.text | skillInfo"></div>
+		<div class="info-block-contain">
+			<p
+				ng-repeat="text in display.skill.text | toArray"
+				ng-bind-html="text | asideText"
+			></p>
+		</div>
 	
 	</div><!-- info-main -->
 	

@@ -1,28 +1,25 @@
 /**
  * 技能階層類別
  */
-function Tier(parent) {
+function Tier(parent, arg) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof Tier) return new Tier(parent);
-	SkillTreePrototype.call(this);
-	
-	this._parent = parent;
+	if ( ! this instanceof Tier) return new Tier(parent, arg);
+	SkillTreePrototype.call(this, parent);
 
-	this.tier		= -1;
-	
-	this.unlockRquire		= 0;
-	this.unlockRquireImfamy	= 0;
-	
-	this.skillUnlockPointBasic	= 0;
-	this.skillUnlockPointAce	= 0;
-	
-	this.skillUnlockCostBasic	= 0;
-	this.skillUnlockCostAce		= 0;
+	this.tier = -1;
 
-	
-	this.unlockPoint	= 0;
-	this.toUnlock		= 0;
+	this.unlockRequire		= 0;
+
+	this.skillPointBasic	= 0;
+	this.skillPointAce		= 0;
+
+	this.skillCostBasic		= 0;
+	this.skillCostAce		= 0;
+
+	this.unlockNeeded	= 0;
 	this.unlockStatus	= false;
+
+	this.init(arg);
 }
 
 Tier.prototype = Object.create(SkillTreePrototype.prototype);
@@ -34,25 +31,22 @@ Tier.fn = Tier.prototype;
 // ================================================================
 
 Tier.fn.init = function(arg) {
-	this.tier	= (typeof arg.tier === "number")? arg.tier : -1;	
-	
-	this.unlockRquire		= (typeof arg.unlockRquire		=== "number")? arg.unlockRquire : this.unlockRquire;
-	this.unlockRquireImfamy	= (typeof arg.unlockRquireImfamy	=== "number")? arg.unlockRquireImfamy : this.unlockRquireImfamy;
-	
-	this.skillUnlockPointBasic	= (typeof arg.skillUnlockPointBasic === "number")? arg.skillUnlockPointBasic : this.skillUnlockPointBasic;
-	this.skillUnlockPointAce	= (typeof arg.skillUnlockPointAce   === "number")? arg.skillUnlockPointAce : this.skillUnlockPointAce;
-	
-	this.skillUnlockCostBasic	= (typeof arg.skillUnlockCostBasic  === "number")? arg.skillUnlockCostBasic : this.skillUnlockCostBasic;
-	this.skillUnlockCostAce		= (typeof arg.skillUnlockCostAce    === "number")? arg.skillUnlockCostAce : this.skillUnlockCostAce;
+	if ( ! arg) return;
+
+	this.tier = (typeof arg.tier === "number")? arg.tier : this.tier;
 
 	if (typeof arg.skills !== "undefined") this.addChilds(arg.skills);
+	this.initProperty();
 }
 
 Tier.fn.initChild = function(arg) {
-	var newInstance = new Skill(this);
-	newInstance.init(arg);
+	return new Skill(this, arg);
+}
 
-	return newInstance;
+Tier.fn.initProperty = function() {
+	this.updateTierRequire();
+	this.updateSkillPoint();
+	this.updateSkillCost();
 }
 
 
@@ -61,48 +55,62 @@ Tier.fn.initChild = function(arg) {
 // ================================================================
 
 /**
- * 更新並計算消耗技能點
+ * 更新
  */
-Tier.fn.updateStatus = function(treeUsedPoint) {
-	// 更新解鎖狀態
-	this.unlockPoint = (this._parent.infamy)
-		? this.unlockRquireImfamy
-		: this.unlockRquire;
-	this.toUnlock = this.unlockPoint - treeUsedPoint;
-	this.unlockStatus = (this.toUnlock <= 0);
+Tier.fn.updateStatus = function(usedPointCount) {
 	
+	this.updateUnlockStatus(usedPointCount);
 	if ( ! this.unlockStatus) return 0;
 
-	// 計算該階層消耗技能點
-	var tierUsedPoint = 0;
-	this.loopChild(function(skill) {
-		if (skill.ownBasic === true) tierUsedPoint += this.skillUnlockPointBasic;
-		if (skill.ownAce === true) tierUsedPoint += this.skillUnlockPointAce;
-	}, this);
-
-	return tierUsedPoint;
+	return this.getSpendPoint();
 }
 
-Tier.fn.getCost = function() {
-
-	var cost = 0;
-	this.loopChild(function(skill) {
-		if (skill.ownAce === true) cost += this.skillUnlockCostAce;
-		else if (skill.ownBasic === true) cost += this.skillUnlockCostBasic;
-	}, this);
-
-	return cost;
+/**
+ * 更新解鎖狀態
+ */
+Tier.fn.updateUnlockStatus = function(usedPointCount) {
+	// 更新解鎖狀態
+	this.unlockNeeded = this.unlockRequire - usedPointCount;
+	this.unlockStatus = (this.unlockNeeded <= 0);
 }
+
+/**
+ * 回傳是否解鎖
+ */
+Tier.fn.isUnlocked = function() {
+	return this.unlockStatus;
+}
+
 
 // ================================================================
-// = 責任鍊 > 更新狀態
+// = 更新階層屬性
+// ================================================================
+
+Tier.fn.updateTierRequire = function() {
+	this.unlockRequire	= this.requestTierRequire();
+}
+
+Tier.fn.updateSkillPoint = function() {
+	this.skillPointBasic	= this.requestTierSkillPoint("basic");
+	this.skillPointAce		= this.requestTierSkillPoint("ace")
+}
+
+
+Tier.fn.updateSkillCost = function() {
+	this.skillCostBasic	= this.requestTierSkillCost("basic");
+	this.skillCostAce	= this.requestTierSkillCost("ace")
+}
+
+
+// ================================================================
+// = 呼叫 > 更新狀態
 // ================================================================
 
 /**
  * 向下呼叫 更新技能樹
  */
-Tier.fn.callChildsUpdateTree = function(treeUsedPoint) {
-	return this.updateStatus(treeUsedPoint);
+Tier.fn.callChildsUpdateTree = function(usedPointCount) {
+	return this.updateStatus(usedPointCount);
 }
 
 /**
@@ -110,4 +118,30 @@ Tier.fn.callChildsUpdateTree = function(treeUsedPoint) {
  */
 Tier.fn.callChildsUpdateCost = function () {
 	return this.getCost();
+}
+
+
+// ================================================================
+// = 請求 > 屬性
+// ================================================================
+
+/**
+ * 請求階層解鎖需求
+ */
+Tier.fn.requestTierRequire = function(tier, reduce) {
+	return this._parent.requestTierRequire(this.tier, reduce);
+}
+
+/**
+ * 請求階層技能點
+ */
+Tier.fn.requestTierSkillPoint = function(type, tier) {
+	return this._parent.requestTierSkillPoint(type, this.tier);
+}
+
+/**
+ * 請求階層技能費用
+ */
+Tier.fn.requestTierSkillCost = function(type, tier, reduce) {
+	return this._parent.requestTierSkillCost(type, this.tier, reduce);
 }

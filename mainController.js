@@ -30,12 +30,13 @@ function($scope, $q, $http, hashStorage) {
 	promises.push(getConfigFiles("skills/config.json",
 		
 		function(files, config) {
-
+			$scope.skillsCalculator = new SkillsCalculator(files, config.property);
+			/*
 			$scope.skillsCalculator = new SkillsCalculator(
 				(function setupTierConfig(trees, treeConfig) {
 					trees.forEach(function(tree) {
 						tree.tiers.forEach(function(tier) {
-							var info = treeConfig.tierinfo[tier.tier];
+							var info = treeConfig.property[tier.tier];
 							for (var attr in info) {
 								tier[attr] = info[attr];
 							}
@@ -45,6 +46,8 @@ function($scope, $q, $http, hashStorage) {
 					return trees;
 				})(files, config)
 			);
+			*/
+			console.log($scope.skillsCalculator);
 		}
 	));
 

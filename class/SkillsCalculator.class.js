@@ -1,20 +1,21 @@
 /**
  * 計算機類別
  */
-function SkillsCalculator(arg) {
+function SkillsCalculator(arg, tierDictionary) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof SkillsCalculator) return new SkillsCalculator(arg);
+	if ( ! this instanceof SkillsCalculator) return new SkillsCalculator(arg, tierDictionary);
 	SkillTreePrototype.call(this);
 
+	this._tierDictionary = null;
 	this.pointerList = {};
 
-	this.totalPoint	= 120;
-	this.usedPoint	= 0;
+	this.totalPoint = 120;
+	this.spendPoint = 0;
 
 	this.costReduced = true;
-	this.cost = 0;
+	this.spendCost = 0;
 
-	this.init(arg);
+	this.init(arg, tierDictionary);
 }
 
 SkillsCalculator.prototype = Object.create(SkillTreePrototype.prototype);
@@ -28,78 +29,66 @@ SkillsCalculator.fn = SkillsCalculator.prototype;
 /**
  * 初始化
  */
-SkillsCalculator.fn.init = function(arg) {
+SkillsCalculator.fn.init = function(arg, tierDictionary) {
 	if (typeof arg === "undefined") return;
+
+	this.initTierDictionary(tierDictionary);
 
 	this.addChilds(arg);
 	this.bulidPointerList();
 
-	this.updateStatus(true);
+	this.updateStatus();
 }
 
 /**
  * 初始化 Child
  */
 SkillsCalculator.fn.initChild = function(arg) {
-	var newInstance = new Tree(this);
-	newInstance.init(arg);
+	return new Tree(this, arg);
+}
 
-	return newInstance;
+/**
+ * 初始化 TierDictionary
+ */
+SkillsCalculator.fn.initTierDictionary = function(arg) {
+	this._tierDictionary = new TierDictionary(arg);
 }
 
 
 // ================================================================
-// = Skill Tree
+// = 設定
 // ================================================================
 
 /**
- * 更新所有技能樹與技能
+ * 設定惡名
  */
-SkillsCalculator.fn.updateStatus = function(renew) {
-	// 更新狀態
-	this.updateUsedPoint(renew);
-	// 更新技能狀態
-	this.callChildUpdateSkill(this.getAvailablePoint());
-	// 更新技能花費
-	this.updateCost(renew);
-}
-
-/**
- * 更新技能點
- */
-SkillsCalculator.fn.updateUsedPoint = function(renew) {
-	// 判斷是否刷新
-	if (renew === true) {
-		this.callChildsUpdateTree();
-	}
-
-	var usedPoint = 0;
-	this.loopChild(function(tree) {
-		usedPoint += tree.usedPoint;
+SkillsCalculator.fn.setInfamy = function(infamyStatus) {
+	this.loopChild(function(tree, index) {
+		tree.setInfamy(infamyStatus[index] || false);
 	});
-
-	return this.usedPoint = usedPoint;
 }
 
-
 /**
- * 取得已使用技能點
+ * 設定花費減免
  */
-SkillsCalculator.fn.getUsedPoint = function(renew) {
+SkillsCalculator.fn.costReduce = function(status) {
+	if (typeof status === "boolean") {
+		this.costReduced = status;
 
-	// 判斷是否刷新
-	if (renew === true) {
-		this.updateUsedPoint();
+		this.updateSkillCost();
+
+		this.updateTreeSpendCost();
+		this.updateSpendCost();
 	}
 
-	return this.usedPoint;
+	return this.costReduced;
 }
 
 /**
  * 取得可用技能點
  */
 SkillsCalculator.fn.getAvailablePoint = function() {
-	return this.totalPoint - this.usedPoint;
+	return this.totalPoint - this.spendPoint;
 }
 
 /**
@@ -113,68 +102,78 @@ SkillsCalculator.fn.unset = function() {
 
 
 // ================================================================
-// = Cost
+// = 更新
 // ================================================================
+
+/**
+ * 更新
+ */
+SkillsCalculator.fn.updateStatus = function() {
+	// 更新技能樹
+	this.updateTreeStatus();
+	this.updateSpendPoint();
+
+	// 更新技能
+	this.callChildUpdateSkill(this.getAvailablePoint());
+
+	// 更新花費
+	this.updateTreeSpendCost();
+	this.updateSpendCost();
+}
+
+/**
+ * 更新所有技能樹
+ */
+SkillsCalculator.fn.updateTreeStatus = function() {
+	this.loopChild(function(child) {
+		child.updateStatus();
+	});
+}
+
+/**
+ * 更新花費費用
+ */
+SkillsCalculator.fn.updateTreeSpendCost = function() {
+	this.loopChild(function(child) {
+		child.updateSpendCost();
+	});
+}
+
+
+// ================================================================
+// = 計算點數與費用
+// ================================================================
+
+/**
+ * 更新技能點
+ */
+SkillsCalculator.fn.updateSpendPoint = function() {
+	this.spendPoint = this.$getSpendPoint();
+}
 
 /**
  * 更新花費
  */
-SkillsCalculator.fn.updateCost = function(renew) {
+SkillsCalculator.fn.updateSpendCost = function(renew) {
+	this.spendCost = this.$getSpendCost();
+}
 
-	// 判斷是否刷新
-	if (renew === true) {
-		this.callChildsUpdateCost();
-	}
-
-
-	var cost = 0;
-	this.loopChild(function(tree) {
-		cost += tree.cost;
-	});
-
-	cost = (this.costReduce())? Math.round(cost * 0.75) : cost; 
-
-	return this.cost = cost;
+/**
+ * 取得技能點
+ */
+SkillsCalculator.fn.$getSpendPoint = SkillsCalculator.fn.getSpendPoint;
+SkillsCalculator.fn.getSpendPoint = function(renew) {
+	if (renew === true) this.updateSpendPoint();
+	return this.spendPoint;
 }
 
 /**
  * 取得花費
  */
-SkillsCalculator.fn.getCost = function(renew) {
-
-	// 判斷是否刷新
-	if (renew === true) {
-		this.updateCost();
-	}
-
-	return this.cost;
-}
-
-/**
- * 設定花費減免
- */
-SkillsCalculator.fn.costReduce = function(status) {
-	if (typeof status === "boolean") {
-		this.costReduced = status;
-		this.updateCost(true);
-	}
-
-	return this.costReduced;
-}
-
-
-
-// ================================================================
-// = Infamy
-// ================================================================
-
-/**
- * 設定惡名
- */
-SkillsCalculator.fn.setInfamy = function(infamyStatus) {
-	this.loopChild(function(tree, index) {
-		tree.setInfamy(infamyStatus[index] || false);
-	});
+SkillsCalculator.fn.$getSpendCost = SkillsCalculator.fn.getSpendCost;
+SkillsCalculator.fn.getSpendCost = function(renew) {
+	if (renew === true) this.updateSpendCost();
+	return this.spendCost;
 }
 
 
@@ -214,30 +213,7 @@ SkillsCalculator.fn.bulidPointerList = function() {
 		skillNameList.push(skillName);
 	}
 	
-	this.callChildsbulidPointerList(skillNameList);
-}
-
-
-// ================================================================
-// = Storage
-// ================================================================
-
-SkillsCalculator.fn.setStorage = function(storage) {
-	this._storage = storage;
-}
-
-SkillsCalculator.fn.save = function(storage) {
-	this.loopChild(function(child) {
-		child.save(storage);
-	});
-}
-
-SkillsCalculator.fn.load = function(storage) {
-	this.loopChild(function(child) {
-		child.load(storage);
-	});
-
-	this.updateStatus(true);
+	this.callChildBulidPointerList(skillNameList);
 }
 
 
@@ -248,18 +224,18 @@ SkillsCalculator.fn.load = function(storage) {
 /**
  * 向上呼叫 更新
  */
-SkillsCalculator.fn.callParentUpdate = function(caller) {
+SkillsCalculator.fn.callParentUpdate = function(tree) {
 
 	// 更新樹
-	caller.callChildsUpdateTree();
-	this.updateUsedPoint();
+	tree.updateStatus();
+	this.updateSpendPoint();
 
 	// 更新技能狀態
 	this.callChildUpdateSkill(this.getAvailablePoint());
 
 	// 更新技能花費
-	caller.callChildsUpdateCost();
-	this.updateCost();
+	tree.updateSpendCost();
+	this.updateSpendCost();
 }
 
 /**
@@ -296,4 +272,53 @@ SkillsCalculator.fn.callParentInitPointer = function(pointerName) {
  */
 SkillsCalculator.fn.callParentSetPointer = function(pointerName, skill) {
 	this.setPointer(pointerName, skill);
+}
+
+
+// ================================================================
+// = 請求 > 屬性
+// ================================================================
+
+/**
+ * 請求階層解鎖需求
+ */
+SkillsCalculator.fn.requestTierRequire = function(tier, reduce) {
+	return this._tierDictionary.requestTierRequire(tier, reduce);
+}
+
+/**
+ * 請求階層技能點
+ */
+SkillsCalculator.fn.requestTierSkillPoint = function(type, tier) {
+	return this._tierDictionary.requestTierSkillPoint(type, tier);
+}
+
+/**
+ * 請求階層技能費用
+ */
+SkillsCalculator.fn.requestTierSkillCost = function(type, tier, reduce) {
+	return this._tierDictionary.requestTierSkillCost(type, tier, this.costReduce());
+}
+
+
+// ================================================================
+// = Storage
+// ================================================================
+
+SkillsCalculator.fn.setStorage = function(storage) {
+	this._storage = storage;
+}
+
+SkillsCalculator.fn.save = function(storage) {
+	this.loopChild(function(child) {
+		child.save(storage);
+	});
+}
+
+SkillsCalculator.fn.load = function(storage) {
+	this.loopChild(function(child) {
+		child.load(storage);
+	});
+
+	this.updateStatus(true);
 }
