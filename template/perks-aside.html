@@ -7,13 +7,13 @@
 			<h2 class="title2">{{ display.deck.name }}</h2>
 		</div>
 		
-		<ul class="info-block-contain" ng-repeat="text in display.deck.text">
-			<li ng-bind-html="text | skillInfo"></li>
-		</ul>
+		<div class="info-block-contain">
+			<p
+				ng-repeat="text in display.deck.text | toArray"
+				ng-bind-html="text | asideText"
+			></p>
+		</div>
 		
-		
-		<div class="info-block" ng-bind-html="display.skill.text | skillInfo"></div>
-	
 	</div><!-- info-main -->
 	
 </div><!-- info-contain -->

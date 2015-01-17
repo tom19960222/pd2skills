@@ -1,11 +1,12 @@
 /**
  * 技能類別
  */
-function Skill(parent) {
+function Skill(parent, arg) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof Skill) return new Skill(parentTier);
+	if ( ! this instanceof Skill) return new Skill(parent, arg);
 
 	this._parent = parent;
+
 
 	this.name	= "[undefined]";
 	this.title	= "[undefined]";
@@ -23,6 +24,8 @@ function Skill(parent) {
 	this.unlockRequire	= false;
 	
 	this.alert	= false;
+
+	this.init(arg);
 }
 
 Skill.prototype = Object.create(SkillTreePrototype.prototype);
@@ -34,11 +37,13 @@ Skill.fn = Skill.prototype;
 // ================================================================
 
 Skill.fn.init = function(arg) {
+	if ( ! arg) return;
+	
 	this.name		= (typeof arg.name  === "string")? arg.name		: this.name;
 	this.title		= (typeof arg.title === "string")? arg.title	: this.title;
 	this.basic		= (typeof arg.basic === "string")? arg.basic	: this.basic;
 	this.ace		= (typeof arg.ace   === "string")? arg.ace		: this.ace;
-	this.text		= (typeof arg.text  === "string")? arg.text		: this.text;
+	this.text		= (typeof arg.text  !== "undefined")? arg.text		: this.text;
 
 	if (typeof arg.require !== "undefined") this.initRequire(arg.require);
 }
@@ -51,15 +56,52 @@ Skill.fn.initRequire = function(requireSkillName) {
 
 
 // ================================================================
+// = 設定
+// ================================================================
+
+Skill.fn.set = function(key, value) {
+	switch (String(key).toLowerCase()) {
+		case "basic" :
+			return this.ownBasic = Boolean(value);
+		case "ace" :
+			return this.ownAce = Boolean(value);
+		default :
+			throw "Undefined key : " + key;
+	}
+}
+
+Skill.fn.isOwned = function(key) {
+	switch (String(key).toLowerCase()) {
+		case "basic" :
+			return this.ownBasic;
+		case "ace" :
+			return this.ownAce;
+		default :
+			throw "Undefined key : " + key;
+	}
+}
+
+Skill.fn.isUnlocked = function(key) {
+	switch (String(key).toLowerCase()) {
+		case "basic" :
+			return this.unlockBasic;
+		case "ace" :
+			return this.unlockAce;
+		default :
+			throw "Undefined key : " + key;
+	}
+}
+
+// ================================================================
 // = 更新狀態相關
 // ================================================================
 
 /**
  * 更新技能狀態
  */
-Skill.fn.updateStatus = function(leftPoint) {
+Skill.fn.updateStatus = function(availablePoint) {
 	var needParentUpdate = this.updateRequireStatus();
-	this.updateUnlockStatus(leftPoint);
+	this.updateUnlockStatus(availablePoint);
 	this.updateOwnStatus();
 
 	if (needParentUpdate) this.callParentUpdate();
@@ -79,7 +121,7 @@ Skill.fn.updateRequireStatus = function() {
 	if ( ! (pointer instanceof Skill)) throw "目標為空";
 
 	// 判斷前置技能是否解鎖
-	var newStatus = (pointer.ownBasic === true);
+	var newStatus = (pointer.isOwned("basic"));
 	var isNeedUpdate = false;
 	
 	if ( ! newStatus) {
@@ -97,36 +139,64 @@ Skill.fn.updateRequireStatus = function() {
 /**
  * 更新技能解鎖狀態
  */
-Skill.fn.updateUnlockStatus = function(leftPoint) {
+Skill.fn.updateUnlockStatus = function(availablePoint) {
 	
 	// 若前置未解鎖則回傳
 	if (this.unlockRequire === false) return;
 
 	// 判斷階層是否解鎖
-	if (this._parent.unlockStatus === true) {
-		this.unlockBasic = (leftPoint >= this._parent.skillUnlockPointBasic || this.ownBasic);
-		this.unlockAce   = (this._parent.skillUnlockPointAce > 0)
-			? (this.ownBasic)
-				? (leftPoint >= this._parent.skillUnlockPointAce || this.ownAce)
-				: (leftPoint >= this._parent.skillUnlockPointBasic + this._parent.skillUnlockPointAce)
-			: false;
-	} else {
-		this.unlockBasic = false;
-		this.unlockAce   = false;
+	if ( ! this._parent.isUnlocked()) {
+		this.unlockBasic	= false;
+		this.unlockAce		= false;
+
+		return;
 	}
+	
+	this.unlockBasic = (availablePoint >= this._parent.skillPointBasic || this.isOwned("basic"));
+	this.unlockAce   = (this._parent.skillPointAce > 0)
+		? (this.isOwned("basic"))
+			? (availablePoint >= this._parent.skillPointAce || this.ownAce)
+			: (availablePoint >= this._parent.skillPointBasic + this._parent.skillPointAce)
+		: false;
 }
 
 /**
  * 更新技能擁有狀態
  */
 Skill.fn.updateOwnStatus = function() {
-	if (this.unlockBasic !== true) this.ownBasic = false;
-	if (this.unlockAce   !== true) this.ownAce   = false;
+	if (this.unlockBasic !== true) this.set("basic", false);
+	if (this.unlockAce   !== true) this.set("ace", false);
 }
 
 
 // ================================================================
-// = 解鎖重設技能
+// = 取得
+// ================================================================
+
+/**
+ * 取得花費技能點
+ */
+Skill.fn.getSpendPoint = function() {
+	var count = 0;
+	if (this.isOwned("basic")) count += this.requestTierSkillPoint("basic");
+	if (this.isOwned("ace")) count += this.requestTierSkillPoint("ace");
+
+	return count;
+}
+
+/**
+ * 取得花費費用
+ */
+Skill.fn.getSpendCost = function() {
+	var count = 0;
+	if (this.isOwned("basic")) count += this.requestTierSkillCost("basic");
+	if (this.isOwned("ace")) count += this.requestTierSkillCost("ace");
+
+	return count;
+}
+
+// ================================================================
+// = 事件
 // ================================================================
 
 /**
@@ -134,13 +204,13 @@ Skill.fn.updateOwnStatus = function() {
  */
 Skill.fn.unlock = function() {
 	
-	if (this.ownBasic !== true) {
+	if ( ! this.isOwned("basic")) {
 		
-		if (this.unlockBasic) this.ownBasic = true;
+		if (this.isUnlocked("basic")) this.set("basic", true);
 		
-	} else if (this.ownAce !== true) {
+	} else if ( ! this.isOwned("ace")) {
 		
-		if (this.unlockAce) this.ownAce = true;
+		if (this.isUnlocked("ace")) this.set("ace", true);
 		
 	}
 	
@@ -151,8 +221,8 @@ Skill.fn.unlock = function() {
  * 重設技能
  */
 Skill.fn.unset = function() {
-	this.ownBasic = false;
-	this.ownAce   = false;
+	this.set("basic", false);
+	this.set("ace", false);
 
 	this.callParentUpdate();
 }
@@ -160,7 +230,7 @@ Skill.fn.unset = function() {
 
 
 // ================================================================
-// = 責任鍊 > 更新狀態
+// = 呼叫 > 更新狀態
 // ================================================================
 
 /**
@@ -172,13 +242,13 @@ Skill.fn.callChildUpdateSkill = function (availablePoint) {
 
 
 // ================================================================
-// = 責任鍊 > 指標
+// = 呼叫 > 指標
 // ================================================================
 
 /**
  * 向下呼叫 建立指標清單
  */
-Skill.fn.callChildsbulidPointerList = function(skillNameList) {
+Skill.fn.callChildBulidPointerList = function(skillNameList) {
 	var skillName = this.name;
 
 	// 若在清單內, 則向上傳遞設定指標清單

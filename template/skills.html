@@ -63,14 +63,14 @@
 								</div>
 								<div class="skill-text text-ace-hover" ng-if="!($first && $last)">
 									<p>購買 王牌</p>
-									<p>花費 <span>{{ ::tier.skillUnlockPointAce }}</span> 點</p>
+									<p>花費 <span>{{ ::tier.skillPointAce }}</span> 點</p>
 								</div>
 								<div class="skill-text text-basic">
 									<p>擁有</p>
 								</div>
 								<div class="skill-text text-basic-hover">
 									<p>購買 基本</p>
-									<p>花費 <span>{{ ::tier.skillUnlockPointBasic }}</span> 點</p>
+									<p>花費 <span>{{ ::tier.skillPointBasic }}</span> 點</p>
 								</div>
 								<div class="skill-text text-locked">
 									<p>未解鎖</p>
@@ -89,7 +89,7 @@
 					
 					<div class="skills-tier-progress">
 						<span>{{ ::tier.tier }}</span>
-						<span>{{ tier.unlockPoint | padLeft:2 }}</span>
+						<span>{{ tier.unlockRequire | padLeft:2 }}</span>
 					</div>
 					
 				</div><!-- tier-->

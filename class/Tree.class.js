@@ -1,21 +1,21 @@
 /**
  * 技能樹類別
  */
-function Tree(parent) {
+function Tree(parent, arg) {
 	// 防止未經 new 建構類別
-	if ( ! this instanceof Tree) return new Tree(parent);
-	SkillTreePrototype.call(this);
-	
-	this._parent = parent;
+	if ( ! this instanceof Tree) return new Tree(parent, arg);
+	SkillTreePrototype.call(this, parent);
 
 	this.name	= "";
 	this.title	= "";
 	this.text	= "";
 
-	this.usedPoint	= 0;
-	this.cost = 0;
+	this.spendPoint	= 0;
+	this.spendCost = 0;
 
 	this.infamy = false;
+
+	this.init(arg);
 }
 
 Tree.prototype = Object.create(SkillTreePrototype.prototype);
@@ -27,6 +27,8 @@ Tree.fn = Tree.prototype;
 // ================================================================
 
 Tree.fn.init = function(arg) {
+	if ( ! arg) return;
+
 	this.name	= (typeof arg.name	=== "string")? arg.name : this.name;
 	this.title	= (typeof arg.title	=== "string")? arg.title : this.title;
 	this.text	= (typeof arg.text	=== "string")? arg.text : this.text;
@@ -36,21 +38,23 @@ Tree.fn.init = function(arg) {
 
 
 Tree.fn.initChild = function(arg) {
-	var newInstance = new Tier(this);
-	newInstance.init(arg);
-
-	return newInstance;
+	return new Tier(this, arg);
 }
 
 
 // ================================================================
-// = 更新狀態相關
+// = 設定
 // ================================================================
 
 /**
- * 更新階層並計算使用點數
+ * 設定惡名
  */
-Tree.fn.updateStatus = function() {
+Tree.fn.setInfamy = function(bool) {
+	if (typeof bool !== "boolean") return;
+	if (this.infamy === bool) return;
+
+	this.infamy = bool;
+	this.updateTierRequire();
 	this.callParentUpdate();
 }
 
@@ -63,18 +67,79 @@ Tree.fn.unset = function(tree) {
 
 
 // ================================================================
-// = Infamy
+// = 更新
 // ================================================================
 
 /**
- * 設定惡名
+ * 更新階層並計算使用點數
  */
-Tree.fn.setInfamy = function(bool) {
-	if (typeof bool !== "boolean") return;
-	if (this.infamy === bool) return;
+Tree.fn.updateStatus = function() {
+	this.updateSpendPoint();
+}
 
-	this.infamy = bool;
-	this.callParentUpdate();
+
+// ================================================================
+// = 計算點數與費用
+// ================================================================
+
+/**
+ * 更新花費技能點數
+ */
+Tree.fn.updateSpendPoint = function() {
+	var spendPoint = 0;
+	this.loopChild(function(child) {
+		spendPoint += child.updateStatus(spendPoint);
+	});
+
+	this.spendPoint = spendPoint;
+}
+
+/**
+ * 更新花費費用
+ */
+Tree.fn.updateSpendCost = function() {
+	this.spendCost = this.$getSpendCost();
+}
+
+/**
+ * 取得花費技能點數
+ */
+Tree.fn.getSpendPoint = function(bool) {
+	if (bool === true) this.updateSpendPoint();
+	return this.spendPoint;
+}
+
+/**
+ * 取得花費費用
+ */
+Tree.fn.$getSpendCost = Tree.fn.getSpendCost;
+Tree.fn.getSpendCost = function(bool) {
+	if (bool === true) this.updateSpendCost();
+	return this.spendCost;
+}
+
+
+// ================================================================
+// = 請求 > 屬性
+// ================================================================
+
+/**
+ * 請求階層解鎖需求
+ */
+Tree.fn.requestTierRequire = function(tier, reduce) {
+	return this._parent.requestTierRequire(tier, this.infamy);
+}
+
+
+// ================================================================
+// = 呼叫 > 更新狀態
+// ================================================================
+
+/**
+ * 向上呼叫 更新
+ */
+Tree.fn.callParentUpdate = function() {
+	this._parent.callParentUpdate(this);
 }
 
 
@@ -144,40 +209,4 @@ Tree.fn.load = function(storage) {
 		});
 		
 	});
-}
-
-
-// ================================================================
-// = 責任鍊 > 更新狀態
-// ================================================================
-
-/**
- * 向上呼叫 更新
- */
-Tree.fn.callParentUpdate = function() {
-	this._parent.callParentUpdate(this);
-}
-
-/**
- * 向下呼叫 更新技能樹
- */
-Tree.fn.callChildsUpdateTree = function () {
-	var usedPoint = 0;
-	this.loopChild(function(child) {
-		usedPoint += child.callChildsUpdateTree(usedPoint);
-	});
-
-	return this.usedPoint = usedPoint;
-}
-
-/**
- * 向下呼叫 更新花費
- */
-Tree.fn.callChildsUpdateCost = function () {
-	var cost = 0;
-	this.loopChild(function(child) {
-		cost += child.callChildsUpdateCost();
-	});
-
-	return this.cost = cost;
 }

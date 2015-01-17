@@ -13,15 +13,18 @@
 			</p>
 		</div>
 		
-		<div class="info-block">
-			<p ng-bind-html="display.talent.text | skillInfo"></p>
+		<div class="info-block-contain">
+			<p
+				ng-repeat="text in display.talent.text | toArray"
+				ng-bind-html="text | asideText"
+			></p>
 		</div>
 		
 		<div class="info-block-contain">
 			<p>獎勵: </p>
 			<p 
-				ng-repeat="bonus in display.talent.bonuses"
-				ng-bind-html="bonus | skillInfo"
+				ng-repeat="bonus in display.talent.bonuses | toArray"
+				ng-bind-html="bonus | asideText"
 			>
 			</p>
 		</div>

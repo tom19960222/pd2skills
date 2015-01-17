@@ -15,7 +15,7 @@ function($scope) {
 	// ================================================================
 
 	$scope.updateTreeStatus = function(tree) {
-		return tree.usedPoint;
+		return tree.getSpendPoint();
 	}
 	
 	$scope.getAvailable = function() {
@@ -51,7 +51,7 @@ function($scope) {
 		var rank = getRank($scope.infamyCalculator.usedPoint);
 		rank = (rank)? rank + '-' : '';
 
-		var level = getLevel($scope.skillsCalculator.usedPoint);
+		var level = getLevel($scope.skillsCalculator.getSpendPoint());
 
 		return rank + level;		
 	}
@@ -62,7 +62,7 @@ function($scope) {
 	// ================================================================
 
 	$scope.getCost = function () {
-		return $scope.skillsCalculator.getCost();		
+		return $scope.skillsCalculator.getSpendCost();		
 	}
 	
 
@@ -176,12 +176,12 @@ function($scope) {
 		for (var i = 1; i < tree.childList.length; i++) {
 			var tier = tree.getChild(i);
 			
-			if (tier.unlockStatus == false) {
+			if ( ! tier.isUnlocked()) {
 				if (i == 1) return 0;
-				var basic = tree.getChild(i - 1).unlockPoint;
+				var base = tree.getChild(i - 1).unlockRequire;
 				
-				var range = tier.unlockPoint - basic;
-				var tierUsed = tree.usedPoint - basic;
+				var range = tier.unlockRequire - base;
+				var tierUsed = tree.getSpendPoint() - base;
 				var tierProgress = Math.floor(tierUsed / range * 100 * 0.2);
 				var progress = (i - 2) * 20;
 				

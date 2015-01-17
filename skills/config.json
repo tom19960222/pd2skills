@@ -7,81 +7,81 @@
 		"skills/ghost.json",
 		"skills/fugitive.json"
 	],
-	"tierinfo" : [
+	"property" : [
 		{
 			"tier" : 0,
-			"unlockRquire"       : 0,
-			"unlockRquireImfamy" : 0,
+			"unlockRquire"        : 0,
+			"unlockRquireReduced" : 0,
 			
-			"skillUnlockPointBasic" : 1,
+			"skillPointBasic" : 1,
 			
-			"skillUnlockCostBasic"  : 500
+			"skillCostBasic"  : 500
 		},
 		{
 			"tier" : 1,
-			"unlockRquire"       : 1,
-			"unlockRquireImfamy" : 1,
+			"unlockRquire"        : 1,
+			"unlockRquireReduced" : 1,
 			
-			"skillUnlockPointBasic" : 1,
-			"skillUnlockPointAce"   : 3,
+			"skillPointBasic" : 1,
+			"skillPointAce"   : 3,
 			
-			"skillUnlockCostBasic"  : 4500,
-			"skillUnlockCostAce"    : 12500
+			"skillCostBasic"  : 4500,
+			"skillCostAce"    : 12500
 		},
 		{
 			"tier" : 2,
-			"unlockRquire"       : 5,
-			"unlockRquireImfamy" : 5,
+			"unlockRquire"        : 5,
+			"unlockRquireReduced" : 5,
 			
-			"skillUnlockPointBasic" : 1,
-			"skillUnlockPointAce"   : 3,
+			"skillPointBasic" : 1,
+			"skillPointAce"   : 3,
 			
-			"skillUnlockCostBasic"  : 23500,
-			"skillUnlockCostAce"    : 69500
+			"skillCostBasic"  : 23500,
+			"skillCostAce"    : 69500
 		},
 		{
 			"tier" : 3,
-			"unlockRquire"       : 10,
-			"unlockRquireImfamy" : 9,
+			"unlockRquire"        : 10,
+			"unlockRquireReduced" : 9,
 			
-			"skillUnlockPointBasic" : 1,
-			"skillUnlockPointAce"   : 3,
+			"skillPointBasic" : 1,
+			"skillPointAce"   : 3,
 			
-			"skillUnlockCostBasic"  : 44500,
-			"skillUnlockCostAce"    : 132500
+			"skillCostBasic"  : 44500,
+			"skillCostAce"    : 132500
 		},
 		{
 			"tier" : 4,
-			"unlockRquire"       : 20,
-			"unlockRquireImfamy" : 18,
+			"unlockRquire"        : 20,
+			"unlockRquireReduced" : 18,
 			
-			"skillUnlockPointBasic" : 4,
-			"skillUnlockPointAce"   : 8,
+			"skillPointBasic" : 4,
+			"skillPointAce"   : 8,
 			
-			"skillUnlockCostBasic"  : 264500,
-			"skillUnlockCostAce"    : 528500
+			"skillCostBasic"  : 264500,
+			"skillCostAce"    : 528500
 		},
 		{
 			"tier" : 5,
-			"unlockRquire"       : 30,
-			"unlockRquireImfamy" : 27,
+			"unlockRquire"        : 30,
+			"unlockRquireReduced" : 27,
 			
-			"skillUnlockPointBasic" : 4,
-			"skillUnlockPointAce"   : 8,
+			"skillPointBasic" : 4,
+			"skillPointAce"   : 8,
 			
-			"skillUnlockCostBasic"  : 356500,
-			"skillUnlockCostAce"    : 712500
+			"skillCostBasic"  : 356500,
+			"skillCostAce"    : 712500
 		},
 		{
 			"tier" : 6,
-			"unlockRquire"       : 40,
-			"unlockRquireImfamy" : 36,
+			"unlockRquire"        : 40,
+			"unlockRquireReduced" : 36,
 			
-			"skillUnlockPointBasic" : 4,
-			"skillUnlockPointAce"   : 8,
+			"skillPointBasic" : 4,
+			"skillPointAce"   : 8,
 			
-			"skillUnlockCostBasic"  : 452500,
-			"skillUnlockCostAce"    : 904500
+			"skillCostBasic"  : 452500,
+			"skillCostAce"    : 904500
 		}
 	]
 }
