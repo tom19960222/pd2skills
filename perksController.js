@@ -32,4 +32,21 @@ function($scope) {
 		$scope.display.deck = deck;
 	}
 
+
+	// ================================================================
+	// = Icon
+	// ================================================================
+	
+	$scope.getIconStyle = function(e) {
+		var name = e.name.toLowerCase();
+		var url = "./perks/" + name + '.png';
+		
+		return {'backgroundImage': 'url("' + url + '")'};
+	}
+
+	$scope.getClassName = function(e) {
+		return "deck_" + Number(e);
+	}
+	
+
 }]);

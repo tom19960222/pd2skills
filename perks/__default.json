@@ -16,12 +16,34 @@
 			]
 		},
 		{
+			"deck"	: 2,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT1__",
+				"__TEXT2__",
+				"__TEXT3__"
+			]
+		},
+		{
 			"deck"	: 3,
 			"name"	: "__NAME__",
 			"title"	: "__TITLE__",
 			"text"	:
 			[
 				"__TEXT__"
+			]
+		},
+		{
+			"deck"	: 4,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT1__",
+				"__TEXT2__",
+				"__TEXT3__"
 			]
 		},
 		{
@@ -34,12 +56,34 @@
 			]
 		},
 		{
+			"deck"	: 6,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT1__",
+				"__TEXT2__",
+				"__TEXT3__"
+			]
+		},
+		{
 			"deck"	: 7,
 			"name"	: "__NAME__",
 			"title"	: "__TITLE__",
 			"text"	:
 			[
 				"__TEXT__"
+			]
+		},
+		{
+			"deck"	: 8,
+			"name"	: "__NAME__",
+			"title"	: "__TITLE__",
+			"text"	:
+			[
+				"__TEXT1__",
+				"__TEXT2__",
+				"__TEXT3__"
 			]
 		},
 		{

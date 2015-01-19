@@ -21,12 +21,20 @@
 <div ng-repeat="e in arr track by $index"><!-- Loop -->
 
 <pre><!-- Heredoc -->
-.deck_{{ getName(e) }} {
+.skill_{{ getName(e) }} {
 	background-position: {{ getStyle(e) }};
 }
 
-.owned .deck_{{ getName(e) }}, .deck_{{ getName(e) }}:hover {
+.unlocked .skill_{{ getName(e) }} {
 	background-position: {{ getStyle(e, 1) }};
+}
+
+.owned .skill_{{ getName(e) }} {
+	background-position: {{ getStyle(e, 2) }};
+}
+
+.alert .skill_{{ getName(e) }} {
+	background-position: {{ getStyle(e, 3) }};
 }
 </pre><!-- Heredoc -->
 
@@ -36,8 +44,8 @@
 	var app = angular.module('myApp', []);
 	app.controller('MainCtrl', function($scope, $http) {
 
-		var N = 10;
-		var rowCount = 10;
+		var N = 19;
+		var rowCount = 3;
 		var iconSize = 64
 
 		$scope.arr = Array.apply(null, {length: N}).map(Number.call, Number);
@@ -64,7 +72,7 @@
 		$scope.getName = function (e) {
 			var row = getRow(e);
 			var col = getCol(e);
-			return e;
+			return row + "-" + col;
 		}
 
 		function getRow(e) {

@@ -31,48 +31,12 @@ function($scope, $q, $http, hashStorage) {
 		
 		function(files, config) {
 			$scope.skillsCalculator = new SkillsCalculator(files, config.property);
-			/*
-			$scope.skillsCalculator = new SkillsCalculator(
-				(function setupTierConfig(trees, treeConfig) {
-					trees.forEach(function(tree) {
-						tree.tiers.forEach(function(tier) {
-							var info = treeConfig.property[tier.tier];
-							for (var attr in info) {
-								tier[attr] = info[attr];
-							}
-						});
-					});
-
-					return trees;
-				})(files, config)
-			);
-			*/
-			console.log($scope.skillsCalculator);
 		}
 	));
 
 	promises.push(getConfigFiles("perks/config.json",
 		function(files, config) {
-
-			$scope.perkDecksCalculator = new PerkDecksCalculator(
-				(function setupPerksConfig(perks, config) {
-					perks.forEach(function (perk) {
-						perk.decks = [
-							perk.decks[0],
-							config.decksInfo[0],
-							perk.decks[1],
-							config.decksInfo[1],
-							perk.decks[2],
-							config.decksInfo[2],
-							perk.decks[3],
-							config.decksInfo[3],
-							perk.decks[4]
-						];
-					});
-
-					return perks;
-				})(files, config)
-			);
+			$scope.perkDecksCalculator = new PerkDecksCalculator(files);
 		}
 	));
 

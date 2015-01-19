@@ -54,6 +54,20 @@
 	margin-right: 4px; 
 }
 
+/**
+ * ================================================================
+ * = Border
+ * ================================================================
+ */
+
+.perk .border:before {
+	display: none;
+	background-color: rgba(32, 32, 32, 0.25);
+}
+
+.equipped .border:before {
+	display: block;
+}
 
 /**
  * ================================================================
@@ -68,27 +82,22 @@
 	width: 100%;
 }
 
-.equipped .border:before {
-	background-color: rgba(32, 32, 32, 0.3);
-}
-
 .deck {
-	box-sizing:border-box;
 	position: relative;
 	float: left;
 
 	width: 64px;
 	height: 64px;
-	background-image: url('icon/perks-dark.png');
 	
 	cursor: pointer;
 }
 
-.deck:hover {
-	background-image: url('icon/perks-light.png');
+.deck-icon {
+	width: 64px;
+	height: 64px;
 }
 
-.deck:hover:after {
+.deck-icon:hover:after {
 	content: '';
 	box-sizing:border-box;
 	display: block;
@@ -97,8 +106,4 @@
 	width: 100%;
 	height: 100%;
 	border: 2px solid #fff;
-}
-
-.decks .owned {
-	background-image: url('icon/perks-light.png');
 }

@@ -8,6 +8,7 @@
 				class="perk"
 				ng-repeat="perk in perkDecksCalculator.childList track by $index"
 				ng-class="{equipped : perk.equipped}"
+				ng-init="iconStyle = getIconStyle(perk)"
 			>
 
 				<div class="perk-title">
@@ -15,14 +16,19 @@
 					<span>{{ ::perk.title }}</span>
 				</div>
 			
-				<ul class="decks" ng-class="{border : perk.equipped}">
+				<ul class="decks border">
 					<li
-						class="deck {{ ::deck.name | deckClassName }}"
-						ng-repeat="deck in perk.childList"
-						ng-mouseover="deckHover(deck)"
+						class="deck"
+						ng-repeat="deck in perk.childList track by $index"
 						ng-click="deckClick(deck)"
+						ng-mouseover="deckHover(deck)"
 						ng-class="{owned : deck.owned}"
 					>
+						<div
+							class="deck-icon {{ ::className }}"
+							ng-style="iconStyle"
+							ng-init="className = getClassName($index)"
+						></div>
 					</li>
 				</ul>
 

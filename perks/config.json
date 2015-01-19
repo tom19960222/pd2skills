@@ -8,47 +8,5 @@
 		"perks/hitman.json",
 		"perks/crook.json",
 		"perks/burglar.json"
-	],
-	"decksInfo" : [
-		{
-			"deck"	: 2,
-			"name"	: "Helmet Popping",
-			"title"	: "頭盔飛舞",
-			"text"	:
-			[
-				"你增加[25%]爆頭傷害。"
-			]
-		},
-		{
-			"deck"	: 4,
-			"name"	: "Blending In",
-			"title"	: "葉藏於林",
-			"text"	:
-			[
-				"隱匿值增加[1]點。",
-				"穿防彈衣造成移動速度減低的效果少[15%]。",
-				"完成整個任務後獲得的經驗值增加[45%]。"
-			]
-		},
-		{
-			"deck"	: 6,
-			"name"	: "Walk-in Closet",
-			"title"	: "衣帽間",
-			"text"	:
-			[
-				"解鎖流動裝甲包。裝甲包可讓你在任務中更換防彈衣。",
-				"從敵人身上拾取的彈藥量增至[135%]。"
-			]
-		},
-		{
-			"deck"	: 8,
-			"name"	: "Fast and Furious",
-			"title"	: "玩命關頭",
-			"text"	:
-			[
-				"你造成的傷害值多[5%]。",
-				"你使用醫護包的速度快[20%]。"
-			]
-		}
 	]
 }

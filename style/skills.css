@@ -100,7 +100,7 @@
 	color:#667584;
 }
 
-.unlock .skills-tier-progress {
+.unlocked .skills-tier-progress {
 	color:#fff;
 }
 
@@ -191,7 +191,7 @@
 	right:0;
 }
 
-.basic:hover .skill-remove, .ace:hover .skill-remove {
+.owned:hover .skill-remove, .acedd:hover .skill-remove {
 	display:block;
 }
 
@@ -224,23 +224,9 @@
 	left:0;
 	width:64px;
 	height:64px;
-	line-height:64px;
-	background-image:url('icon/skill-dark.png');
 }
 
-.skill:hover .skill-icon {
-	background-image:url('icon/skill-light.png');
-}
-
-.unlock .skill-icon{
-	background-image:url('icon/skill-halflight.png');
-}
-
-.basic .skill-icon{
-	background-image:url('icon/skill-light.png');
-}
-
-.ace .skill-icon:before{
+.aced .skill-icon:before{
 	content:'';
 	
 	display:block;
@@ -251,11 +237,7 @@
 	
 	width:128px;
 	height:128px;
-	background-image:url('icon/ace.png');
-}
-
-.alert .skill-icon{
-	background-image:url('icon/skill-alert.png');
+	background-image:url('../image/ace.png');
 }
 
 
@@ -282,19 +264,19 @@
 	font-size:14px;
 }
 
-.basic .text-basic {
+.owned .text-basic {
 	display:block;
 }
 
-.ace .text-ace {
+.aced .text-ace {
 	display:block;
 }
 
-.unlock .skill:hover .text-basic-hover {
+.unlocked .skill:hover .text-basic-hover {
 	display:block;
 }
 
-.basic:hover .text-ace-hover {
+.owned:hover .text-ace-hover {
 	display:block;
 }
 
