@@ -1,0 +1,86 @@
+
+/**
+ * ================================================================
+ * = Sprite
+ * ================================================================
+ */
+
+.deck_0 {
+	background-position: 0px 0px;
+}
+
+.owned .deck_0, .deck_0:hover {
+	background-position: 0px -64px;
+}
+
+.deck_1 {
+	background-position: -64px 0px;
+}
+
+.owned .deck_1, .deck_1:hover {
+	background-position: -64px -64px;
+}
+
+.deck_2 {
+	background-position: -128px 0px;
+}
+
+.owned .deck_2, .deck_2:hover {
+	background-position: -128px -64px;
+}
+
+.deck_3 {
+	background-position: -192px 0px;
+}
+
+.owned .deck_3, .deck_3:hover {
+	background-position: -192px -64px;
+}
+
+.deck_4 {
+	background-position: -256px 0px;
+}
+
+.owned .deck_4, .deck_4:hover {
+	background-position: -256px -64px;
+}
+
+.deck_5 {
+	background-position: -320px 0px;
+}
+
+.owned .deck_5, .deck_5:hover {
+	background-position: -320px -64px;
+}
+
+.deck_6 {
+	background-position: -384px 0px;
+}
+
+.owned .deck_6, .deck_6:hover {
+	background-position: -384px -64px;
+}
+
+.deck_7 {
+	background-position: -448px 0px;
+}
+
+.owned .deck_7, .deck_7:hover {
+	background-position: -448px -64px;
+}
+
+.deck_8 {
+	background-position: -512px 0px;
+}
+
+.owned .deck_8, .deck_8:hover {
+	background-position: -512px -64px;
+}
+
+.deck_9 {
+	background-position: -576px 0px;
+}
+
+.owned .deck_9, .deck_9:hover {
+	background-position: -576px -64px;
+}

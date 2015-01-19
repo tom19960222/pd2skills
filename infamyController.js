@@ -38,6 +38,22 @@ function($scope) {
 
 
 	// ================================================================
+	// = Icon
+	// ================================================================
+	
+	$scope.getIconStyle = function(e) {
+		var name = "infamy";
+		var url = "./infamy/" + name + '.png';
+		
+		return {'backgroundImage': 'url("' + url + '")'};
+	}
+
+	$scope.getClassName = function(row, col) {
+		return "talent_" + Number(row) + "-" + Number(col);
+	}
+
+
+	// ================================================================
 	// = Display
 	// ================================================================
 	

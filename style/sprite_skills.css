@@ -1,0 +1,309 @@
+/**
+ * ================================================================
+ * = Sprite
+ * ================================================================
+ */
+
+.skill_0-0 {
+	background-position: 0px 0px;
+}
+
+.unlocked .skill_0-0 {
+	background-position: 0px -64px;
+}
+
+.owned .skill_0-0 {
+	background-position: 0px -128px;
+}
+
+.alert .skill_0-0 {
+	background-position: 0px -192px;
+}
+
+.skill_1-0 {
+	background-position: -64px 0px;
+}
+
+.unlocked .skill_1-0 {
+	background-position: -64px -64px;
+}
+
+.owned .skill_1-0 {
+	background-position: -64px -128px;
+}
+
+.alert .skill_1-0 {
+	background-position: -64px -192px;
+}
+
+.skill_1-1 {
+	background-position: -128px 0px;
+}
+
+.unlocked .skill_1-1 {
+	background-position: -128px -64px;
+}
+
+.owned .skill_1-1 {
+	background-position: -128px -128px;
+}
+
+.alert .skill_1-1 {
+	background-position: -128px -192px;
+}
+
+.skill_1-2 {
+	background-position: -192px 0px;
+}
+
+.unlocked .skill_1-2 {
+	background-position: -192px -64px;
+}
+
+.owned .skill_1-2 {
+	background-position: -192px -128px;
+}
+
+.alert .skill_1-2 {
+	background-position: -192px -192px;
+}
+
+.skill_2-0 {
+	background-position: -256px 0px;
+}
+
+.unlocked .skill_2-0 {
+	background-position: -256px -64px;
+}
+
+.owned .skill_2-0 {
+	background-position: -256px -128px;
+}
+
+.alert .skill_2-0 {
+	background-position: -256px -192px;
+}
+
+.skill_2-1 {
+	background-position: -320px 0px;
+}
+
+.unlocked .skill_2-1 {
+	background-position: -320px -64px;
+}
+
+.owned .skill_2-1 {
+	background-position: -320px -128px;
+}
+
+.alert .skill_2-1 {
+	background-position: -320px -192px;
+}
+
+.skill_2-2 {
+	background-position: -384px 0px;
+}
+
+.unlocked .skill_2-2 {
+	background-position: -384px -64px;
+}
+
+.owned .skill_2-2 {
+	background-position: -384px -128px;
+}
+
+.alert .skill_2-2 {
+	background-position: -384px -192px;
+}
+
+.skill_3-0 {
+	background-position: -448px 0px;
+}
+
+.unlocked .skill_3-0 {
+	background-position: -448px -64px;
+}
+
+.owned .skill_3-0 {
+	background-position: -448px -128px;
+}
+
+.alert .skill_3-0 {
+	background-position: -448px -192px;
+}
+
+.skill_3-1 {
+	background-position: -512px 0px;
+}
+
+.unlocked .skill_3-1 {
+	background-position: -512px -64px;
+}
+
+.owned .skill_3-1 {
+	background-position: -512px -128px;
+}
+
+.alert .skill_3-1 {
+	background-position: -512px -192px;
+}
+
+.skill_3-2 {
+	background-position: -576px 0px;
+}
+
+.unlocked .skill_3-2 {
+	background-position: -576px -64px;
+}
+
+.owned .skill_3-2 {
+	background-position: -576px -128px;
+}
+
+.alert .skill_3-2 {
+	background-position: -576px -192px;
+}
+
+.skill_4-0 {
+	background-position: -640px 0px;
+}
+
+.unlocked .skill_4-0 {
+	background-position: -640px -64px;
+}
+
+.owned .skill_4-0 {
+	background-position: -640px -128px;
+}
+
+.alert .skill_4-0 {
+	background-position: -640px -192px;
+}
+
+.skill_4-1 {
+	background-position: -704px 0px;
+}
+
+.unlocked .skill_4-1 {
+	background-position: -704px -64px;
+}
+
+.owned .skill_4-1 {
+	background-position: -704px -128px;
+}
+
+.alert .skill_4-1 {
+	background-position: -704px -192px;
+}
+
+.skill_4-2 {
+	background-position: -768px 0px;
+}
+
+.unlocked .skill_4-2 {
+	background-position: -768px -64px;
+}
+
+.owned .skill_4-2 {
+	background-position: -768px -128px;
+}
+
+.alert .skill_4-2 {
+	background-position: -768px -192px;
+}
+
+.skill_5-0 {
+	background-position: -832px 0px;
+}
+
+.unlocked .skill_5-0 {
+	background-position: -832px -64px;
+}
+
+.owned .skill_5-0 {
+	background-position: -832px -128px;
+}
+
+.alert .skill_5-0 {
+	background-position: -832px -192px;
+}
+
+.skill_5-1 {
+	background-position: -896px 0px;
+}
+
+.unlocked .skill_5-1 {
+	background-position: -896px -64px;
+}
+
+.owned .skill_5-1 {
+	background-position: -896px -128px;
+}
+
+.alert .skill_5-1 {
+	background-position: -896px -192px;
+}
+
+.skill_5-2 {
+	background-position: -960px 0px;
+}
+
+.unlocked .skill_5-2 {
+	background-position: -960px -64px;
+}
+
+.owned .skill_5-2 {
+	background-position: -960px -128px;
+}
+
+.alert .skill_5-2 {
+	background-position: -960px -192px;
+}
+
+.skill_6-0 {
+	background-position: -1024px 0px;
+}
+
+.unlocked .skill_6-0 {
+	background-position: -1024px -64px;
+}
+
+.owned .skill_6-0 {
+	background-position: -1024px -128px;
+}
+
+.alert .skill_6-0 {
+	background-position: -1024px -192px;
+}
+
+.skill_6-1 {
+	background-position: -1088px 0px;
+}
+
+.unlocked .skill_6-1 {
+	background-position: -1088px -64px;
+}
+
+.owned .skill_6-1 {
+	background-position: -1088px -128px;
+}
+
+.alert .skill_6-1 {
+	background-position: -1088px -192px;
+}
+
+.skill_6-2 {
+	background-position: -1152px 0px;
+}
+
+.unlocked .skill_6-2 {
+	background-position: -1152px -64px;
+}
+
+.owned .skill_6-2 {
+	background-position: -1152px -128px;
+}
+
+.alert .skill_6-2 {
+	background-position: -1152px -192px;
+}

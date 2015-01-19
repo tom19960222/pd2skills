@@ -24,15 +24,14 @@
 			
 			<div
 				class="skills-tab-main set-tab-width"
-				ng-class="{
-					'infamy' : tree.infamy
-				}"
+				ng-class="{'infamy' : tree.infamy}"
+				ng-init="iconStyle = getIconStyle(tree)"
 			>
 				<div
 					class="skills-tier"
 					ng-repeat="(tierIndex, tier) in tree.childList | desc track by $index" 
 					ng-class="{
-						'unlock' : tier.unlockStatus,
+						'unlocked' : tier.unlockStatus,
 						'skills-tier-single' : tier.tier == 0
 					}"
 				>
@@ -40,28 +39,26 @@
 						<li	
 							class="skill"
 							ng-repeat="(skillIndex, skill) in tier.childList track by $index"
+							ng-click="skillClick(skill, tier, tree)"
 							ng-mouseover="skillHover(skill, tier)"
 							ng-mouseleave="skillLeave(skill, tier)"
-							ng-click="skillClick(skill, tier, tree)"
 							ng-class="{
-								'infamy' : tree.infamy,
-								'unlock' : tier.unlockStatus,
-								'basic'  : skill.ownBasic,
-								'ace'    : skill.ownAce,
-								'alert'  : skill.alert
+								'owned'    : skill.ownBasic,
+								'aced'     : skill.ownAce,
+								'alert'    : skill.alert
 							}"
 						>
 							<div
-								class="skill-icon"
-								ng-style="style"
-								ng-init="style=skillStyle(skillIndex, tierIndex, treeIndex)"
+								class="skill-icon {{ ::className }}"
+								ng-style="iconStyle"
+								ng-init="className = getClassName(tier.tier, skillIndex)"
 							></div>
 							
 							<div class="skill-text-block">
 								<div class="skill-text text-ace">
 									<p>王牌</p>
 								</div>
-								<div class="skill-text text-ace-hover" ng-if="!($first && $last)">
+								<div class="skill-text text-ace-hover" ng-if="!(tier.tier == 0)">
 									<p>購買 王牌</p>
 									<p>花費 <span>{{ ::tier.skillPointAce }}</span> 點</p>
 								</div>

@@ -11,6 +11,7 @@
 				'unlock' : tier.unlockStatus,
 				'tier-single' : tier.tier == 0
 			}"
+			ng-init="iconStyle = getIconStyle()"
 		>
 
 			<ul>
@@ -18,17 +19,20 @@
 				<li
 					class="infamy-talent"
 					ng-repeat="(talentIndex, talent) in tier.childList track by $index"
+					ng-click="infamyClick(talent)"
 					ng-mouseover="infamyHover(talent)"
 					ng-mouseleave="infamyLeave(talent)"
-					ng-click="infamyClick(talent)"
 					ng-class="{
 						'unlocked' : talent.unlock,
 						'owned'    : talent.owned
 					}"
 				>
 					<div
-						class="infamy-icon icon_{{ ::tier.tier }}-{{ ::talentIndex }}"
+						class="infamy-icon {{ ::className }}"
+						ng-style="iconStyle"
+						ng-init="className = getClassName(tier.tier, talentIndex)"
 					></div>
+						
 
 					<div class="infamy-text-block">
 						<p class="infamy-text text-owned">擁有</p>

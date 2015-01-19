@@ -3,6 +3,8 @@ app.controller('skillsController', [
 
 function($scope) {
 
+	var backgroundImagePath = "./skills/";
+
 	// ================================================================
 	// = Onload
 	// ================================================================
@@ -100,29 +102,15 @@ function($scope) {
 	// = Icon
 	// ================================================================
 	
-	/**
-	 * 取得技能圖示樣式
-	 */
-	function getSkillIconStyle(skillIndex, tierIndex, treeIndex) {
-		var x = 11;
-		var y = 41;
+	$scope.getIconStyle = function(e) {
+		var name = e.name.toLowerCase();
+		var url = "./skills/" + name + '.png';
 		
-		var skillMargin = 64 + 9;
-		var tierMargin = 64 + 7;
-		var treeMargin = skillMargin * 3 + 7;
-		
-		if (tierIndex == 6) {
-			skillIndex += 1;
-		}
-		
-		x = 0 - (x + treeMargin * treeIndex + skillMargin * skillIndex);
-		y = 0 - (y + tierMargin * tierIndex);
-		
-		return {'backgroundPosition': x +"px "+ y +"px"};
+		return {'backgroundImage': 'url(' + url + ')'};
 	}
-	
-	$scope.skillStyle = function(skillIndex, tierIndex, treeIndex) {
-		return getSkillIconStyle(skillIndex, tierIndex, treeIndex);
+
+	$scope.getClassName = function(row, col) {
+		return "skill_" + Number(row) + "-" + Number(col);
 	}
 	
 
