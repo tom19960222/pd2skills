@@ -1,5 +1,4 @@
-var app = angular.module('myApp', []);
-
+var app = angular.module('pd2Skills', []);
 
 app.factory("hashStorage", ["$location", function($location) {
 	return new HashStorage($location);
