@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 	<head>
-		<title>Payday2 技能模擬器 (beta)</title>
 		<meta charset="utf-8">
+		<title>Payday 2 技能模擬器</title>
 		<meta name="viewport" content="width=device-width, user-scalable=0">
 		
-		<link rel="stylesheet" href="style/style.css">
+		<link rel="stylesheet" href="style/main.css">
 		<link rel="stylesheet" href="style/aside.css">
 
 		<link rel="stylesheet" href="style/skills.css">
@@ -16,15 +16,14 @@
 		<link rel="stylesheet" href="style/sprite_decks.css">
 		<link rel="stylesheet" href="style/sprite_infamy.css">
 
-		
 		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Fjalla+One'>
-		
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
 		<!-- <script src="angular.min.js"></script> -->
 				
 	</head>
 	
-	<body ng-app="myApp">
+	<body ng-app="pd2Skills">
+
 		<div class="wrapper">
 			
 			<div class="header">
@@ -89,12 +88,12 @@
 		<script src="class/Storage.class.js"></script>
 		<script src="class/HashStorage.class.js"></script>
 		
-		<script src="main.js"></script>
-		<script src="filter.js"></script>
+		<script src="app/main.js"></script>
+		<script src="app/filter.js"></script>
 		
-		<script src="mainController.js"></script>
-		<script src="skillsController.js"></script>
-		<script src="perksController.js"></script>
-		<script src="infamyController.js"></script>		
+		<script src="app/mainController.js"></script>
+		<script src="app/skillsController.js"></script>
+		<script src="app/perksController.js"></script>
+		<script src="app/infamyController.js"></script>		
 	</body>
 </html>
