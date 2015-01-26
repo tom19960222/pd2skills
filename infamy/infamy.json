@@ -11,7 +11,7 @@
 				{
 					"name"    : "Unlocking the Infamy Tree",
 					"title"   : "解鎖惡名樹",
-					"text"    : "As a new arrival to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.",
+					"text"    : "作為一名犯罪菁英的新成員，你的首要工作是取得和您地位相稱的裝備與誇耀。",
 					"bonuses" :
 					[
 						"稀有物品掉落機率由[0.7%]增加至[1.4%]。",
@@ -27,8 +27,8 @@
 			"talents" : [
 				{
 					"name"    : "Set of the Corrupted",
-					"title"   : "Tier 01: Set of the Corrupted",
-					"text"    : "Known to cause moral chaos and sway even the most devoted lawman.",
+					"title"   : "腐敗套裝",
+					"text"    : "以能夠混亂他人道德與動搖最忠誠的執法人員而著名。",
 					"bonuses" :
 					[
 						"黑手(Mastermind) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
@@ -37,8 +37,8 @@
 				},
 				{
 					"name"    : "The Slaughterhouse set",
-					"title"   : "Tier 01: The Slaughterhouse set",
-					"text"    : "Used in crimes that requires the Enforcer to get his hands dirty.",
+					"title"   : "屠宰場套裝",
+					"text"    : "使用於需要暴徒弄髒雙手的犯罪場合中。",
 					"bonuses" :
 					[
 						"暴徒(Enforcer) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
@@ -47,8 +47,8 @@
 				},
 				{
 					"name"    : "Set of the Ingenious",
-					"title"   : "Tier 01: Set of the Ingenious",
-					"text"    : "Cold, calculating and a master of foced disappearances, dead or alive.",
+					"title"   : "靈巧套裝",
+					"text"    : "一名冷靜、精於算計以及不論人質死活的非法綁架大師。",
 					"bonuses" :
 					[
 						"技師(Technician) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",
@@ -57,8 +57,8 @@
 				},
 				{
 					"name"    : "The Assassin set",
-					"title"   : "Tier 01: The Assassin set",
-					"text"    : "Modern assassin that carries out death sentences - for the right price.",
+					"title"   : "刺客套裝",
+					"text"    : "只要有適當的價碼，這名現代刺客能精確的為您執行死刑。",
 					"bonuses" :
 					[
 						"幽靈(Ghost) 與 逃犯(Fugitive) 技能樹，每階層解鎖需求減少[10%]。",

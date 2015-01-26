@@ -7,6 +7,7 @@
 		"perks/rogue.json",
 		"perks/hitman.json",
 		"perks/crook.json",
-		"perks/burglar.json"
+		"perks/burglar.json",
+		"perks/infiltrator.json"
 	]
 }
