@@ -7,11 +7,19 @@
 
 @ECHO OFF
 
+:: check
+IF ("%1" == "") (
+	PAUSE
+	EXIT
+)
+
 :: yuicompressor
 SET COMPRESSOR=%~p0
 SET COMPRESSOR=%COMPRESSOR%yuicompressor-2.4.8.jar
 :: temp name
 SET TEMP_FILE_NAME=merged.tmp
+
+ECHO.
 
 :: set file type
 IF NOT ("%2" == "") (
@@ -27,16 +35,27 @@ IF NOT ("%3" == "") (
 	SET OUTPUT_NAME=%~n1
 	SET OUTPUT_NAME=%OUTPUT_NAME%.min.%FILE_TYPE%
 )
-
+ECHO Output File: %OUTPUT_NAME%
 
 :: ================================================================
 
-:: 合併檔案
+ECHO Starting Merge Files...
 FOR /f %%i in (%1) DO (
+	ECHO Merge: %%i
 	type %%i >>%TEMP_FILE_NAME%
 )
+ECHO Files Merged.
 
-:: 壓縮
+ECHO.
+ECHO Compress File...
+
 java -jar %COMPRESSOR% --type %FILE_TYPE% --charset utf-8 %TEMP_FILE_NAME% -o %OUTPUT_NAME%
-:: 刪除暫存檔
+ECHO End.
+
+ECHO.
+ECHO Remove Temp File: %TEMP_FILE_NAME%
+
 DEL %TEMP_FILE_NAME%
+ECHO Finished.
+
+PAUSE
