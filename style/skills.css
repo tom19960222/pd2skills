@@ -51,28 +51,17 @@
 	color:#3aa5e6;
 }
 
-.skills-tab > input[type=radio] {
-	display:none;
-}
-
-.skills-tab > input[type=radio]:checked + label {
+.skills-tab > .checked {
 	background:#eee;
 	color:#667584;
 }
 
 .skills-tab-main {
-	display:none;
 	position:absolute;
 	top:30px;
 	left:0;
-	
-	/*width:100%;*/
 	height:476px;
 	padding-right:60px;
-}
-
-.skills-tab > input[type=radio]:checked ~ .skills-tab-main {
-	display:block;
 }
 
 
@@ -108,7 +97,7 @@
 	display:none;
 }
 
-.skills-tier-progress > span{
+.skills-tier-progress > span {
 	display:inline-block;
 	width:24px;
 	margin:0;
@@ -117,7 +106,7 @@
 	text-align:right;
 }
 
-.infamy .skills-tier-progress:before{
+.infamy .skills-tier-progress:before {
 	content:'';
 
 	position:absolute;
