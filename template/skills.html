@@ -1,29 +1,24 @@
 <div class="skills-main set-tab-width">
 	
-	<div class="skills-border-contain set-tab-width set-tab-height border hr">
-	</div>
+	<div class="skills-border-contain set-tab-width set-tab-height border hr"></div>
 	
-	<ul class="skills-tabs">
+	<ul class="skills-tabs" ng-init="$scope.tab=0">
 		
 		<li class="skills-tab" ng-repeat="(treeIndex, tree) in skillsCalculator.childList track by $index">
 			
-			<input
-				type="radio"
-				id="skills-tab{{ ::$index }}"
-				name="skills-tabs"
-				value="{{ ::tree.name }}"
-				ng-model="display.tree"
-				ng-value="tree"
-				ng-init="($first)? display.tree=tree : null"
+			<div
+				class="skills-tab-nav"
+				ng-click="$scope.tab=$index; display.tree = tree"
+				ng-class="{'checked' : $scope.tab == $index}"
+				ng-init="($first)? display.tree = tree : null"
 			>
-			
-			<label for="skills-tab{{ ::$index }}" class="skills-tab-nav">
 				<span>{{ ::tree.title }}</span>
 				<span>({{ updateTreeStatus(tree) }})</span>
-			</label>
+			</div>
 			
 			<div
 				class="skills-tab-main set-tab-width"
+				ng-if="$scope.tab==$index"
 				ng-class="{'infamy' : tree.infamy}"
 				ng-init="iconStyle = getIconStyle(tree)"
 			>
@@ -58,7 +53,7 @@
 								<div class="skill-text text-ace">
 									<p>王牌</p>
 								</div>
-								<div class="skill-text text-ace-hover" ng-if="!(tier.tier == 0)">
+								<div class="skill-text text-ace-hover" ng-if=" ! (tier.tier == 0)">
 									<p>購買 王牌</p>
 									<p>花費 <span>{{ ::tier.skillPointAce }}</span> 點</p>
 								</div>
