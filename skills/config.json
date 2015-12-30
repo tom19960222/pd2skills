@@ -36,8 +36,8 @@
 			"skillPointBasic" : 1,
 			"skillPointAce"   : 3,
 			
-			"skillCostBasic"  : 23500,
-			"skillCostAce"    : 69500
+			"skillCostBasic"  : 28500,
+			"skillCostAce"    : 84500
 		},
 		{
 			"tier" : 3,
@@ -47,8 +47,8 @@
 			"skillPointBasic" : 1,
 			"skillPointAce"   : 3,
 			
-			"skillCostBasic"  : 44500,
-			"skillCostAce"    : 132500
+			"skillCostBasic"  : 56500,
+			"skillCostAce"    : 168500
 		},
 		{
 			"tier" : 4,
@@ -58,8 +58,8 @@
 			"skillPointBasic" : 4,
 			"skillPointAce"   : 8,
 			
-			"skillCostBasic"  : 264500,
-			"skillCostAce"    : 528500
+			"skillCostBasic"  : 336500,
+			"skillCostAce"    : 672500
 		},
 		{
 			"tier" : 5,
@@ -69,8 +69,8 @@
 			"skillPointBasic" : 4,
 			"skillPointAce"   : 8,
 			
-			"skillCostBasic"  : 356500,
-			"skillCostAce"    : 712500
+			"skillCostBasic"  : 456500,
+			"skillCostAce"    : 912500
 		},
 		{
 			"tier" : 6,
@@ -80,8 +80,8 @@
 			"skillPointBasic" : 4,
 			"skillPointAce"   : 8,
 			
-			"skillCostBasic"  : 452500,
-			"skillCostAce"    : 904500
+			"skillCostBasic"  : 576500,
+			"skillCostAce"    : 1152500
 		}
 	]
 }
